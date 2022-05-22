@@ -1,0 +1,23 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>images/breite.png</file>
+    <file>images/appicon.png</file>
+    <file>images/beenden.png</file>
+    <file>images/drucken.png</file>
+    <file>images/druckenpdf.png</file>
+    <file>images/option.png</file>
+    <file>images/label.png</file>
+    <file>images/marken.png</file>
+    <file>images/info.png</file>
+    <file>images/openk1.png</file>
+    <file>images/openk2.png</file>
+    <file>images/open.png</file>
+    <file>images/save.png</file>
+    <file>images/fmarken.png</file>
+    <file>images/profil.png</file>
+    <file>images/zanp1.png</file>
+    <file>images/zanp2.png</file>
+    <file>images/hline.png</file>
+    <file>images/savebild.png</file>
+</qresource>
+</RCC>
