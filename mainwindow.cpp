@@ -25,6 +25,11 @@
 #include <QtGui>
 #include <QObject>
 #include <QLocale>
+#include <QMenu>
+#include <QMenuBar>
+#include <QToolBar>
+#include <QMessageBox>
+#include <QStatusBar>
 
 #include "mainwindow.h"
 
@@ -38,7 +43,7 @@ MainWindow::MainWindow()
   infodatum = "28.03.2016";
   infotext = "<h2>LinNWT und WinNWT</h2>"
              "<p><B>Version "+infoversion+"</B>     "+infodatum+" "
-             "<p>Entwickelt unter Linux mit QT4 von Trolltech"
+             "<p>Entwickelt unter Linux mit QT5 von Trolltech"
              "<p>(c) Andreas Lindenau DL4JAL<br>"
              "DL4JAL@darc.de<br>"
              "http://www.dl4jal.eu";
@@ -381,9 +386,9 @@ void MainWindow::readSettings()
   mTooltip->setChecked(settings.value("tooltip", true).toBool());
   nwt7linux->readSettings();
   if(size.rwidth() < 750){
-    bbreite = TRUE;
+    bbreite = true;
   }else{
-    bbreite = FALSE;
+    bbreite = false;
   }
 }
 
@@ -392,10 +397,10 @@ void MainWindow::setBreite()
   int breite = this->width();
   int hoehe = this->height();
   if(bbreite){
-    bbreite = FALSE;
+    bbreite = false;
     breite = 750;
   }else{
-    bbreite = TRUE;
+    bbreite = true;
     breite = 500;
   }
   resize(breite, hoehe);

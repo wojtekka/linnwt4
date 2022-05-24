@@ -31,12 +31,12 @@
 
 Modem *Modem::modem = 0;
 
-//Modem::Modem(): modemfd(-1),sn(0L), data_mode(FALSE),dataMask(0xFF)
-Modem::Modem(): modemfd(-1), data_mode(FALSE),dataMask(0xFF)
+//Modem::Modem(): modemfd(-1),sn(0L), data_mode(false),dataMask(0xFF)
+Modem::Modem(): modemfd(-1), data_mode(false),dataMask(0xFF)
 {
   assert(modem==0);
   modem = this;
-  modem_is_locked = FALSE;
+  modem_is_locked = false;
   qdev = "";
 }
 
@@ -110,50 +110,50 @@ bool Modem::opentty(QString seriell_dev) {
   dcb.Parity = NOPARITY;
   dcb.StopBits = ONESTOPBIT;
   dcb.ByteSize = 8; 
-  dcb.fOutxCtsFlow = FALSE;
+  dcb.fOutxCtsFlow = false;
   dcb.fDtrControl = DTR_CONTROL_ENABLE;
   dcb.fRtsControl = RTS_CONTROL_ENABLE;
 
   fd = CreateFileA(name, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
   if(fd == INVALID_HANDLE_VALUE){
     emit setTtyText("?");
-    return FALSE;
+    return false;
   }
   if(!SetCommState(fd,&dcb)){
     emit setTtyText("?");
-    return FALSE;
+    return false;
   }
-  ov.hEvent = CreateEvent(NULL, TRUE, TRUE, NULL);
+  ov.hEvent = CreateEvent(NULL, true, true, NULL);
   if(ov.hEvent == INVALID_HANDLE_VALUE){
     emit setTtyText("?");
-    return FALSE;
+    return false;
   }
   COMMTIMEOUTS cto = {MAXDWORD, 0, 0, 0, 0};
   if(!SetCommTimeouts(fd, &cto)){
     emit setTtyText("?");
-    return FALSE;
+    return false;
   }
   if(!SetupComm(fd, SERIALPORT_BUFSIZE, SERIALPORT_BUFSIZE)){
     emit setTtyText("?");
-    return FALSE;
+    return false;
   }
   memset(&einfo,0, sizeof(einfo));
   emit setTtyText(seriell_dev);
-  return TRUE;
+  return true;
 };
 
 //  // get device from config file
 //  qdev = seriell_dev;
 //  // lock the device:
-//  if ( lock_device() == FALSE ) {
+//  if ( lock_device() == false ) {
 //    qDebug("Error by device locking");
-//    return FALSE;
+//    return false;
 //  }
 //  //  int flags;
 //  modemfd = open(qdev, O_RDWR | O_NOCTTY );
 //  if(modemfd  <0) {
 //    qDebug("Sorry, can't open modem.");
-//    return FALSE;
+//    return false;
 //  }
 //  tcdrain (modemfd);
 //  tcflush (modemfd, TCIOFLUSH);
@@ -165,7 +165,7 @@ bool Modem::opentty(QString seriell_dev) {
 //      qDebug("Sorry, the modem is busy.");
 //      ::close(modemfd);
 //      modemfd = -1;
-//      return FALSE;
+//      return false;
 //    }
 //  }
 //  memset(&initial_tty,'\0',sizeof(initial_tty));
@@ -189,11 +189,11 @@ bool Modem::opentty(QString seriell_dev) {
 //    qDebug("Sorry, the modem is busy.");
 //    ::close(modemfd);
 //    modemfd=-1;
-//    return FALSE;
+//    return false;
 //  }
 //  qDebug("Modem Ready.");
 //
-////  return TRUE;
+////  return true;
 ////}
 
 bool Modem::closetty() {
@@ -203,7 +203,7 @@ bool Modem::closetty() {
     fd = INVALID_HANDLE_VALUE;
   }
   emit setTtyText("?");
-  return TRUE;
+  return true;
 }
 
 //    if(modemfd >=0 ) {
@@ -214,17 +214,17 @@ bool Modem::closetty() {
 //      qDebug("Can't restore tty settings: tcsetattr()\n");
 //      ::close(modemfd);
 //      modemfd = -1;
-//      return FALSE;
+//      return false;
 //    }
 //    ::close(modemfd);
 //    modemfd = -1;
 //  }
-//  if ( unlock_device() == FALSE )  {
+//  if ( unlock_device() == false )  {
 //    qDebug("cannot unlock device !");
-//    return FALSE;
+//    return false;
 //  }
 //
-////  return TRUE;
+////  return true;
 ////}
 //
 //void Modem::readtty(int) {
@@ -255,14 +255,14 @@ bool Modem::closetty() {
 //      connect(sn, SIGNAL(activated(int)), SLOT(readtty(int)));
 //      qDebug("QSocketNotifier started!");
 //    } else {
-//      sn->setEnabled(TRUE);
+//      sn->setEnabled(true);
 //    }
 //  }
 //}
 //
 //void Modem::stopNotifier() {
 //  if(sn != 0) {
-//    sn->setEnabled(FALSE);
+//    sn->setEnabled(false);
 //    disconnect(sn);
 //    delete sn;
 //    sn = 0;
@@ -314,31 +314,31 @@ bool Modem::writeLine(const char *buf) {
 //        sscanf(lckpidstr, "%d", &lckpid);
 //        if (kill(lckpid, 0) == 0) {
 //          qDebug("Device is locked by process ");
-//          return FALSE;
+//          return false;
 //        }
 //      //The lock file is stale. Remove it.
 //        if (unlink(lckf)) {
 //          qDebug("Unable to unlink stale lock file: ");	
-//          return FALSE;
+//          return false;
 //        }
 //      } else {
 //        qDebug("Cannot read from lock file: ");	
-//        return FALSE;
+//        return false;
 //      }
 //    } else {
 //      qDebug("Cannot open existing lock file: ");
-//      return FALSE;
+//      return false;
 //    }
 //  }
 //  if ((lfh = open(lckf, O_WRONLY | O_CREAT | O_EXCL,  S_IWRITE | S_IREAD | S_IRGRP | S_IROTH)) < 0) {
 //    qDebug("Cannot create lockfile. Sorry.");
-//    return FALSE;
+//    return false;
 //  }
 //  sprintf(lckpidstr, "%10d\n", getpid());
 //  write(lfh, lckpidstr, strlen(lckpidstr));
 //  close(lfh);
-//  modem_is_locked = TRUE;
-//  return TRUE;
+//  modem_is_locked = true;
+//  return true;
 //
 //}
 //
@@ -348,7 +348,7 @@ bool Modem::writeLine(const char *buf) {
 //
 //  if(! modem_is_locked  && qdev=="") {
 //    qDebug("confused by unlock device, sorry !\n");
-//    return FALSE;
+//    return false;
 //  }
 //  const char *device;
 //
@@ -361,9 +361,9 @@ bool Modem::writeLine(const char *buf) {
 //
 //  if (unlink(lckf)) {
 //    qDebug("Unable to unlink lock file: ");
-//    return FALSE;
+//    return false;
 //  }
-//  return TRUE;
+//  return true;
 //}
 //
 //
@@ -468,11 +468,11 @@ int Modem::readttybuffer( void *bp, int maxlen)
 
 Modem *Modem::modem = 0;
 
-Modem::Modem(): modemfd(-1),sn(0L), data_mode(FALSE),dataMask(0xFF)
+Modem::Modem(): modemfd(-1),sn(0L), data_mode(false),dataMask(0xFF)
 {
 //  assert(modem==0);
 //  modem = this;
-  modem_is_locked = FALSE;
+  modem_is_locked = false;
   qdev = "";
 }
 
@@ -535,11 +535,11 @@ bool Modem::opentty(QString seriell_dev) {
   // get device from config file
   qdev = seriell_dev;
   // lock the device:
-  if ( lock_device() == FALSE ) {
+  if ( lock_device() == false ) {
 #ifdef LDEBUG
     qDebug("Error by device locking");
 #endif    
-    return FALSE;
+    return false;
   }
   //  int flags;
   modemfd = open(qPrintable(qdev), O_RDWR | O_NOCTTY );
@@ -547,7 +547,7 @@ bool Modem::opentty(QString seriell_dev) {
 #ifdef LDEBUG
     qDebug("Sorry, can't open modem.");
 #endif
-    return FALSE;
+    return false;
   }
   tcdrain (modemfd);
   tcflush (modemfd, TCIOFLUSH);
@@ -561,7 +561,7 @@ bool Modem::opentty(QString seriell_dev) {
 #endif
       ::close(modemfd);
       modemfd = -1;
-      return FALSE;
+      return false;
     }
   }
   memset(&initial_tty,'\0',sizeof(initial_tty));
@@ -588,7 +588,7 @@ bool Modem::opentty(QString seriell_dev) {
 #endif
     ::close(modemfd);
     modemfd=-1;
-    return FALSE;
+    return false;
   }
 #ifdef LDEBUG  
   qDebug("Modem Ready.");
@@ -596,18 +596,17 @@ bool Modem::opentty(QString seriell_dev) {
 */
 
   int flags=O_RDWR;
-
   modemfd=open(seriell_dev.toLatin1(), flags | O_NDELAY);
   if (modemfd<0)
   {
-     return FALSE;
+     return false;
   }
   tcflush(modemfd, TCIOFLUSH);
 
   struct termios newtio;
   if (tcgetattr(modemfd, &newtio)!=0)
   {
-    return FALSE;
+    return false;
   }
   //_baud=B57600;
 
@@ -629,7 +628,7 @@ bool Modem::opentty(QString seriell_dev) {
 
   if (tcsetattr(modemfd, TCSANOW, &newtio)!=0)
   {
-    return FALSE;
+    return false;
   }
 
   int mcs=0;
@@ -639,16 +638,16 @@ bool Modem::opentty(QString seriell_dev) {
 
   if (tcgetattr(modemfd, &newtio)!=0)
   {
-    return FALSE;
+    return false;
   }
   //newtio.c_cflag &= ~CRTSCTS; //kein hardware handshake
   //if (tcsetattr(modemfd, TCSANOW, &newtio)!=0)
   //{
-  //  return FALSE;
+  //  return false;
   //}
 
   emit setTtyText(seriell_dev);
-  return TRUE;
+  return true;
 }
 
 bool Modem::closetty() {
@@ -662,18 +661,18 @@ bool Modem::closetty() {
 #endif
       ::close(modemfd);
       modemfd = -1;
-      return FALSE;
+      return false;
     }
     ::close(modemfd);
     modemfd = -1;
   }
-  if ( unlock_device() == FALSE )  {
+  if ( unlock_device() == false )  {
 #ifdef LDEBUG
     qDebug("cannot unlock device !");
 #endif
-    return FALSE;
+    return false;
   }
-  return TRUE;
+  return true;
 }
 
 void Modem::readtty(int) {
@@ -705,14 +704,14 @@ void Modem::startNotifier() {
       qDebug("QSocketNotifier started!");
 #endif
     } else {
-      sn->setEnabled(TRUE);
+      sn->setEnabled(true);
     }
   }
 }
 
 void Modem::stopNotifier() {
   if(sn != 0) {
-    sn->setEnabled(FALSE);
+    sn->setEnabled(false);
     disconnect(sn);
     delete sn;
     sn = 0;
@@ -733,12 +732,15 @@ bool Modem::writeLine(const char *buf) {
 //Let's send an "enter"
 //  write(modemfd, "\r", 1);
   if(a==b){
-    return TRUE;
+    return true;
   }else{
-    return FALSE;
+    return false;
   }
 }
 
+bool Modem::writeLine(const QString &s) {
+  return writeLine(qPrintable(s));
+}
 
 bool Modem :: lock_device()
 {
@@ -768,7 +770,7 @@ bool Modem :: lock_device()
 #ifdef LDEBUG
           qDebug("Device is locked by process ");
 #endif
-          return FALSE;
+          return false;
         }
       //
       // The lock file is stale. Remove it.
@@ -777,34 +779,34 @@ bool Modem :: lock_device()
 #ifdef LDEBUG
           qDebug("Unable to unlink stale lock file: ");	
 #endif
-          return FALSE;
+          return false;
         }
       } else {
 #ifdef LDEBUG
         qDebug("Cannot read from lock file: ");	
 #endif
-        return FALSE;
+        return false;
       }
     } else {
 #ifdef LDEBUG
       qDebug("Cannot open existing lock file: ");
 #endif
-      return FALSE;
+      return false;
     }
   }
   if ((lfh = open(lckf, O_WRONLY | O_CREAT | O_EXCL,  S_IWRITE | S_IREAD | S_IRGRP | S_IROTH)) < 0) {
 #ifdef LDEBUG
     qDebug("Cannot create lockfile. Sorry.");
 #endif
-    return FALSE;
+    return false;
   }
   sprintf(lckpidstr, "%10d\n", getpid());
   size_t a = strlen(lckpidstr);
   size_t b = write(lfh, lckpidstr, a);
   close(lfh);
-  if(a != b)return FALSE;
-  modem_is_locked = TRUE;
-  return TRUE;
+  if(a != b)return false;
+  modem_is_locked = true;
+  return true;
 }
 
 bool Modem :: unlock_device()
@@ -814,7 +816,7 @@ bool Modem :: unlock_device()
 #ifdef LDEBUG
     qDebug("confused by unlock device, sorry !\n");
 #endif
-    return FALSE;
+    return false;
   }
   const char *device = qPrintable(qdev);
   char lckf[128];
@@ -825,9 +827,9 @@ bool Modem :: unlock_device()
 #ifdef LDEBUG
     qDebug("Unable to unlink lock file: ");
 #endif
-    return FALSE;
+    return false;
   }
-  return TRUE;
+  return true;
 }
 
 
@@ -839,7 +841,7 @@ int Modem::getFD() {
 //
 // Read from RS232 interface
 //
-int Modem::rs232_read( void *bp, int maxlen)
+int Modem::rs232_read(void *bp, int maxlen)
 {
 
   fd_set set;

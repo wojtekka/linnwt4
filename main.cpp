@@ -56,9 +56,8 @@ int main(int argc, char *argv[])
     if(appTranslator.load(s))qDebug("OK");
     app.installTranslator(&appTranslator); 
   }
-  app.setQuitOnLastWindowClosed(TRUE); 
+  app.setQuitOnLastWindowClosed(true); 
   MainWindow *mainWin = new MainWindow();
-  app.setMainWidget(mainWin);
   app.setWindowIcon(QIcon(":images/appicon.png"));
   mainWin->setWindowIcon(QIcon(":images/appicon.png"));
   mainWin->show();

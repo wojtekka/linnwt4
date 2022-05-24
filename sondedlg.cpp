@@ -29,7 +29,7 @@
 //#####################################################################################
 // Class fuer Option
 //#####################################################################################
-sdlg::sdlg(QWidget* parent, const char* name, bool modal): QDialog(parent, name, modal)
+sdlg::sdlg(QWidget* parent, Qt::WindowFlags flags): QDialog(parent, flags)
 {
   this->resize(450,1090);
   this->setMinimumSize(0,0);
@@ -81,7 +81,7 @@ sdlg::sdlg(QWidget* parent, const char* name, bool modal): QDialog(parent, name,
 
 sdlg::~sdlg()
 {
-  scrollBar->close(true);
+  scrollBar->close();
 }
 
 

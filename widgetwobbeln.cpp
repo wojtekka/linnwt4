@@ -28,6 +28,11 @@
 #include <QTextStream>
 #include <QMapIterator>
 #include <QVector>
+#include <QCheckBox>
+#include <QAction>
+#include <QPushButton>
+#include <QMenu>
+#include <QPrintDialog>
 
 #include "widgetwobbeln.h"
 
@@ -70,7 +75,7 @@ private:
 };
 */
 
-winsinfo::winsinfo(QWidget* parent, const char* name, bool modal): QDialog(parent, name, modal)
+winsinfo::winsinfo(QWidget* parent, Qt::WindowFlags flags): QDialog(parent, flags)
 {
   this->resize(270, 260);
   this->setMinimumSize(270, 260);
@@ -81,7 +86,7 @@ winsinfo::winsinfo(QWidget* parent, const char* name, bool modal): QDialog(paren
   
   ginfo = new QGroupBox(tr("Info platzieren"), this);
   ginfo->setGeometry(10,50,250,150);
-  ginfo->setEnabled(FALSE);
+  ginfo->setEnabled(false);
 
   spfontsize = new QSpinBox(ginfo);
   spfontsize->setGeometry(150,20,60,30);
@@ -156,11 +161,11 @@ void winsinfo::changeypos(int y)
 void winsinfo::changesetboxinfo()
 {
   if(checkboxinfo->checkState() == Qt::Checked){
-    ginfo->setEnabled(TRUE);
-    bbildinfo.infoanzeigen = TRUE;
+    ginfo->setEnabled(true);
+    bbildinfo.infoanzeigen = true;
   }else{
-    ginfo->setEnabled(FALSE);
-    bbildinfo.infoanzeigen = FALSE;
+    ginfo->setEnabled(false);
+    bbildinfo.infoanzeigen = false;
   }
   emit pixauffrischen(bbildinfo);
 }
@@ -189,10 +194,10 @@ WidgetWobbeln::WidgetWobbeln(QWidget *parent) : QWidget(parent)
     mouseposy[kursorix] = 0;
   }
   
-  banfang = FALSE;
-  bende = FALSE;
-  blupeplus = FALSE;
-  blupeminus = FALSE;
+  banfang = false;
+  bende = false;
+  blupeplus = false;
+  blupeminus = false;
   mousefrequenz = 0.0;
  /*
   menmouse = new Q3PopupMenu(this);
@@ -236,23 +241,23 @@ WidgetWobbeln::WidgetWobbeln(QWidget *parent) : QWidget(parent)
   aberechnen = new QAction(tr("Kursor-Frequenz zum Berechnen","PopupMenue"), popupmenu);
   connect(aberechnen, SIGNAL(triggered()), this, SLOT(setberechnung()));
   popupmenu->addAction(aberechnen);
-  akursor_clr->setEnabled(FALSE);
-  akursor_clr_all->setEnabled(FALSE);
-  afrequenzanfang->setEnabled(FALSE);
-  afrequenzende->setEnabled(FALSE);
-  akabellaenge->setEnabled(FALSE);
-  akabeldaten->setEnabled(FALSE);
-  aberechnen->setEnabled(FALSE);
+  akursor_clr->setEnabled(false);
+  akursor_clr_all->setEnabled(false);
+  afrequenzanfang->setEnabled(false);
+  afrequenzende->setEnabled(false);
+  akabellaenge->setEnabled(false);
+  akabeldaten->setEnabled(false);
+  aberechnen->setEnabled(false);
   
   setBackgroundRole(QPalette::Dark);
-  setAutoFillBackground(TRUE);
+  setAutoFillBackground(true);
   setCursor(Qt::CrossCursor);
-  kurve1.mess.daten_enable = FALSE;
-  kurve2.mess.daten_enable = FALSE;
-  kurve3.mess.daten_enable = FALSE;
-  kurve4.mess.daten_enable = FALSE;
-  wobbeldaten.bhintergrund = FALSE;
-  bresize = TRUE;
+  kurve1.mess.daten_enable = false;
+  kurve2.mess.daten_enable = false;
+  kurve3.mess.daten_enable = false;
+  kurve4.mess.daten_enable = false;
+  wobbeldaten.bhintergrund = false;
+  bresize = true;
   //obere Anzeige der LOG_Y-Achse
   ymax=10.0;//dB
   //obere Anzeige der LOG_Y-Achse
@@ -260,7 +265,7 @@ WidgetWobbeln::WidgetWobbeln(QWidget *parent) : QWidget(parent)
   //obere Anzeige der LOG_Y-Achse
   ydisplayteilung_log= (ymax - ymin) / 10.0;
   //fuer Stringliste Quarzdaten
-  speichern = FALSE; 
+  speichern = false; 
 }
 
 WidgetWobbeln::~WidgetWobbeln()
@@ -431,7 +436,7 @@ void WidgetWobbeln::wsetfrqanfang()
   #ifdef LDEBUG
     qDebug("WidgetWobbeln::wsetfrqanfang()");
   #endif
-  banfang = TRUE;
+  banfang = true;
   refreshKurve();
 //  menmouse->hide();
 }
@@ -441,7 +446,7 @@ void WidgetWobbeln::wsetfrqende()
   #ifdef LDEBUG
     qDebug("WidgetWobbeln::wsetfrqende()");
   #endif
-  bende = TRUE;
+  bende = true;
   refreshKurve();
 //  menmouse->hide();
 }
@@ -451,7 +456,7 @@ void WidgetWobbeln::setberechnung()
   #ifdef LDEBUG
     qDebug("WidgetWobbeln::setberechnung()");
   #endif
-  bberechnung = TRUE;
+  bberechnung = true;
   refreshKurve();
 //  menmouse->hide();
 }
@@ -476,37 +481,37 @@ void WidgetWobbeln::mousePressEvent(QMouseEvent * e)
   #ifdef LDEBUG
     qDebug("WidgetWobbeln::mousePressEvent()");
   #endif
-  bnomove = FALSE;
+  bnomove = false;
   if(wobbeldaten.mess.daten_enable){
     if(e->button() == Qt::LeftButton){
       mouseposx[kursorix] = e->x();
       mouseposy[kursorix] = e->y();
-      bnomove = TRUE;
+      bnomove = true;
     }
     if(e->button() == Qt::RightButton){
       if(mouseposx[kursorix] != 0){
-        akursor_clr->setEnabled(TRUE);
-//        akursor_clr_all->setEnabled(TRUE);
-        afrequenzanfang->setEnabled(TRUE);
-        afrequenzende->setEnabled(TRUE);
-        akabellaenge->setEnabled(TRUE);
-        akabeldaten->setEnabled(TRUE);
-        aberechnen->setEnabled(TRUE);
+        akursor_clr->setEnabled(true);
+//        akursor_clr_all->setEnabled(true);
+        afrequenzanfang->setEnabled(true);
+        afrequenzende->setEnabled(true);
+        akabellaenge->setEnabled(true);
+        akabeldaten->setEnabled(true);
+        aberechnen->setEnabled(true);
       }else{
-        akursor_clr->setEnabled(FALSE);
-//        akursor_clr_all->setEnabled(FALSE);
-        afrequenzanfang->setEnabled(FALSE);
-        afrequenzende->setEnabled(FALSE);
-        akabellaenge->setEnabled(FALSE);
-        akabeldaten->setEnabled(FALSE);
-        aberechnen->setEnabled(FALSE);
+        akursor_clr->setEnabled(false);
+//        akursor_clr_all->setEnabled(false);
+        afrequenzanfang->setEnabled(false);
+        afrequenzende->setEnabled(false);
+        akabellaenge->setEnabled(false);
+        akabeldaten->setEnabled(false);
+        aberechnen->setEnabled(false);
       }
       popupmenu->popup(QCursor::pos());
-      akursor_clr_all->setEnabled(FALSE);
+      akursor_clr_all->setEnabled(false);
       // Ist noch ein Kursor aktiv ?
       for(int i=0; i<5; i++){
         if(mouseposx[i] != 0){
-          akursor_clr_all->setEnabled(TRUE);
+          akursor_clr_all->setEnabled(true);
           break;
         }
       }
@@ -668,7 +673,7 @@ double WidgetWobbeln::getswrkalibrierwertk2(double afrequenz)
 void WidgetWobbeln::setParameterPixmap()
 {
   QSize pixsize;
-  bool drawenable = FALSE;
+  bool drawenable = false;
 
   //qDebug("WidgetWobbeln::setParameterPixmap()");
   pixsize = this->rect().size();
@@ -676,7 +681,7 @@ void WidgetWobbeln::setParameterPixmap()
   //qDebug("WidgetWobbeln::setParameterPixmap():w:%i h:%i",pixsize.width(), pixsize.height());
   //loeschen des Pixmap
   if(drawenable){
-    pix.resize(pixsize);
+    pix = QPixmap(pixsize);
     QPainter p;
     p.begin(&pix);
     if(wobbeldaten.linear1 or wobbeldaten.linear2){
@@ -703,7 +708,7 @@ void WidgetWobbeln::setParameterPixmap()
         double hd = 0.9;
         double h5db;
         int r,g,b,a;
-        bool boben = TRUE, bunten = TRUE;
+        bool boben = true, bunten = true;
   
         //originalgroesse holen
         QRect rect = this->rect();
@@ -733,9 +738,9 @@ void WidgetWobbeln::setParameterPixmap()
         //h4 Zeile vor der Beschriftung unten
         h4 = h5 - ObererRand;
         //Test ob obere Abdunklung groesser 5 dB eingeblendet werden soll
-        if(h2 <= h1)boben = FALSE;
+        if(h2 <= h1)boben = false;
         //Test ob untere Abdunklung ab -60 dB eingeblendet werden soll
-        if(h3 >= h4)bunten = FALSE;
+        if(h3 >= h4)bunten = false;
         //Abdunklung einstellen
         QColor chd = wobbeldaten.colorhintergrund;
         chd.getRgb(&r,&g,&b,&a);
@@ -773,7 +778,7 @@ void WidgetWobbeln::refreshKurve()
   pix = pix1;
   p.begin(&pix);
   //und Kurve einzeichnen
-  //wobbeldaten.bhintergrund = FALSE;
+  //wobbeldaten.bhintergrund = false;
   drawKurve(&p);
   p.end();
   //und anzeigen
@@ -834,7 +839,7 @@ void WidgetWobbeln::resizeEvent(QResizeEvent*)
   qDebug("WidgetWobbeln::resizeEvent()");
   #endif
   // bei Paintevent noch einmal zeichen
-  bresize = TRUE;
+  bresize = true;
   //Kurve neu zeichen
   refreshPixmap();
 }
@@ -863,7 +868,7 @@ void WidgetWobbeln::drawBeschriftung(QPainter *p)
   double yzeichenfaktor_lin = 0.0;
   QString xRasterStr, s, qstr;
   bool zeilenwechsel;
-  bool boolrot = FALSE;
+  bool boolrot = false;
   efrqbereich frqbereich;
   QPen penblacksolid = QPen( Qt::black, 0, Qt::SolidLine); 
   QPen pendarkgreensolid = QPen( Qt::darkGreen, 0, Qt::SolidLine);
@@ -881,7 +886,7 @@ void WidgetWobbeln::drawBeschriftung(QPainter *p)
   
   ydisplayteilung_log = ymax - ymin;
   displayshift = wobbeldaten.displayshift / -10;
-  if(displayshift != 0)boolrot = TRUE;
+  if(displayshift != 0)boolrot = true;
   yswrteilung = wobbeldaten.swraufloesung;//Y-Teilung bei SWV
   breite = this->rect().width() - LinkerRand * 2;
 //  qDebug("breite %i", breite);
@@ -967,7 +972,7 @@ void WidgetWobbeln::drawBeschriftung(QPainter *p)
         //py1 ist die Pixelanzahl pro 10dB
         py1 = double(hoehe) / (ydisplayteilung_log / 10.0);
         //Farbe einstellen abhaengig von SHIFT-Einstellung
-        if((wobbeldaten.dbshift1 != 0.0) or (wobbeldaten.dbshift2 != 0.0))boolrot = TRUE;
+        if((wobbeldaten.dbshift1 != 0.0) or (wobbeldaten.dbshift2 != 0.0))boolrot = true;
         if(boolrot){
           p->setPen( penredsolid );
         }else{
@@ -1213,7 +1218,7 @@ void WidgetWobbeln::drawBeschriftung(QPainter *p)
   if(xRaster < wxanfang)i = int(round( wxanfang / xRaster)) + 1;
   //Beschriftung x-Achse + Linien
   //erste Beschriftung oben
-  zeilenwechsel = TRUE;
+  zeilenwechsel = true;
   while( (xRaster * i) < wxende){
     x = int(round((((xRaster * i) - wxanfang) / (wxende - wxanfang))* breite) - 1 + LinkerRand);
     //je nach laenge des Strings den Text etwas nach links schieben
@@ -1324,10 +1329,10 @@ void WidgetWobbeln::drawBeschriftung(QPainter *p)
     }
     if(zeilenwechsel){
       p->drawText(x-xshift, 28, s);
-      zeilenwechsel = FALSE;
+      zeilenwechsel = false;
     }else{  
       p->drawText(x-xshift, 13, s);
-      zeilenwechsel = TRUE;
+      zeilenwechsel = true;
     }
     p->setPen(penlightgraydot);
     p->drawLine(x, ObererRand, x, hoehe + ObererRand);
@@ -1615,7 +1620,7 @@ void WidgetWobbeln::drawKurve(QPainter *p)
   double yzeichenshift_lin = 0.0;
   double bx;
   bool bkurvezeichnen;
-  bool bmouse = TRUE;
+  bool bmouse = true;
   
   double db3xai = 0.0;
   double db3xbi = 0.0;
@@ -1754,13 +1759,13 @@ void WidgetWobbeln::drawKurve(QPainter *p)
           p->setPen( wobbeldaten.penkanal1 );
           kurve.clear();
           for(i=0; i < wobbeldaten.schritte; i++){
-            bkurvezeichnen = TRUE;
+            bkurvezeichnen = true;
             x = int(round(i * xSchritt) + LinkerRand) + (int)xAnfang;
-            if( x < LinkerRand)bkurvezeichnen = FALSE;
-            if( x > (LinkerRand + breite))bkurvezeichnen = FALSE;
+            if( x < LinkerRand)bkurvezeichnen = false;
+            if( x > (LinkerRand + breite))bkurvezeichnen = false;
             //x1 = int(round((i+1) * xSchritt) + LinkerRand) + (int)xAnfang;
-            //if( x1 < LinkerRand)bkurvezeichnen = FALSE;
-            //if( x1 > (LinkerRand + breite))bkurvezeichnen = FALSE;
+            //if( x1 < LinkerRand)bkurvezeichnen = false;
+            //if( x1 > (LinkerRand + breite))bkurvezeichnen = false;
             //Neue Berechnung ab V3.05
             if(wobbeldaten.linear1){
               //dB ausrechnen LINEAR
@@ -1929,13 +1934,13 @@ void WidgetWobbeln::drawKurve(QPainter *p)
             if(y < ObererRand)y = ObererRand;
             //if(y1 > (hoehe + ObererRand))y1 = hoehe + ObererRand;
             //if(y1 < ObererRand)y1 = ObererRand;
-            bkurvezeichnen = TRUE;
+            bkurvezeichnen = true;
             x = int(round(i * xSchritt) + LinkerRand) + (int)xAnfang;
-            if( x < LinkerRand)bkurvezeichnen = FALSE;
-            if( x > (LinkerRand + breite))bkurvezeichnen = FALSE;
+            if( x < LinkerRand)bkurvezeichnen = false;
+            if( x > (LinkerRand + breite))bkurvezeichnen = false;
             //x1 = int(round((i+1) * xSchritt) + LinkerRand) + (int)xAnfang;
-            //if( x1 < LinkerRand)bkurvezeichnen = FALSE;
-            //if( x1 > (LinkerRand + breite))bkurvezeichnen = FALSE;
+            //if( x1 < LinkerRand)bkurvezeichnen = false;
+            //if( x1 > (LinkerRand + breite))bkurvezeichnen = false;
             if(bkurvezeichnen)kurve.append(QPoint(x,y));
             if(wobbeldaten.linear2){
               py1 = messk2 * y2faktor + y2shift;
@@ -2041,25 +2046,25 @@ void WidgetWobbeln::drawKurve(QPainter *p)
               px1 = (kxm2[kursorix] * wobbeldaten.schrittfrequenz ) + afrequenz;
             }  
             if(banfang){ //Uebergabe aus dem Mausmenue
-              //qDebug("banfang = FALSE;");
-              banfang = FALSE;
+              //qDebug("banfang = false;");
+              banfang = false;
               //neue Anfangsfrequenz an nwtlinux.cpp uebermittlen
               emit writeanfang(px1);
             }
             if(bende){ //Uebergabe aus dem Mausmenue
-              bende = FALSE;
+              bende = false;
               //neue Endfrequenz an nwtlinux.cpp uebermittlen
               emit writeende(px1);
             }
             if(bberechnung){ //Uebergabe aus dem Mausmenue
-              bberechnung = FALSE;
+              bberechnung = false;
               //Berechnungsfrequenz an nwtlinux.cpp uebermittlen
               emit writeberechnung(px1);
             }
             mousefrequenz = px1;
           }
           for(k=0;k<5;k++){
-            bmouse = TRUE;
+            bmouse = true;
             if(k!=0)bmouse = !wobbeldaten.mousesperre;
             if((mouseposx[k] != 0) && (mouseposy[k] != 0) && bmouse ){ //Cursorkreuz aktiv
               qstr = tr("Kursor", "im Infofenster");
@@ -2919,14 +2924,14 @@ void WidgetWobbeln::drawKurve(QPainter *p)
         }else{
           p->setPen( wobbeldaten.penkanal1 );
         }
-        bkurvezeichnen = TRUE;
+        bkurvezeichnen = true;
         x = int(round(i * xSchritt) + LinkerRand) + (int)xAnfang;
-        if( x < LinkerRand)bkurvezeichnen = FALSE;
-        if( x > (LinkerRand + breite))bkurvezeichnen = FALSE;
+        if( x < LinkerRand)bkurvezeichnen = false;
+        if( x > (LinkerRand + breite))bkurvezeichnen = false;
         /*
         x1 = int(round((i+1) * xSchritt) + LinkerRand) + (int)xAnfang;
-        if( x1 < LinkerRand)bkurvezeichnen = FALSE;
-        if( x1 > (LinkerRand + breite))bkurvezeichnen = FALSE;
+        if( x1 < LinkerRand)bkurvezeichnen = false;
+        if( x1 > (LinkerRand + breite))bkurvezeichnen = false;
         */
         j1 = i - 1;
         j2 = i;
@@ -3247,7 +3252,7 @@ void WidgetWobbeln::drawKurve(QPainter *p)
           mousefrequenz = (kxm1[kursorix] * wobbeldaten.schrittfrequenz ) + wobbeldaten.anfangsfrequenz;
         }
         for(k=0;k<5;k++){
-          bmouse = TRUE;
+          bmouse = true;
           if(k!=0)bmouse = !wobbeldaten.mousesperre;
           if((mouseposx[k] != 0) && (mouseposy[k] != 0) && bmouse ){ //Cursorkreuz aktiv
             qstr = tr("Kursor", "im Infofenster");
@@ -3256,18 +3261,18 @@ void WidgetWobbeln::drawKurve(QPainter *p)
             if(bnomove)emit multieditinsert(s);
             px1 = (kxm1[k] * wobbeldaten.schrittfrequenz ) + wobbeldaten.anfangsfrequenz;
             if(banfang){ //Uebergabe aus dem Mausmenue
-              //qDebug("banfang = FALSE;");
-              banfang = FALSE;
+              //qDebug("banfang = false;");
+              banfang = false;
               //neue Anfangsfrequenz an nwtlinux.cpp uebermittlen
               emit writeanfang(px1);
             }
             if(bende){ //Uebergabe aus dem Mausmenue
-              bende = FALSE;
+              bende = false;
               //neue Endfrequenz an nwtlinux.cpp uebermittlen
               emit writeende(px1);
             }
             if(bberechnung){ //Uebergabe aus dem Mausmenue
-              bberechnung = FALSE;
+              bberechnung = false;
               //neue Endfrequenz an nwtlinux.cpp uebermittlen
               emit writeberechnung(px1);
             }
@@ -3577,11 +3582,12 @@ void WidgetWobbeln::printdiagramm(const QFont &pfont, const QStringList &astrlis
   afont = pfont;
   refreshPixmap();
   repaint();
-  if(print->setup(this)){
+  QPrintDialog dialog(print, this);
+  if(dialog.exec()) {
     refreshPixmap();
     repaint();
     QPainter p(print);
-    Q3PaintDeviceMetrics metrics(p.device());
+    const QPaintDevice& metrics(*p.device());
     //Druckplattbreite ermitteln
     mx = metrics.width();
     mxx = mx;
@@ -3691,7 +3697,7 @@ void WidgetWobbeln::printdiagrammpdf(const QFont &pfont, const QStringList &astr
   QString s = QFileDialog::getSaveFileName(this, tr("PDF Speichern","Grafik Filedialog"),
                                                     "out.pdf","PDF (*.pdf *.PDF)");
   //Datei ueberpruefen ob Sufix vorhanden
-  if((s.find(".")== -1)) s += ".pdf";
+  if((s.indexOf(".")== -1)) s += ".pdf";
 
   print->setOutputFileName(s);
   QDateTime dt = QDateTime::currentDateTime();
@@ -3891,11 +3897,11 @@ void WidgetWobbeln::keyPressEvent(QKeyEvent *event){
     case Qt::Key_Space: if(wobbeldaten.mess.daten_enable){ mouseposx[kursorix] = (this->rect().width()) / 2;} emit lupegleich(); break;
     case Qt::Key_Return:
       if(wobbeldaten.mess.daten_enable){
-        bnomove = FALSE;
+        bnomove = false;
         if(wobbeldaten.mess.daten_enable){
           mouseposx[kursorix] = (this->rect().width()) / 2;
           mouseposy[kursorix] = (this->rect().height()) / 2;
-          bnomove = TRUE;
+          bnomove = true;
           if(!wobbeldaten.mousesperre){
             refreshPixmap();
             repaint();
@@ -3937,9 +3943,9 @@ void WidgetWobbeln::CreateQuarzDatei()
                     "crystallist.csv","CSV (*.csv *.CSV)");
   //Datei ueberpruefen ob Sufix vorhanden
   if(!s.isNull()){
-    if((s.find(".")== -1)) s += ".csv";
+    if((s.indexOf(".")== -1)) s += ".csv";
     fname = s;
-    speichern = TRUE;
+    speichern = true;
   }
 }
 
@@ -3967,7 +3973,7 @@ void WidgetWobbeln::CloseQuarzDatei()
     if(f1->open(QIODevice::WriteOnly)){
       QTextStream ts(f1);
       for(it = qusl.begin() ; it != qusl.end(); it++){
-        qs = (*it).latin1();
+        qs = (*it).toLatin1();
         ts << qs << endl;
       }
       f1->close();

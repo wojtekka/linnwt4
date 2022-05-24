@@ -15,7 +15,7 @@
 //#####################################################################################
 // Class fuer Firmwidget 
 //#####################################################################################
-firmwidget::firmwidget(QWidget* parent, const char* name, bool modal): QDialog(parent, name, modal)
+firmwidget::firmwidget(QWidget* parent, Qt::WindowFlags flags): QDialog(parent, flags)
 {
   this->resize(450,100);
   label1 = new QLabel(this);

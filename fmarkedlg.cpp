@@ -23,7 +23,7 @@
 //#####################################################################################
 // Class fuer Option
 //#####################################################################################
-fmdlg::fmdlg(QWidget* parent, const char* name, bool modal): QDialog(parent, name, modal)
+fmdlg::fmdlg(QWidget* parent, Qt::WindowFlags flags): QDialog(parent, flags)
 {
   int a = 32;
 

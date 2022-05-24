@@ -16,7 +16,6 @@
 #include <QWidget>
 #include <qgroupbox.h>
 #include <qcombobox.h>
-#include <q3listbox.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
 #include <qlineedit.h>

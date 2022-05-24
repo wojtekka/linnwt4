@@ -12,7 +12,7 @@ class firmwidget : public QDialog
     Q_OBJECT
 
 public:
-  firmwidget(QWidget* parent=0, const char* name=0, bool modal=false);
+  firmwidget(QWidget* parent=0, Qt::WindowFlags flags=Qt::WindowFlags());
 
 public slots:
   void setText(QString s);

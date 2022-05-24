@@ -209,6 +209,8 @@ public:
   bool writeChar(unsigned char);
 // write a char[] to port
   bool writeLine(const char *);
+// write a QString to port
+  bool writeLine(const QString &);
 // returns the last modem (error?)message
   const QString modemMessage();
 // disconnect the notify connection ( see notify )

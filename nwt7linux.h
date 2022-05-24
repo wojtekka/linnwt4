@@ -37,7 +37,7 @@
 #include <QObject>
 #include <QProgressBar>
 #include <QDialog>
-#include <Q3MultiLineEdit>
+#include <QTextEdit>
 #include <QFile>
 #include <QFontDialog>
 #include <QString>
@@ -94,7 +94,7 @@ class Nwt7linux : public QTabWidget
     QLabel *messlabel4;
     QLabel *messlabel5;
     QLabel *messlabel6;
-    Q3MultiLineEdit *messedit;
+    QTextEdit *messedit;
     QPushButton *buttonmess;
     QPushButton *buttonmesssave;
     QComboBox *ldaempfungk1;
@@ -575,6 +575,7 @@ class Nwt7linux : public QTabWidget
     double getswrkalibrierwertk1(double afrequenz);
     double korrsavpegel(double p);
     QString programpath;
+    void setTabEnabled(QWidget *widget, bool flag);
 
   private slots:
     void schwingkreisfl();

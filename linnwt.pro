@@ -3,10 +3,9 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
-DEPENDPATH += "". tmp/rcc/release_shared""
+TARGET = linnwt
 INCLUDEPATH += .
-#DEFINES += QT_NO_CAST_FROM_ASCII
+QMAKE_CXXFLAGS = -ggdb
 
 # Input
 HEADERS += configfile.h \
@@ -45,7 +44,7 @@ TRANSLATIONS += app_hu.ts \
  app_es.ts \
  app_pl.ts
 
-QT += qt3support
+QT += widgets printsupport
 
 !win32 {
      SOURCES += lin_modem.cpp

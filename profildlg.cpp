@@ -19,7 +19,7 @@
 //#####################################################################################
 // Class fuer Option
 //#####################################################################################
-profildlg::profildlg(QWidget* parent, const char* name, bool modal): QDialog(parent, name, modal)
+profildlg::profildlg(QWidget* parent, Qt::WindowFlags flags): QDialog(parent, flags)
 {
   int a = 32;
 
@@ -89,7 +89,7 @@ TProfil profildlg::getprofil(int a)
     cprofil.anfang = eanfang[a]->text();
     cprofil.ende = eende[a]->text();
     qs = ebeschreibung[a]->text();
-    qs.upper();
+    qs = qs.toUpper();
     if(qs.isEmpty()){
       cprofil.beschr = "NN";
     }else{
@@ -116,9 +116,9 @@ QString profildlg::linenormalisieren(const QString &line)
   double ergebnis = 0.0;
   
   QString aline(line);
-  aline.lower();	//alles auf Kleinschreibung
+  aline = aline.toLower();	//alles auf Kleinschreibung
   l = aline.length();
-  pos = aline.find('g',0,FALSE);
+  pos = aline.indexOf('g',0,Qt::CaseInsensitive);
   if(pos != -1){
     if((l-1) == pos){
       aline.remove(pos,1);
@@ -127,7 +127,7 @@ QString profildlg::linenormalisieren(const QString &line)
     }  
     faktor = 1000000000.0;
   }
-  pos = aline.find('m',0,FALSE);
+  pos = aline.indexOf('m',0,Qt::CaseInsensitive);
   if(pos != -1){
     if((l-1) == pos){
       aline.remove(pos,1);
@@ -136,7 +136,7 @@ QString profildlg::linenormalisieren(const QString &line)
     }  
     faktor = 1000000.0;
   }
-  pos = aline.find('k',0,FALSE);
+  pos = aline.indexOf('k',0,Qt::CaseInsensitive);
   if(pos != -1){
     if((l-1) == pos){
       aline.remove(pos,1);

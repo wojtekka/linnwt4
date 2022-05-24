@@ -6,7 +6,6 @@
 #include <qdialog.h>
 #include <qgroupbox.h>
 #include <qcombobox.h>
-#include <q3listbox.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
 #include <qlineedit.h>
@@ -19,7 +18,7 @@ class profildlg : public QDialog
     Q_OBJECT
 
 public:
-  profildlg(QWidget* parent=0, const char* name=0, bool modal=false);
+  profildlg(QWidget* parent=0, Qt::WindowFlags flags=Qt::WindowFlags());
   void setprofil(TProfil aprofil,int index);
   TProfil getprofil(int);
   void tip(bool atip);

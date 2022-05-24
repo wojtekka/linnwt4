@@ -6,7 +6,6 @@
 #include <qdialog.h>
 #include <qgroupbox.h>
 #include <qcombobox.h>
-#include <q3listbox.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
 #include <qlineedit.h>
@@ -19,7 +18,7 @@ class fmdlg : public QDialog
     Q_OBJECT
 
 public:
-  fmdlg(QWidget* parent=0, const char* name=0, bool modal=false);
+  fmdlg(QWidget* parent=0, Qt::WindowFlags flags=Qt::WindowFlags());
 
   void setdaten(TFrqmarken afmarken);
   TFrqmarken getdaten();

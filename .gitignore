@@ -1,0 +1,7 @@
+Makefile
+.qmake.stash
+*.o
+linnwt
+moc_*
+qrc_*
+*.cfg

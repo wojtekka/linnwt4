@@ -33,7 +33,7 @@
 //#####################################################################################
 // Class fuer Option
 //#####################################################################################
-odlg::odlg(QWidget* parent, const char* name, bool modal): QDialog(parent, name, modal)
+odlg::odlg(QWidget* parent, Qt::WindowFlags flags): QDialog(parent, flags)
 {
   
   this->resize(560,520);
@@ -83,27 +83,27 @@ odlg::odlg(QWidget* parent, const char* name, bool modal): QDialog(parent, name,
   labelcpll->setAlignment(Qt::AlignRight);
   cpll = new QComboBox(ddstakt);
   cpll->setGeometry(130,50,120,25);
-  cpll->insertItem("");
-  cpll->insertItem(tr("ohne PLL"));
-  cpll->insertItem("PLL 2x");
-  cpll->insertItem("PLL 3x");
-  cpll->insertItem("PLL 4x");
-  cpll->insertItem("PLL 5x");
-  cpll->insertItem("PLL 6x");
-  cpll->insertItem("PLL 7x");
-  cpll->insertItem("PLL 8x");
-  cpll->insertItem("PLL 9x");
-  cpll->insertItem("PLL 10x");
-  cpll->insertItem("PLL 11x");
-  cpll->insertItem("PLL 12x");
-  cpll->insertItem("PLL 13x");
-  cpll->insertItem("PLL 14x");
-  cpll->insertItem("PLL 15x");
-  cpll->insertItem("PLL 16x");
-  cpll->insertItem("PLL 17x");
-  cpll->insertItem("PLL 18x");
-  cpll->insertItem("PLL 19x");
-  cpll->insertItem("PLL 20x");
+  cpll->addItem("");
+  cpll->addItem(tr("ohne PLL"));
+  cpll->addItem("PLL 2x");
+  cpll->addItem("PLL 3x");
+  cpll->addItem("PLL 4x");
+  cpll->addItem("PLL 5x");
+  cpll->addItem("PLL 6x");
+  cpll->addItem("PLL 7x");
+  cpll->addItem("PLL 8x");
+  cpll->addItem("PLL 9x");
+  cpll->addItem("PLL 10x");
+  cpll->addItem("PLL 11x");
+  cpll->addItem("PLL 12x");
+  cpll->addItem("PLL 13x");
+  cpll->addItem("PLL 14x");
+  cpll->addItem("PLL 15x");
+  cpll->addItem("PLL 16x");
+  cpll->addItem("PLL 17x");
+  cpll->addItem("PLL 18x");
+  cpll->addItem("PLL 19x");
+  cpll->addItem("PLL 20x");
   labelcpll->setEnabled(false);
   cpll->setEnabled(false);
   //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -115,28 +115,28 @@ odlg::odlg(QWidget* parent, const char* name, bool modal): QDialog(parent, name,
   labelctty->setText(tr("Schnittstelle:","Option Dialog"));
   ctty = new QComboBox(gtty);
   ctty->setGeometry(130,20,120,25);
-  ctty->insertItem("");
+  ctty->addItem("");
 #ifdef Q_WS_WIN
   int i;
   QString qs;
   for(i=1;i<=256;i++){
     qs.sprintf("COM%i",i);
-    ctty->insertItem(qs);
+    ctty->addItem(qs);
   }
 #else
-  ctty->setEditable(TRUE);
-  ctty->insertItem(schnittstelle1);
-  ctty->insertItem(schnittstelle2);
-  ctty->insertItem(schnittstelle3);
-  ctty->insertItem(schnittstelle4);
-  ctty->insertItem(schnittstelle5);
-  ctty->insertItem(schnittstelle6);
-  ctty->insertItem(schnittstelle7);
-  ctty->insertItem(schnittstelle8);
-  ctty->insertItem(schnittstelle9);
-  ctty->insertItem(schnittstelle10);
-  ctty->insertItem(schnittstelle11);
-  ctty->insertItem(schnittstelle12);
+  ctty->setEditable(true);
+  ctty->addItem(schnittstelle1);
+  ctty->addItem(schnittstelle2);
+  ctty->addItem(schnittstelle3);
+  ctty->addItem(schnittstelle4);
+  ctty->addItem(schnittstelle5);
+  ctty->addItem(schnittstelle6);
+  ctty->addItem(schnittstelle7);
+  ctty->addItem(schnittstelle8);
+  ctty->addItem(schnittstelle9);
+  ctty->addItem(schnittstelle10);
+  ctty->addItem(schnittstelle11);
+  ctty->addItem(schnittstelle12);
 #endif
   //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   fname = new QGroupBox(wwobbel);
@@ -171,19 +171,19 @@ odlg::odlg(QWidget* parent, const char* name, bool modal): QDialog(parent, name,
   wobmax = new QLineEdit(fgrenzen);
   wobmax->setGeometry(135,20,120,25);
   cbfrqfaktor = new QComboBox(fgrenzen);
-  cbfrqfaktor->insertItem("1");
-  cbfrqfaktor->insertItem("2");
-  cbfrqfaktor->insertItem("3");
-  cbfrqfaktor->insertItem("4");
-  cbfrqfaktor->insertItem("5");
-  cbfrqfaktor->insertItem("6");
-  cbfrqfaktor->insertItem("7");
-  cbfrqfaktor->insertItem("8");
-  cbfrqfaktor->insertItem("9");
-  cbfrqfaktor->insertItem("10");
-  cbfrqfaktor->insertItem("16");
-  cbfrqfaktor->insertItem("32");
-  cbfrqfaktor->insertItem("64");
+  cbfrqfaktor->addItem("1");
+  cbfrqfaktor->addItem("2");
+  cbfrqfaktor->addItem("3");
+  cbfrqfaktor->addItem("4");
+  cbfrqfaktor->addItem("5");
+  cbfrqfaktor->addItem("6");
+  cbfrqfaktor->addItem("7");
+  cbfrqfaktor->addItem("8");
+  cbfrqfaktor->addItem("9");
+  cbfrqfaktor->addItem("10");
+  cbfrqfaktor->addItem("16");
+  cbfrqfaktor->addItem("32");
+  cbfrqfaktor->addItem("64");
   labelfrqfaktor = new QLabel(tr("Frequenzvervielfacher","Label"),fgrenzen);
   cbfrqfaktor->setGeometry(215, 50, 40, 20);
   labelfrqfaktor->setGeometry(35, 50, 160, 20);
@@ -673,32 +673,32 @@ void odlg::setdaten(TGrunddaten agrunddaten){
   boxschrittkorr->setChecked(ogrunddaten.bschrittkorr);
   spinpfsize->setValue(ogrunddaten.pfsize);
   if(ogrunddaten.fwfalsch){
-    boxsastatus->setEnabled(FALSE);
-    boxschrittkorr->setEnabled(FALSE);
-    eabsolut1->setEnabled(FALSE);
-    labelabsolut1->setEnabled(FALSE);
-    eabsolut2->setEnabled(FALSE);
-    labelabsolut2->setEnabled(FALSE);
-    eabsolut3->setEnabled(FALSE);
-    labelabsolut3->setEnabled(FALSE);
-    eb300->setEnabled(FALSE);
-    labelb300->setEnabled(FALSE);
-    eb7k->setEnabled(FALSE);
-    labelb7k->setEnabled(FALSE);
-    eb30k->setEnabled(FALSE);
-    labelb30k->setEnabled(FALSE);
+    boxsastatus->setEnabled(false);
+    boxschrittkorr->setEnabled(false);
+    eabsolut1->setEnabled(false);
+    labelabsolut1->setEnabled(false);
+    eabsolut2->setEnabled(false);
+    labelabsolut2->setEnabled(false);
+    eabsolut3->setEnabled(false);
+    labelabsolut3->setEnabled(false);
+    eb300->setEnabled(false);
+    labelb300->setEnabled(false);
+    eb7k->setEnabled(false);
+    labelb7k->setEnabled(false);
+    eb30k->setEnabled(false);
+    labelb30k->setEnabled(false);
   }else{
     if(!boxsastatus->isChecked()){
-      eb300->setEnabled(FALSE);
-      labelb300->setEnabled(FALSE);
-      eb7k->setEnabled(FALSE);
-      labelb7k->setEnabled(FALSE);
-      eb30k->setEnabled(FALSE);
-      labelb30k->setEnabled(FALSE);
+      eb300->setEnabled(false);
+      labelb300->setEnabled(false);
+      eb7k->setEnabled(false);
+      labelb7k->setEnabled(false);
+      eb30k->setEnabled(false);
+      labelb30k->setEnabled(false);
     }
     if(!boxschrittkorr->isChecked()){
-      esaminschritte->setEnabled(FALSE);
-      labelsaminschritte->setEnabled(FALSE);
+      esaminschritte->setEnabled(false);
+      labelsaminschritte->setEnabled(false);
     }
   }
 };
@@ -1215,10 +1215,10 @@ void odlg::setStandart(){
   egsab7kmin->setText("1250");
   egsab30kmax->setText("10000");
   egsab30kmin->setText("5000");
-  savdbm->setChecked(TRUE);
-  savuv->setChecked(FALSE);
-  savwatt->setChecked(FALSE);
-  savdbuv->setChecked(FALSE);
+  savdbm->setChecked(true);
+  savuv->setChecked(false);
+  savwatt->setChecked(false);
+  savdbuv->setChecked(false);
 }
 
 void odlg::setColor1(){
@@ -1268,36 +1268,36 @@ void odlg::setColorh(){
 void odlg::checkboxsastatus_checked(bool ok)
 {
   if(ok){
-    eb300->setEnabled(TRUE);
-    labelb300->setEnabled(TRUE);
-    eb7k->setEnabled(TRUE);
-    labelb7k->setEnabled(TRUE);
-    eb30k->setEnabled(TRUE);
-    labelb30k->setEnabled(TRUE);
+    eb300->setEnabled(true);
+    labelb300->setEnabled(true);
+    eb7k->setEnabled(true);
+    labelb7k->setEnabled(true);
+    eb30k->setEnabled(true);
+    labelb30k->setEnabled(true);
     if(boxschrittkorr->isChecked()){
-      esaminschritte->setEnabled(TRUE);
-      labelsaminschritte->setEnabled(TRUE);
+      esaminschritte->setEnabled(true);
+      labelsaminschritte->setEnabled(true);
     }
   }else{
-    eb300->setEnabled(FALSE);
-    labelb300->setEnabled(FALSE);
-    eb7k->setEnabled(FALSE);
-    labelb7k->setEnabled(FALSE);
-    eb30k->setEnabled(FALSE);
-    labelb30k->setEnabled(FALSE);
-    esaminschritte->setEnabled(FALSE);
-    labelsaminschritte->setEnabled(FALSE);
+    eb300->setEnabled(false);
+    labelb300->setEnabled(false);
+    eb7k->setEnabled(false);
+    labelb7k->setEnabled(false);
+    eb30k->setEnabled(false);
+    labelb30k->setEnabled(false);
+    esaminschritte->setEnabled(false);
+    labelsaminschritte->setEnabled(false);
   }
 }
 
 void odlg::checkboxschrittkorr_checked(bool ok)
 {
   if(ok){
-    esaminschritte->setEnabled(TRUE);
-    labelsaminschritte->setEnabled(TRUE);
+    esaminschritte->setEnabled(true);
+    labelsaminschritte->setEnabled(true);
   }else{
-    esaminschritte->setEnabled(FALSE);
-    labelsaminschritte->setEnabled(FALSE);
+    esaminschritte->setEnabled(false);
+    labelsaminschritte->setEnabled(false);
   }
 }
 
@@ -1312,9 +1312,9 @@ TSavcalarray odlg::getsavcal(){
 void odlg::sacal(){
   int i, j, k, calix, calixalt;
   int ikversion = 0; //neue Versionserkennung
-  //bool v305 = FALSE;
-  //bool v404 = FALSE;
-  //bool v405 = FALSE;
+  //bool v305 = false;
+  //bool v404 = false;
+  //bool v405 = false;
   QString zeile;
   QString qs;
   double faktor1, faktor2;
@@ -1348,8 +1348,8 @@ void odlg::sacal(){
     qs = kurvendir.absolutePath();
     //qDebug(qs);
     //Filename setzen
-    f.setName(s);
-    if(f.open( IO_ReadOnly )){
+    f.setFileName(s);
+    if(f.open(QIODevice::ReadOnly )){
       QTextStream ts(&f);
       //erste Zeile lesen
       ts >> zeile;
@@ -1416,8 +1416,8 @@ void odlg::sacal(){
       switch(i){
         case 0:
           w.ebetriebsart = ewobbeln;
-          w.linear1 = FALSE;
-          w.linear2 = FALSE;
+          w.linear1 = false;
+          w.linear2 = false;
         break;
         case 1:  
         case 2:  

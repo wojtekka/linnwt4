@@ -27,7 +27,7 @@ class sdlg : public QDialog
     Q_OBJECT
 
 public:
-  sdlg(QWidget* parent=0, const char* name=0, bool modal=false);
+  sdlg(QWidget* parent=0, Qt::WindowFlags flags=Qt::WindowFlags());
   ~sdlg();
   void setdaten(const TSonde &asonde);
   TSonde getdaten();

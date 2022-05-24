@@ -63,7 +63,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   picmodem = new Modem();
   //  picmodem->opentty(wgrunddaten.str_tty);
   QObject::connect( picmodem, SIGNAL(setTtyText(QString)), this, SLOT(setAText(QString)));
-  bttyOpen = FALSE;
+  bttyOpen = false;
   ///////////////////////////////////////////////////////////////////////////////
   // Wobbel Widget
   ///////////////////////////////////////////////////////////////////////////////
@@ -79,8 +79,8 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   wgrunddaten.vtime = 50;
   wgrunddaten.idletime = 200;
   messtime = 20;
-  wgrunddaten.pllmodeenable = FALSE;
-  wobdaten.mousesperre = TRUE; //Kursoraktivitaeten sperren
+  wgrunddaten.pllmodeenable = false;
+  wobdaten.mousesperre = true; //Kursoraktivitaeten sperren
   wobdaten.colorhintergrund = Qt::white;
   KursorFrequenz = 0.0;
   wobbelungueltig();
@@ -134,15 +134,15 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   boxzwischenzeit->addItem("9990");
   boxzwischenzeit->setCurrentIndex(0);
   QObject::connect( boxzwischenzeit, SIGNAL(currentIndexChanged(int)), this, SLOT(wobnormalisieren()));
-  boxzwischenzeit->setEnabled(FALSE);
-  labelzwischenzeit->setEnabled(FALSE);
+  boxzwischenzeit->setEnabled(false);
+  labelzwischenzeit->setEnabled(false);
  
   editdisplay = new QLineEdit(groupwobbel);
   QObject::connect( editdisplay, SIGNAL(returnPressed ()), this, SLOT(wobnormalisieren()));
   labeldisplayshift = new QLabel(tr("Displ.Shift","Label"), groupwobbel);
   
   boxprofil = new QComboBox(groupwobbel);
-  boxprofil->setDuplicatesEnabled (FALSE);
+  boxprofil->setDuplicatesEnabled (false);
   QObject::connect( boxprofil, SIGNAL( activated(int)), this, SLOT(setProfil(int)));
   
   labelprofil = new QLabel(tr("Profil","label"), groupwobbel);
@@ -152,7 +152,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   labelfrqfaktor= new QLabel(tr("Frequenzvervielfachung x 1","label"), groupwobbel); 
   
   editschrittweite = new QLineEdit(groupwobbel);
-  editschrittweite->setEnabled(FALSE);
+  editschrittweite->setEnabled(false);
   QObject::connect( editschrittweite, SIGNAL(returnPressed ()), this, SLOT(wobnormalisieren()));
 
   labelanfang = new QLabel(tr("Anfang (Hz)","Label"), groupwobbel);
@@ -161,7 +161,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   labelschritte = new QLabel(tr("Messpunkte","Label"), groupwobbel);
 //  checkboxtime = new QCheckBox(groupwobbel);
 //  checkboxtime->setText(tr("Scanzeit groesser (Sek)","CheckBox"));
-//  checkboxtime->setChecked(FALSE);
+//  checkboxtime->setChecked(false);
 //  QObject::connect( checkboxtime, SIGNAL( stateChanged (int)), this, SLOT(checkboxtime_checked(int)));
 
 
@@ -170,33 +170,33 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   groupkanal = new QGroupBox(tr("Kanal","GroupBox"),nwt7wobbeln);
   checkboxk1 = new QCheckBox(groupkanal);
   checkboxk1->setText(tr("Kanal 1","CheckBox"));
-  checkboxk1->setChecked(TRUE);
+  checkboxk1->setChecked(true);
   QObject::connect( checkboxk1, SIGNAL( toggled (bool)), this, SLOT(checkboxk1_checked(bool)));
   
   checkboxk2 = new QCheckBox(groupkanal);
   checkboxk2->setText(tr("Kanal 2","CheckBox"));
-  checkboxk2->setChecked(TRUE);
+  checkboxk2->setChecked(true);
   QObject::connect( checkboxk2, SIGNAL( toggled (bool)), this, SLOT(checkboxk2_checked(bool)));
 
   groupbandbreite = new QGroupBox(tr("Bandbreite","GroupBox"),nwt7wobbeln);
   checkbox3db = new QCheckBox(groupbandbreite);
   checkbox3db->setText("3dB/Q");
-  checkbox3db->setChecked(FALSE);
+  checkbox3db->setChecked(false);
   QObject::connect( checkbox3db, SIGNAL( toggled (bool)), this, SLOT(checkbox3db_checked(bool)));
 
   checkbox6db = new QCheckBox(groupbandbreite);
   checkbox6db->setText("6dB/60dB/Shape");
-  checkbox6db->setChecked(FALSE);
+  checkbox6db->setChecked(false);
   QObject::connect( checkbox6db, SIGNAL( toggled (bool)), this, SLOT(checkbox6db_checked(bool)));
 
   checkboxgrafik = new QCheckBox(groupbandbreite);
   checkboxgrafik->setText(tr("Grafik-Linien","CheckBox"));
-  checkboxgrafik->setChecked(FALSE);
+  checkboxgrafik->setChecked(false);
   QObject::connect( checkboxgrafik, SIGNAL( toggled (bool)), this, SLOT(checkboxgrafik_checked(bool)));
 
   checkboxinvers = new QCheckBox(groupbandbreite);
   checkboxinvers->setText(tr("Invers","CheckBox"));
-  checkboxinvers->setChecked(FALSE);
+  checkboxinvers->setChecked(false);
   QObject::connect( checkboxinvers, SIGNAL( toggled (bool)), this, SLOT(checkboxinvers_checked(bool)));
 
   groupbetriebsart = new QGroupBox(tr("Betriebsart","GroupBox"),nwt7wobbeln);
@@ -250,11 +250,11 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   labelsabandbreite->hide();
   sabereich1 = new QRadioButton(tr("Scanbereich 1","RadioButton"),groupsa);
   QObject::connect( sabereich1, SIGNAL(clicked()), this, SLOT(setSaBereich1() ));
-  sabereich1->setChecked(TRUE);
+  sabereich1->setChecked(true);
   sabereich1->hide();
   sabereich2 = new QRadioButton(tr("Scanbereich 2","RadioButton"),groupsa);
   QObject::connect( sabereich2, SIGNAL(clicked()), this, SLOT(setSaBereich2() ));
-  sabereich2->setChecked(FALSE);
+  sabereich2->setChecked(false);
   sabereich2->hide();
 
   groupshift = new QGroupBox(tr("Display Y-Achse    Skala / Shift","GroupBox"),nwt7wobbeln);
@@ -292,7 +292,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   labelboxdbshift1 = new QLabel(tr("K1(dB)","Label"),groupshift);
   labelboxdbshift2 = new QLabel(tr("K2(dB)","Label"),groupshift);
   boxdbshift1 = new QComboBox(groupshift);
-  boxdbshift1->setEditable(TRUE);
+  boxdbshift1->setEditable(true);
   boxdbshift1->addItem("20");
   boxdbshift1->addItem("19");
   boxdbshift1->addItem("18");
@@ -326,7 +326,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   boxdbshift1->addItem("-10");
   boxdbshift1->setCurrentIndex(20);
   boxdbshift2 = new QComboBox(groupshift);
-  boxdbshift2->setEditable(TRUE);
+  boxdbshift2->setEditable(true);
   boxdbshift2->addItem("20");
   boxdbshift2->addItem("19");
   boxdbshift2->addItem("18");
@@ -379,41 +379,41 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   QObject::connect( daempfung1, SIGNAL( currentIndexChanged(int)), this, SLOT(setDaempfungWob(int)));
   labeldaempfung = new QLabel(tr("0db/-50dB","Label"),groupdaempfung);
   
-  wobdaten.bandbreite3db=FALSE;
-  wobdaten.bandbreite6db=FALSE;
+  wobdaten.bandbreite3db=false;
+  wobdaten.bandbreite6db=false;
 
-  if(checkboxk1->isChecked())wobdaten.bkanal1=TRUE;
-  if(checkboxk2->isChecked())wobdaten.bkanal2=TRUE;
-  if(checkbox3db->isChecked())wobdaten.bandbreite3db=TRUE;
-  if(checkbox6db->isChecked())wobdaten.bandbreite6db=TRUE;
+  if(checkboxk1->isChecked())wobdaten.bkanal1=true;
+  if(checkboxk2->isChecked())wobdaten.bkanal2=true;
+  if(checkbox3db->isChecked())wobdaten.bandbreite3db=true;
+  if(checkbox6db->isChecked())wobdaten.bandbreite6db=true;
 
   buttonwobbeln = new QPushButton(tr("Wobbeln","Button"), nwt7wobbeln);
-  buttonwobbeln->setEnabled(TRUE);
+  buttonwobbeln->setEnabled(true);
   QObject::connect( buttonwobbeln, SIGNAL( clicked()), this, SLOT(clickwobbeln()));
   QObject::connect( grafik, SIGNAL( wobbelndauer()), this, SLOT(clickwobbeln()));
   
   buttoneinmal = new QPushButton(tr("Einmal","Button"), nwt7wobbeln);
-  buttoneinmal->setEnabled(TRUE);
+  buttoneinmal->setEnabled(true);
   QObject::connect( buttoneinmal, SIGNAL( clicked()), this, SLOT(clickwobbelneinmal()));
   QObject::connect( grafik, SIGNAL( wobbelneinmal()), this, SLOT(clickwobbelneinmal()));
   
   buttonstop = new QPushButton(tr("Stop","Button"), nwt7wobbeln);
-  buttonstop->setEnabled(FALSE);
+  buttonstop->setEnabled(false);
   QObject::connect( buttonstop, SIGNAL( clicked()), this, SLOT(clickwobbelnstop()));
   QObject::connect( grafik, SIGNAL( wobbelnstop()), this, SLOT(clickwobbelnstop()));
   
   groupzoom = new QGroupBox(tr("Frequenzzoom","groupbox"),nwt7wobbeln);
   labellupe = new QLabel(tr("2-fach +/-","Label"),groupzoom);
-  labellupe->setEnabled(FALSE);
+  labellupe->setEnabled(false);
   buttonlupeplus = new QPushButton("+", groupzoom);
-  buttonlupeplus->setEnabled(FALSE);
+  buttonlupeplus->setEnabled(false);
   QObject::connect( buttonlupeplus, SIGNAL( clicked()), this, SLOT(clicklupeplus()));
   QObject::connect( grafik, SIGNAL( lupeplus()), this, SLOT(clicklupeplus()));
   buttonlupeminus = new QPushButton("-", groupzoom);
-  buttonlupeminus->setEnabled(FALSE);
+  buttonlupeminus->setEnabled(false);
   QObject::connect( buttonlupeminus, SIGNAL( clicked()), this, SLOT(clicklupeminus()));
   buttonlupemitte = new QPushButton("^", groupzoom);
-  buttonlupemitte->setEnabled(FALSE);
+  buttonlupemitte->setEnabled(false);
   QObject::connect( buttonlupemitte, SIGNAL( clicked()), this, SLOT(clicklupegleich()));
   QObject::connect( this, SIGNAL( cursormitte()), grafik, SLOT(setmousecursormitte()));
   
@@ -422,12 +422,12 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   
   //groupbar = new QGroupBox("NWT",nwt7wobbeln);
   progressbar = new QProgressBar(groupshift);
-  progressbar->setTextVisible(FALSE);
+  progressbar->setTextVisible(false);
   labelprogressbar = new QLabel(tr("Datenrueckfluss","Label"),groupshift);
   labelnwt = new QLabel("Offline",groupshift);
 
   mledit = new QTextEdit(nwt7wobbeln);
-  //mledit->setReadOnly(TRUE);
+  //mledit->setReadOnly(true);
   //Signal vom Widget Grafik Loeschen des Multieditfenster
   QObject::connect( grafik, SIGNAL( multieditloeschen()), this, SLOT(mleditloeschen()));
   //Signal vom Widget Grafik Einfuegen von Text ins Multieditfenster
@@ -440,6 +440,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   QObject::connect( grafik, SIGNAL( setKursorFrequenz(double)), this, SLOT(setKursorFrequenz(double)));
   
   wobbeltimer = new QTimer(this);
+  wobbeltimer->setSingleShot(true);
   //Signal vom Wobbeltimer (Auslesen der RS232)
   QObject::connect(wobbeltimer, SIGNAL(timeout()), this, SLOT(readtty() ));
   
@@ -535,68 +536,68 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   labelfrqfaktorv= new QLabel(tr("Frequenzvervielfachung x 1","label"), nwt7vfo); 
 
   //LCD Anzeige 10 stellen mit punkt
-  LCD1 = new QLCDNumber(10, nwt7vfo, "LCD1");
+  LCD1 = new QLCDNumber(10, nwt7vfo);
   //Hintergrung gelb
   LCD1->setPalette(dp);
-  LCD1->setAutoFillBackground(TRUE);
+  LCD1->setAutoFillBackground(true);
   LCD1->setBackgroundRole( QPalette::Background );
   
   //volle schwarze Zahlen
   LCD1->setSegmentStyle(QLCDNumber::Filled);
   //der Dezimalpunkt soll ganz wenig platz beanspruchen
-  LCD1->setSmallDecimalPoint(TRUE);
+  LCD1->setSmallDecimalPoint(true);
   rb1 = new QRadioButton(nwt7vfo);
-  rb1->setChecked(TRUE);
+  rb1->setChecked(true);
   QObject::connect( rb1, SIGNAL(clicked()), this, SLOT(lcd1clicked() ));
   //LCD Anzeige 10 stellen mit punkt
-  LCD2 = new QLCDNumber(10, nwt7vfo, "LCD2");
+  LCD2 = new QLCDNumber(10, nwt7vfo);
   //Hintergrung gelb
   LCD2->setPalette(dpd);
-  LCD2->setAutoFillBackground(TRUE);
+  LCD2->setAutoFillBackground(true);
   LCD2->setBackgroundRole( QPalette::Background );
   //volle schwarze Zahlen
   LCD2->setSegmentStyle(QLCDNumber::Filled);
   //der Dezimalpunkt soll ganz wenig platz beanspruchen
-  LCD2->setSmallDecimalPoint(TRUE);
+  LCD2->setSmallDecimalPoint(true);
   rb2 = new QRadioButton(nwt7vfo);
   QObject::connect( rb2, SIGNAL(clicked()), this, SLOT(lcd2clicked() ));
 
   //LCD Anzeige 10 stellen mit punkt
-  LCD3 = new QLCDNumber(10, nwt7vfo, "LCD3");
+  LCD3 = new QLCDNumber(10, nwt7vfo);
   //Hintergrung gelb
   LCD3->setPalette(dpd);
-  LCD3->setAutoFillBackground(TRUE);
+  LCD3->setAutoFillBackground(true);
   LCD3->setBackgroundRole( QPalette::Background );
   //volle schwarze Zahlen
   LCD3->setSegmentStyle(QLCDNumber::Filled);
   //der Dezimalpunkt soll ganz wenig platz beanspruchen
-  LCD3->setSmallDecimalPoint(TRUE);
+  LCD3->setSmallDecimalPoint(true);
   rb3 = new QRadioButton(nwt7vfo);
   QObject::connect( rb3, SIGNAL(clicked()), this, SLOT(lcd3clicked() ));
 
   //LCD Anzeige 10 stellen mit punkt
-  LCD4 = new QLCDNumber(10, nwt7vfo, "LCD4");
+  LCD4 = new QLCDNumber(10, nwt7vfo);
   //Hintergrung gelb
   LCD4->setPalette(dpd);
-  LCD4->setAutoFillBackground(TRUE);
+  LCD4->setAutoFillBackground(true);
   LCD4->setBackgroundRole( QPalette::Background );
   //volle schwarze Zahlen
   LCD4->setSegmentStyle(QLCDNumber::Filled);
   //der Dezimalpunkt soll ganz wenig platz beanspruchen
-  LCD4->setSmallDecimalPoint(TRUE);
+  LCD4->setSmallDecimalPoint(true);
   rb4 = new QRadioButton(nwt7vfo);
   QObject::connect( rb4, SIGNAL(clicked()), this, SLOT(lcd4clicked() ));
 
   //LCD Anzeige 10 stellen mit punkt
-  LCD5 = new QLCDNumber(10, nwt7vfo, "LCD5");
+  LCD5 = new QLCDNumber(10, nwt7vfo);
   //Hintergrung gelb
   LCD5->setPalette(dpd);
-  LCD5->setAutoFillBackground(TRUE);
+  LCD5->setAutoFillBackground(true);
   LCD5->setBackgroundRole( QPalette::Background );
   //volle schwarze Zahlen
   LCD5->setSegmentStyle(QLCDNumber::Filled);
   //der Dezimalpunkt soll ganz wenig platz beanspruchen
-  LCD5->setSmallDecimalPoint(TRUE);
+  LCD5->setSmallDecimalPoint(true);
   rb5 = new QRadioButton(nwt7vfo);
   QObject::connect( rb5, SIGNAL(clicked()), this, SLOT(lcd5clicked() ));
 
@@ -608,10 +609,10 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   labelhz->setText("Hz");
   checkboxzf = new QCheckBox(nwt7vfo);
   checkboxzf->setText(tr("ZF fuer das Wobbeln aktivieren","im VFO"));
-  checkboxzf->setChecked(FALSE);
+  checkboxzf->setChecked(false);
   checkboxiqvfo = new QCheckBox(nwt7vfo);
   checkboxiqvfo->setText(tr("VFO-Frequenz x 4 fuer I/Q Mischer","im VFO"));
-  checkboxiqvfo->setChecked(FALSE);
+  checkboxiqvfo->setChecked(false);
   QObject::connect( checkboxiqvfo, SIGNAL(clicked()), this, SLOT(setIQVFO() ));
   
   daempfung2 = new QComboBox(nwt7vfo);
@@ -619,6 +620,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   labeldaempfung1 = new QLabel(tr("Daempfungsglied","im VFO"),nwt7vfo);
 
   vfotimer = new QTimer(this);
+  vfotimer->setSingleShot(true);
   //nach ablauf des vfotimers Daten an NWT7 senden (LCD daten)
   QObject::connect( vfotimer, SIGNAL(timeout()), this, SLOT(senddaten() ));
 
@@ -639,11 +641,11 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   mlabelk2->setText("0");
 
   ldaempfungk1 = new QComboBox(nwt7messen);
-  ldaempfungk1->setEditable(TRUE);
+  ldaempfungk1->setEditable(true);
   labelldaempfungk1 = new QLabel(tr("Daempfung (dB)","im Wattmeter"),nwt7messen);
 
   ldaempfungk2 = new QComboBox(nwt7messen);
-  ldaempfungk2->setEditable(TRUE);
+  ldaempfungk2->setEditable(true);
   labelldaempfungk2 = new QLabel(tr("Daempfung (dB)","im Wattmeter"),nwt7messen);
 
   messtimer = new QTimer(this);
@@ -653,9 +655,9 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   messlabel4 = new QLabel(nwt7messen);
   messlabel5 = new QLabel(nwt7messen);
   messlabel6 = new QLabel(nwt7messen);
-  messedit = new Q3MultiLineEdit(nwt7messen);
+  messedit = new QTextEdit(nwt7messen);
   //Schrifttyp einstellen
-  messedit->setFamily("courier");
+  messedit->setFontFamily("courier");
   buttonmess = new QPushButton(tr("Uebernahme","im Wattmeter"), nwt7messen);
   QObject::connect( buttonmess, SIGNAL( clicked()), this, SLOT(tabelleschreiben()));
   buttonmesssave = new QPushButton(tr("Speichern","im Wattmeter"), nwt7messen);
@@ -684,7 +686,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   woffset2 = 0.0;
   
   buttonvfo = new QPushButton(tr("VFO on/off","im Wattmeter"), nwt7messen);
-  buttonwobbeln->setEnabled(TRUE);
+  buttonwobbeln->setEnabled(true);
   QObject::connect( buttonvfo, SIGNAL( clicked()), this, SLOT(vfoum()));
 
   labelfrqfaktorm= new QLabel(tr("Frequenzvervielfachung x 1","label"), nwt7messen); 
@@ -758,16 +760,17 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   labeldaempfung3->hide();
 
   messvfotimer = new QTimer(this);
+  messvfotimer->setSingleShot(true);
   //Signal vom Wobbeltimer (Auslesen der RS232)
   QObject::connect(messvfotimer, SIGNAL(timeout()), this, SLOT(messvfotimerende() ));
 
   checkboxmesshang1 = new QCheckBox(nwt7messen);
   checkboxmesshang1->setText(tr("Hang","CheckBox Wattmeter"));
-  checkboxmesshang1->setChecked(TRUE);
+  checkboxmesshang1->setChecked(true);
   
   checkboxmesshang2 = new QCheckBox(nwt7messen);
   checkboxmesshang2->setText(tr("Hang","CheckBox Wattmeter"));
-  checkboxmesshang2->setChecked(TRUE);
+  checkboxmesshang2->setChecked(true);
 
   // Mess Widget
   ///////////////////////////////////////////////////////////////////////////////
@@ -824,7 +827,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   gimp = new QGroupBox(tr("Anpassung mit:","in Impedanz"),wimpedanz);
   rbr = new QRadioButton(tr("R","RadioButton"),gimp);
   QObject::connect( rbr, SIGNAL(clicked()), this, SLOT(setimp() ));
-  rbr->setChecked(TRUE);
+  rbr->setChecked(true);
   rblc = new QRadioButton(tr("L/C","RadioButton"),gimp);
   QObject::connect( rblc, SIGNAL(clicked()), this, SLOT(setimp() ));
 
@@ -896,7 +899,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   //QObject::connect( bstart, SIGNAL( clicked()), this, SLOT(diagrammsimulieren()));
   QObject::connect( bstart, SIGNAL( clicked()), this, SLOT(diagrammstart()));
   bstop = new QPushButton(tr("Stop"),gdiagramm);
-  bstop->setEnabled(FALSE);
+  bstop->setEnabled(false);
   QObject::connect( bstop, SIGNAL( clicked()), this, SLOT(diagrammstop()));
   bspeichern = new QPushButton(tr("CSV Speichern"),gdiagramm);
   QObject::connect( bspeichern, SIGNAL( clicked()), this, SLOT(diagrammspeichern()));
@@ -906,6 +909,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
 
   lanzeige = new QLabel("xxx", gdiagramm);
   tdiagramm = new QTimer(this);
+  tdiagramm->setSingleShot(true);
   QObject::connect( tdiagramm, SIGNAL(timeout()), this, SLOT(tdiagrammbehandlung() ));
   tdiagramm->stop();
   gdiagrammdim = new QGroupBox(tr("Dimension"), wdiagramm);
@@ -944,9 +948,11 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   spinadend->setRange(3.0,5.0);
   spinadend->setSingleStep(0.01);
   spinadend->setValue(5.0);
-  spingradbegin = new QSpinBox(0,180,1,gdiagrammdim);
+  spingradbegin = new QSpinBox(gdiagrammdim);
+  spingradbegin->setRange(0,180);
   spingradbegin->setValue(0);
-  spingradend = new QSpinBox(180,360,1,gdiagrammdim);
+  spingradend = new QSpinBox(gdiagrammdim);
+  spingradend->setRange(180,360);
   spingradend->setValue(360);
   lbegin = new QLabel(tr("Beginn(V)"), gdiagrammdim);
   lbegin1 = new QLabel(tr("Grad"), gdiagrammdim);
@@ -981,7 +987,7 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
     wobdaten.savcalarray.p[i] = 0.0;
   }
   //fuer die Lupenfunktion
-  bdauerwobbeln = FALSE;
+  bdauerwobbeln = false;
   //fuer das Wattmeter zur Spitzenanzeige
   counterspitzek1 = 0;
   counterspitzek2 = 0;
@@ -991,15 +997,15 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   //keine Zwischenzeit da FW noch nicht bekannt
   boxzwischenzeit->setCurrentIndex(0);
   //diese Box erst freischalten wenn richtige FW erkannt wird
-  boxzwischenzeit->setEnabled(FALSE);
-  labelzwischenzeit->setEnabled(FALSE);
-  vabfrage = TRUE;
+  boxzwischenzeit->setEnabled(false);
+  labelzwischenzeit->setEnabled(false);
+  vabfrage = true;
   //FW ist noch unbekannt
-  wgrunddaten.fwfalsch = TRUE;
+  wgrunddaten.fwfalsch = true;
   //Tabs ausblenden wenn noch keine Verbindung zum NWT besteht
-  setTabEnabled(nwt7vfo, FALSE);
-  setTabEnabled(nwt7messen, FALSE);
-  setTabEnabled(berechnung, TRUE);
+  setTabEnabled(nwt7vfo, false);
+  setTabEnabled(nwt7messen, false);
+  setTabEnabled(berechnung, true);
   sabereich = bkein;
   sabereichalt = bkein;
   sabw = bwkein;
@@ -1009,10 +1015,10 @@ Nwt7linux::Nwt7linux(QWidget *parent) : QTabWidget(parent)
   QObject::connect( this, SIGNAL(currentChanged ( QWidget * )), this, SLOT(tabumschalten( QWidget* )));
   //Idletimer ist fuer die Kontaktaufnahme mit dem NWT
   idletimer->start(wgrunddaten.idletime);
-  wgrunddaten.bfliessend = TRUE;
+  wgrunddaten.bfliessend = true;
   setCurrentIndex(0);
   messtimer->stop();
-  bmessen = FALSE;
+  bmessen = false;
   filenamesonde1 = "";
   filenamesonde2 = "";
   wobdaten.hline = 0.0;
@@ -1030,14 +1036,14 @@ void Nwt7linux::editsonde1(){
   int pos;
   
   QString qs = filenamesonde1;
-  if((qs.find(".")== -1)) qs = qs + ".hfm";
+  if((qs.indexOf(".")== -1)) qs = qs + ".hfm";
   
   sonde.dname = qs;
 //  sonde.sname = checkboxk1->text();
   sonde.sname = qs;
   for(int i=0;i<30;i++){
     snum = wattoffsetk1[i].str_offsetwatt;
-    pos = snum.find("|");
+    pos = snum.indexOf("|");
     if(pos > -1){
       sonde.stroffset[i] = snum.right(pos+2);
     }else{
@@ -1063,9 +1069,9 @@ void Nwt7linux::editsonde1(){
     checkboxk1->setText(sonde.sname);
     qDebug()<< "Dialog OK";
     configfile nwt7sondenfile;
-    bersterstart = TRUE;
+    bersterstart = true;
     messsondespeichern1(sonde.dname);
-    bersterstart = FALSE;
+    bersterstart = false;
   }
   delete dlg;
 }
@@ -1077,13 +1083,13 @@ void Nwt7linux::editsonde2(){
   int pos;
 
   QString qs = filenamesonde2;
-  if((qs.find(".")== -1)) qs = qs + ".hfm";
+  if((qs.indexOf(".")== -1)) qs = qs + ".hfm";
   
   sonde.dname = qs;
   sonde.sname = qs;
   for(int i=0;i<30;i++){
     snum = wattoffsetk2[i].str_offsetwatt;
-    pos = snum.find("|");
+    pos = snum.indexOf("|");
     if(pos > -1){
       sonde.stroffset[i] = snum.right(pos+2);
     }else{
@@ -1108,9 +1114,9 @@ void Nwt7linux::editsonde2(){
     wobdaten.beschreibung2 = sonde.sname;
     checkboxk2->setText(sonde.sname);
     configfile nwt7sondenfile;
-    bersterstart = TRUE;
+    bersterstart = true;
     messsondespeichern2(sonde.dname);
-    bersterstart = FALSE;
+    bersterstart = false;
   }
   delete dlg;
 }
@@ -1245,7 +1251,7 @@ void Nwt7linux::setDaempfungItem(){
     daempfung3->addItem("40dB");
     daempfung3->addItem("50dB");
   }
-  bmessen = FALSE;
+  bmessen = false;
   messtimer->stop();
 }
 
@@ -1260,7 +1266,7 @@ void Nwt7linux::wobbelungueltig(){
     wobdaten.mess.k1[i]=0;
     wobdaten.mess.k2[i]=0;
   }
-  wobdaten.mess.daten_enable = FALSE;
+  wobdaten.mess.daten_enable = false;
 }
 
 void Nwt7linux::setIQVFO(){
@@ -1302,10 +1308,10 @@ void Nwt7linux::clicklupeplus(){
     }
     setanfang(fa);
     setende(fe);
-    labellupe->setEnabled(FALSE);
-    buttonlupeplus->setEnabled(FALSE);
-    buttonlupeminus->setEnabled(FALSE);
-    buttonlupemitte->setEnabled(FALSE);
+    labellupe->setEnabled(false);
+    buttonlupeplus->setEnabled(false);
+    buttonlupeminus->setEnabled(false);
+    buttonlupemitte->setEnabled(false);
     if(!bdauerwobbeln)clickwobbelneinmal();
   }
 }
@@ -1345,10 +1351,10 @@ void Nwt7linux::clicklupegleich(){
     setanfang(fa);
     setende(fe);
   }
-  labellupe->setEnabled(FALSE);
-  buttonlupeplus->setEnabled(FALSE);
-  buttonlupeminus->setEnabled(FALSE);
-  buttonlupemitte->setEnabled(FALSE);
+  labellupe->setEnabled(false);
+  buttonlupeplus->setEnabled(false);
+  buttonlupeminus->setEnabled(false);
+  buttonlupemitte->setEnabled(false);
   if(!bdauerwobbeln)clickwobbelneinmal();
   emit cursormitte();
 }
@@ -1374,10 +1380,10 @@ void Nwt7linux::clicklupeminus(){
     }
     setanfang(fa);
     setende(fe);
-    labellupe->setEnabled(FALSE);
-    buttonlupeplus->setEnabled(FALSE);
-    buttonlupeminus->setEnabled(FALSE);
-    buttonlupemitte->setEnabled(FALSE);
+    labellupe->setEnabled(false);
+    buttonlupeplus->setEnabled(false);
+    buttonlupeminus->setEnabled(false);
+    buttonlupemitte->setEnabled(false);
     if(!bdauerwobbeln)clickwobbelneinmal();
   }
 }
@@ -1385,62 +1391,62 @@ void Nwt7linux::clicklupeminus(){
 void Nwt7linux::setKursorFrequenz(double afrq){
   KursorFrequenz = afrq;
   if(bdauerwobbeln){
-    labellupe->setEnabled(FALSE);
-    buttonlupeplus->setEnabled(FALSE);
-    buttonlupeminus->setEnabled(FALSE);
-    buttonlupemitte->setEnabled(FALSE);
+    labellupe->setEnabled(false);
+    buttonlupeplus->setEnabled(false);
+    buttonlupeminus->setEnabled(false);
+    buttonlupemitte->setEnabled(false);
   }else{
     if(KursorFrequenz == 0.0){
-      labellupe->setEnabled(FALSE);
-      buttonlupeplus->setEnabled(FALSE);
-      buttonlupeminus->setEnabled(FALSE);
-      buttonlupemitte->setEnabled(FALSE);
+      labellupe->setEnabled(false);
+      buttonlupeplus->setEnabled(false);
+      buttonlupeminus->setEnabled(false);
+      buttonlupemitte->setEnabled(false);
     }else{
-      labellupe->setEnabled(TRUE);
-      buttonlupeplus->setEnabled(TRUE);
-      buttonlupeminus->setEnabled(TRUE);
-      buttonlupemitte->setEnabled(TRUE);
+      labellupe->setEnabled(true);
+      buttonlupeplus->setEnabled(true);
+      buttonlupeminus->setEnabled(true);
+      buttonlupemitte->setEnabled(true);
     }
   }
 }
 
 void Nwt7linux::menuanfangsetzen(){
-  emit setmenu(emEichenK1, TRUE);
+  emit setmenu(emEichenK1, true);
   if(wobdaten.einkanalig){
-    emit setmenu(emEichenK2, FALSE);
-    emit setmenu(emSondeLadenK2, FALSE);
-    emit setmenu(emSondeSpeichernK2, FALSE);
-    emit setmenu(emWattEichenK2, FALSE);
-    emit setmenu(emWattEditSonde2, FALSE);
-    checkboxk2->setChecked(FALSE);
-    checkboxk2->setEnabled(FALSE);
+    emit setmenu(emEichenK2, false);
+    emit setmenu(emSondeLadenK2, false);
+    emit setmenu(emSondeSpeichernK2, false);
+    emit setmenu(emWattEichenK2, false);
+    emit setmenu(emWattEditSonde2, false);
+    checkboxk2->setChecked(false);
+    checkboxk2->setEnabled(false);
     progressbarmessk2->setValue(0);
-    progressbarmessk2->setEnabled(FALSE);
-    ldaempfungk2->setEnabled(FALSE);
-    boxwattoffset2->setEnabled(FALSE);
+    progressbarmessk2->setEnabled(false);
+    ldaempfungk2->setEnabled(false);
+    boxwattoffset2->setEnabled(false);
     messlabel2->setText("");
-    messlabel2->setEnabled(FALSE);
+    messlabel2->setEnabled(false);
     messlabel4->setText("");
-    messlabel4->setEnabled(FALSE);
+    messlabel4->setEnabled(false);
     messlabel6->setText("");
-    messlabel6->setEnabled(FALSE);
+    messlabel6->setEnabled(false);
     mlabelk2->setText("");
-    mlabelk2->setEnabled(FALSE);
+    mlabelk2->setEnabled(false);
     labelldaempfungk2->setText("");
-    checkboxmesshang2->setEnabled(FALSE);
+    checkboxmesshang2->setEnabled(false);
   }else{
-    emit setmenu(emEichenK2, TRUE);
-    emit setmenu(emSondeLadenK2, TRUE);
-    emit setmenu(emSondeSpeichernK2, TRUE);
-    emit setmenu(emWattEichenK2, TRUE);
-    emit setmenu(emWattEditSonde2, TRUE);
-    checkboxk2->setEnabled(TRUE);
-    progressbarmessk2->setEnabled(TRUE);
-    ldaempfungk2->setEnabled(TRUE);
-    mlabelk2->setEnabled(TRUE);
-    boxwattoffset2->setEnabled(TRUE);
+    emit setmenu(emEichenK2, true);
+    emit setmenu(emSondeLadenK2, true);
+    emit setmenu(emSondeSpeichernK2, true);
+    emit setmenu(emWattEichenK2, true);
+    emit setmenu(emWattEditSonde2, true);
+    checkboxk2->setEnabled(true);
+    progressbarmessk2->setEnabled(true);
+    ldaempfungk2->setEnabled(true);
+    mlabelk2->setEnabled(true);
+    boxwattoffset2->setEnabled(true);
     labelldaempfungk2->setText(tr("Daempfung (dB)","im Wattmeter"));
-    checkboxmesshang2->setEnabled(TRUE);
+    checkboxmesshang2->setEnabled(true);
   }
 }
 
@@ -1452,7 +1458,7 @@ void Nwt7linux::configurationladen(const QString &filename){
   int i,j,p;
   
   //qDebug("Nwt7linux::configurationladen(const QString &filename)");
-  sw305 = FALSE;
+  sw305 = false;
   nwt7configfile.open(filename);
   #ifdef Q_WS_WIN
   wgrunddaten.str_tty = nwt7configfile.readString("serielle_schnittstelle", "COM1");
@@ -1464,13 +1470,13 @@ void Nwt7linux::configurationladen(const QString &filename){
   editende->setText(nwt7configfile.readString("editende", "150000000"));
   editschritte->setText(nwt7configfile.readString("editschritte", "401"));
   editdisplay->setText(nwt7configfile.readString("editdisplay", "0"));
-  wgrunddaten.grperwobbeln = nwt7configfile.readBool("grafikfocuswobbeln", FALSE);
-  wgrunddaten.grpereinmal = nwt7configfile.readBool("grafikfocuseinmal", FALSE);
-  wgrunddaten.grperstop = nwt7configfile.readBool("grafikfocusstop", FALSE);
-  wgrunddaten.bwarnsavbw = nwt7configfile.readBool("bwarnsavbw", TRUE);
-  wgrunddaten.bwarnsavbwmax = nwt7configfile.readBool("bwarnsavbwmax", TRUE);
-  wgrunddaten.bset0hz = nwt7configfile.readBool("bset0hz", TRUE);
-  wgrunddaten.bfliessend = nwt7configfile.readBool("bfliessend", TRUE);
+  wgrunddaten.grperwobbeln = nwt7configfile.readBool("grafikfocuswobbeln", false);
+  wgrunddaten.grpereinmal = nwt7configfile.readBool("grafikfocuseinmal", false);
+  wgrunddaten.grperstop = nwt7configfile.readBool("grafikfocusstop", false);
+  wgrunddaten.bwarnsavbw = nwt7configfile.readBool("bwarnsavbw", true);
+  wgrunddaten.bwarnsavbwmax = nwt7configfile.readBool("bwarnsavbwmax", true);
+  wgrunddaten.bset0hz = nwt7configfile.readBool("bset0hz", true);
+  wgrunddaten.bfliessend = nwt7configfile.readBool("bfliessend", true);
   //ab FW 1.20 neue Parameter fuer das NF Wobbeln
   wgrunddaten.audioztime = nwt7configfile.readInteger("audioztime", 10000);
   wgrunddaten.audiosens = nwt7configfile.readInteger("audiosens", 2);
@@ -1513,7 +1519,7 @@ void Nwt7linux::configurationladen(const QString &filename){
   messtimeneu = nwt7configfile.readInteger("messtimeneu", 200);
   //begrenzen auf 10mSek
   if(messtime < 10)messtime=10;
-  wgrunddaten.pllmodeenable = nwt7configfile.readBool("pllmodeenable", FALSE);
+  wgrunddaten.pllmodeenable = nwt7configfile.readBool("pllmodeenable", false);
   //qDebug("stime:%i",wgrunddaten.stime);
   //qDebug("vtime:%i",wgrunddaten.vtime);
   //qDebug("idletime:%i",wgrunddaten.idletime);
@@ -1573,18 +1579,18 @@ void Nwt7linux::configurationladen(const QString &filename){
   wgrunddaten.frqzf1 = nwt7configfile.readDouble("sazf1", 85300000.0);
   wgrunddaten.frqzf2 = nwt7configfile.readDouble("sazf2", -85300000.0);
   wgrunddaten.frqshift = nwt7configfile.readDouble("safrqshift", -410000000.0);
-  wgrunddaten.sastatus = nwt7configfile.readBool("sastatus", FALSE);
-  wgrunddaten.bschrittkorr = nwt7configfile.readBool("saschrittkorr", TRUE);
+  wgrunddaten.sastatus = nwt7configfile.readBool("sastatus", false);
+  wgrunddaten.bschrittkorr = nwt7configfile.readBool("saschrittkorr", true);
   wgrunddaten.psavabs1 = nwt7configfile.readDouble("pegelsavabs1", 0.0);
   wgrunddaten.psavabs2 = nwt7configfile.readDouble("pegelsavabs2", 0.0);
   wgrunddaten.psavabs3 = nwt7configfile.readDouble("pegelsavabs3", 0.0);
   wobdaten.psav300 = nwt7configfile.readDouble("pegelsav300hz", 0.0);
   wobdaten.psav7k = nwt7configfile.readDouble("pegelsav7khz", 0.0);
   wobdaten.psav30k = nwt7configfile.readDouble("pegelsav30khz", 0.0);
-  wobdaten.bsavdbm = nwt7configfile.readBool("savdbmanz", TRUE);
-  wobdaten.bsavuv = nwt7configfile.readBool("savuvanz", FALSE);
-  wobdaten.bsavwatt = nwt7configfile.readBool("savwattanz", FALSE);
-  wobdaten.bsavdbuv = nwt7configfile.readBool("savdbuvanz", FALSE);
+  wobdaten.bsavdbm = nwt7configfile.readBool("savdbmanz", true);
+  wobdaten.bsavuv = nwt7configfile.readBool("savuvanz", false);
+  wobdaten.bsavwatt = nwt7configfile.readBool("savwattanz", false);
+  wobdaten.bsavdbuv = nwt7configfile.readBool("savdbuvanz", false);
   wobdaten.safehlermax = nwt7configfile.readInteger("safehlermax", -5);
   wobdaten.safehlermin = nwt7configfile.readInteger("safehlermin", -60);
   wgrunddaten.saminschritte = nwt7configfile.readInteger("saminschritte", 401);
@@ -1619,7 +1625,7 @@ void Nwt7linux::configurationladen(const QString &filename){
   wgrunddaten.kalibrierstep = nwt7configfile.readLong("eichschritte", maxmesspunkte);
   
   //VFO im Wattmeter ein/aus
-  bmessvfo = nwt7configfile.readInteger("messvfoaktiv", TRUE);
+  bmessvfo = nwt7configfile.readInteger("messvfoaktiv", true);
   vfoeinaus();
   //VFO im Wattmeter Frequenz einstellen
   double fr;
@@ -1656,7 +1662,7 @@ void Nwt7linux::configurationladen(const QString &filename){
 
   wgrunddaten.ddstakt = nwt7configfile.readDouble("DDStakt", 400000000.0);
   wgrunddaten.pll = nwt7configfile.readInteger("PLLMode", 1);
-  wgrunddaten.bdaempfungfa = nwt7configfile.readBool("faeichglied", FALSE);
+  wgrunddaten.bdaempfungfa = nwt7configfile.readBool("faeichglied", false);
   setDaempfungItem();
   messtimer->stop();
   fontsize = nwt7configfile.readInteger("messlabelfontsize", 20);
@@ -1695,14 +1701,14 @@ void Nwt7linux::configurationladen(const QString &filename){
   wobdaten.namesonde1 = nwt7configfile.readString("namesonde1", "defsonde1");
   wgrunddaten.strsonde1lin = nwt7configfile.readString("namesonde1lin", "defsonde1lin");
   wobdaten.namesonde2 = nwt7configfile.readString("namesonde2", "defsonde2");
-  wobdaten.einkanalig = nwt7configfile.readBool("Einkanalig", TRUE);
-  wgrunddaten.kalibrierk1 = nwt7configfile.readBool("eichkorrk1", FALSE);
-  wgrunddaten.kalibrierk2 = nwt7configfile.readBool("eichkorrk2", FALSE);
+  wobdaten.einkanalig = nwt7configfile.readBool("Einkanalig", true);
+  wgrunddaten.kalibrierk1 = nwt7configfile.readBool("eichkorrk1", false);
+  wgrunddaten.kalibrierk2 = nwt7configfile.readBool("eichkorrk2", false);
   kalibrier1->setChecked(wgrunddaten.kalibrierk1);
   kalibrier2->setChecked(wgrunddaten.kalibrierk2);
-  wobdaten.bswriteration = nwt7configfile.readBool("SWRIteration", TRUE);
-  wobdaten.bswrrelais = nwt7configfile.readBool("SWR_Relais", FALSE); //Relais fuer NWT500 Nachbau
-  wobdaten.binvers = nwt7configfile.readBool("bandbreite_invers", TRUE); //Darstellung der inversen Bandbreite
+  wobdaten.bswriteration = nwt7configfile.readBool("SWRIteration", true);
+  wobdaten.bswrrelais = nwt7configfile.readBool("SWR_Relais", false); //Relais fuer NWT500 Nachbau
+  wobdaten.binvers = nwt7configfile.readBool("bandbreite_invers", true); //Darstellung der inversen Bandbreite
   checkboxinvers->setChecked(wobdaten.binvers);
   int r,g,b;
   //default rot
@@ -1737,8 +1743,8 @@ void Nwt7linux::configurationladen(const QString &filename){
   wobdaten.frqfaktor = nwt7configfile.readInteger("frequenzfaktor", 1);
   setFrqFaktorLabel();
   //Dial1mhz->setMaximum(int(weichen.maxvfo / 1000000.0)-1);
-  checkboxk1->setChecked(nwt7configfile.readBool("k1checked", TRUE));
-  checkboxk2->setChecked(nwt7configfile.readBool("k2checked", FALSE));
+  checkboxk1->setChecked(nwt7configfile.readBool("k1checked", true));
+  checkboxk2->setChecked(nwt7configfile.readBool("k2checked", false));
   wobdaten.bswrkanal2 = checkboxk2->isChecked();
   //ComboBox im Wattmeter neu aufbauen
   ldaempfungk1->clear();
@@ -1802,20 +1808,20 @@ void Nwt7linux::configurationladen(const QString &filename){
   frqmarken.f2u2 = nwt7configfile.readLongLong("bu2", 0);
   frqmarken.f1u3 = nwt7configfile.readLongLong("au3", 0);
   frqmarken.f2u3 = nwt7configfile.readLongLong("bu3", 0);
-  frqmarken.b160m = nwt7configfile.readBool("160m", FALSE);
-  frqmarken.b80m = nwt7configfile.readBool("80m", FALSE);
-  frqmarken.b40m = nwt7configfile.readBool("40m", FALSE);
-  frqmarken.b30m = nwt7configfile.readBool("30m", FALSE);
-  frqmarken.b20m = nwt7configfile.readBool("20m", FALSE);
-  frqmarken.b17m = nwt7configfile.readBool("17m", FALSE);
-  frqmarken.b15m = nwt7configfile.readBool("15m", FALSE);
-  frqmarken.b12m = nwt7configfile.readBool("12m", FALSE);
-  frqmarken.b10m = nwt7configfile.readBool("10m", FALSE);
-  frqmarken.b6m = nwt7configfile.readBool("6m", FALSE);
-  frqmarken.b2m = nwt7configfile.readBool("2m", FALSE);
-  frqmarken.bu1 = nwt7configfile.readBool("zusatz1", FALSE);
-  frqmarken.bu2 = nwt7configfile.readBool("zusatz2", FALSE);
-  frqmarken.bu3 = nwt7configfile.readBool("zusatz3", FALSE);
+  frqmarken.b160m = nwt7configfile.readBool("160m", false);
+  frqmarken.b80m = nwt7configfile.readBool("80m", false);
+  frqmarken.b40m = nwt7configfile.readBool("40m", false);
+  frqmarken.b30m = nwt7configfile.readBool("30m", false);
+  frqmarken.b20m = nwt7configfile.readBool("20m", false);
+  frqmarken.b17m = nwt7configfile.readBool("17m", false);
+  frqmarken.b15m = nwt7configfile.readBool("15m", false);
+  frqmarken.b12m = nwt7configfile.readBool("12m", false);
+  frqmarken.b10m = nwt7configfile.readBool("10m", false);
+  frqmarken.b6m = nwt7configfile.readBool("6m", false);
+  frqmarken.b2m = nwt7configfile.readBool("2m", false);
+  frqmarken.bu1 = nwt7configfile.readBool("zusatz1", false);
+  frqmarken.bu2 = nwt7configfile.readBool("zusatz2", false);
+  frqmarken.bu3 = nwt7configfile.readBool("zusatz3", false);
   frqmarken.st160m = nwt7configfile.readString("s160m", "160m");
   frqmarken.st80m = nwt7configfile.readString("s80m", "80m");
   frqmarken.st40m = nwt7configfile.readString("s40m", "40m");
@@ -1831,40 +1837,40 @@ void Nwt7linux::configurationladen(const QString &filename){
   frqmarken.stu2 = nwt7configfile.readString("szusatz2", "Zusatz 2");
   frqmarken.stu3 = nwt7configfile.readString("szusatz3", "Zusatz 3");
   if(wobdaten.einkanalig){
-    emit setmenu(emEichenK2, FALSE);
-    emit setmenu(emSondeLadenK2, FALSE);
-    emit setmenu(emSondeSpeichernK2, FALSE);
-    emit setmenu(emWattEichenK2, FALSE);
-    emit setmenu(emWattEditSonde2, FALSE);
-    checkboxk2->setChecked(FALSE);
-    checkboxk2->setEnabled(FALSE);
+    emit setmenu(emEichenK2, false);
+    emit setmenu(emSondeLadenK2, false);
+    emit setmenu(emSondeSpeichernK2, false);
+    emit setmenu(emWattEichenK2, false);
+    emit setmenu(emWattEditSonde2, false);
+    checkboxk2->setChecked(false);
+    checkboxk2->setEnabled(false);
     progressbarmessk2->setValue(0);
-    progressbarmessk2->setEnabled(FALSE);
-    ldaempfungk2->setEnabled(FALSE);
-    boxwattoffset2->setEnabled(FALSE);
+    progressbarmessk2->setEnabled(false);
+    ldaempfungk2->setEnabled(false);
+    boxwattoffset2->setEnabled(false);
     messlabel2->setText("");
-    messlabel2->setEnabled(FALSE);
+    messlabel2->setEnabled(false);
     messlabel4->setText("");
-    messlabel4->setEnabled(FALSE);
+    messlabel4->setEnabled(false);
     messlabel6->setText("");
-    messlabel6->setEnabled(FALSE);
+    messlabel6->setEnabled(false);
     mlabelk2->setText("");
-    mlabelk2->setEnabled(FALSE);
+    mlabelk2->setEnabled(false);
     labelldaempfungk2->setText("");
-    checkboxmesshang2->setEnabled(FALSE);
+    checkboxmesshang2->setEnabled(false);
   }else{
-    emit setmenu(emEichenK2, TRUE);
-    emit setmenu(emSondeLadenK2, TRUE);
-    emit setmenu(emSondeSpeichernK2, TRUE);
-    emit setmenu(emWattEichenK2, TRUE);
-    emit setmenu(emWattEditSonde2, TRUE);
-    checkboxk2->setEnabled(TRUE);
-    progressbarmessk2->setEnabled(TRUE);
-    ldaempfungk2->setEnabled(TRUE);
+    emit setmenu(emEichenK2, true);
+    emit setmenu(emSondeLadenK2, true);
+    emit setmenu(emSondeSpeichernK2, true);
+    emit setmenu(emWattEichenK2, true);
+    emit setmenu(emWattEditSonde2, true);
+    checkboxk2->setEnabled(true);
+    progressbarmessk2->setEnabled(true);
+    ldaempfungk2->setEnabled(true);
     labelldaempfungk2->setText(tr("Daempfung (dB)","im Wattmeter"));
-    checkboxmesshang2->setEnabled(TRUE);
-    mlabelk2->setEnabled(TRUE);
-    boxwattoffset2->setEnabled(TRUE);
+    checkboxmesshang2->setEnabled(true);
+    mlabelk2->setEnabled(true);
+    boxwattoffset2->setEnabled(true);
   }
   menuanfangsetzen();
   wobdaten.ebetriebsart = enumbetriebsart(nwt7configfile.readInteger("betriebsart", ewobbeln));
@@ -1875,10 +1881,10 @@ void Nwt7linux::configurationladen(const QString &filename){
   emit sendefrqmarken(frqmarken);
   configfile nwt7sondenfile;
   qs = wobdaten.namesonde1;
-  if((qs.find(".")== -1)) qs = qs + ".hfm";
+  if((qs.indexOf(".")== -1)) qs = qs + ".hfm";
   messsondenfilek1laden(qs);
   qs = wobdaten.namesonde2;
-  if((qs.find(".")== -1)) qs = qs + ".hfm";
+  if((qs.indexOf(".")== -1)) qs = qs + ".hfm";
   messsondenfilek2laden(qs);
   setFrqBereich();
   wobnormalisieren();
@@ -2151,6 +2157,7 @@ void Nwt7linux::beenden()
     defaultlesenrtty(); //eventuelle Daten im UART loeschen
     picmodem->closetty();
   }
+  delete grafik;
   close();
 }
 
@@ -2184,16 +2191,16 @@ void Nwt7linux::wobbelbildspeichern(){
 void Nwt7linux::setconffilename(const QString &fname)
 {
   //qDebug("Nwt7linux::setconffilename(const QString &fname)");
-  bkalibrierenswr = FALSE;
-  bkalibrierenswrneu = FALSE;
-  bkalibrieren40 = FALSE;
-  bkalibrieren0 = FALSE;
-  bmkalibrierenk1_0db = FALSE;
-  bmkalibrierenk1_20db = FALSE;
-  bmkalibrierenk2_0db = FALSE;
-  bmkalibrierenk2_20db = FALSE;
-  btabelleschreiben = FALSE;
-  bkurvegeladen = FALSE;
+  bkalibrierenswr = false;
+  bkalibrierenswrneu = false;
+  bkalibrieren40 = false;
+  bkalibrieren0 = false;
+  bmkalibrierenk1_0db = false;
+  bmkalibrierenk1_20db = false;
+  bmkalibrierenk2_0db = false;
+  bmkalibrierenk2_20db = false;
+  btabelleschreiben = false;
+  bkurvegeladen = false;
   //Grundkonfig erzeugen
   if(bersterstart){
     QMessageBox::information( this, tr("Erster Start des Programmes","in Dialogbox"), 
@@ -2222,9 +2229,9 @@ void Nwt7linux::setconffilename(const QString &fname)
     nwt7sondenfile.writeDouble("shift", -84.634597);
     nwt7sondenfile.writeDouble("messx", 0.193143);
     nwt7sondenfile.writeDouble("messy", -84.634597);
-    nwt7sondenfile.writeBool("linear", TRUE);
+    nwt7sondenfile.writeBool("linear", true);
     nwt7sondenfile.close();
-    bersterstart = FALSE;
+    bersterstart = false;
   }
 
   configfilename = fname;
@@ -2252,10 +2259,10 @@ QString Nwt7linux::delPath(const QDir &s)
 
 void Nwt7linux::EinstellungLaden()
 {
-  QString s = QFileDialog::getOpenFileName(
-                    homedir.filePath("*.hfc"),
-                    tr("NWT Konfigurationsdatei (*.hfc)","FileDialog"),
-                    this, 0, tr("NWT Konfiguration laden","FileDialog"));
+  QString s = QFileDialog::getOpenFileName(this,
+                                           tr("NWT Konfiguration laden", "FileDialog"),
+                                           nullptr,
+                                           tr("NWT Konfigurationsdatei (*.hfc)", "FileDialog"));
   if (!s.isNull())
   {
     configurationladen(s);
@@ -2270,14 +2277,14 @@ void Nwt7linux::EinstellungLaden()
 
 void Nwt7linux::EinstellungSichern()
 {
-  QString s = QFileDialog::getSaveFileName(
-                    homedir.filePath("*.hfc"),
-                    tr("NWT Konfigurationsdatei (*.hfc)","FileDialog"),
-                    this, 0, tr("NWT Konfiguration speichern","FileDialog"));
+  QString s = QFileDialog::getSaveFileName(this,
+                                           tr("NWT Konfiguration speichern", "FileDialog"),
+                                           nullptr,
+                                           tr("NWT Konfigurationsdatei (*.hfc)", "FileDialog"));
   if (!s.isNull())
   {
     //Datei ueberpruefen ob Sufix vorhanden
-    if((s.find(".")== -1)) s += ".hfc";
+    if((s.indexOf(".")== -1)) s += ".hfc";
     configurationspeichern(s);
     wkmanager->beenden();
     s = delPath(s);
@@ -2349,8 +2356,8 @@ void Nwt7linux::wkmloadkurve(int i){
   break;
 
   }
-  wobdaten.bhintergrund = TRUE;
-  wobdaten.mousesperre = TRUE;
+  wobdaten.bhintergrund = true;
+  wobdaten.mousesperre = true;
 //  warneichkorr();
   wkmanager->suebergabe(wobdaten, displaystr);
   wobdaten = walt;
@@ -2362,10 +2369,10 @@ enumkurvenversion Nwt7linux::loadkurve()
   int i,j;
   int ikversion = 0; //neue Versionserkennung
 /*
-  bool v305 = FALSE;
-  bool v404 = FALSE;
-  bool v405 = FALSE;
-  bool v410 = FALSE;
+  bool v305 = false;
+  bool v404 = false;
+  bool v405 = false;
+  bool v410 = false;
 */
   QString zeile;
   QString qs;
@@ -2400,8 +2407,8 @@ enumkurvenversion Nwt7linux::loadkurve()
     qs = kurvendir.absolutePath();
     //qDebug(qs);
     //Filename setzen
-    f.setName(s);
-    if(f.open( IO_ReadOnly )){
+    f.setFileName(s);
+    if(f.open( QIODevice::ReadOnly )){
       QTextStream ts(&f);
       //erste Zeile lesen
       ts >> zeile;
@@ -2411,21 +2418,21 @@ enumkurvenversion Nwt7linux::loadkurve()
       if(zeile == "#V4.05")ikversion = 405;
       if(zeile == "#V4.10")ikversion = 410;
 /*
-      if(zeile == "#V3.05")v305 = TRUE;
+      if(zeile == "#V3.05")v305 = true;
       if(zeile == "#V4.04"){
-        v404 = TRUE;
-        v305 = TRUE;
+        v404 = true;
+        v305 = true;
       }
       if(zeile == "#V4.05"){
-        v405 = TRUE;
-        v404 = TRUE;
-        v305 = TRUE;
+        v405 = true;
+        v404 = true;
+        v305 = true;
       }
       if(zeile == "#V4.10"){
-        v410 = TRUE;
-        v405 = TRUE;
-        v404 = TRUE;
-        v305 = TRUE;
+        v410 = true;
+        v405 = true;
+        v404 = true;
+        v305 = true;
       }
 */
   //if(!v305){
@@ -2513,38 +2520,38 @@ enumkurvenversion Nwt7linux::loadkurve()
         case 0: //wobbeln dB
           wobdaten.ebetriebsart = ewobbeln;
           betriebsart->setCurrentIndex (0);
-          wobdaten.linear1 = FALSE;
-          wobdaten.linear2 = FALSE;
-          setTabEnabled(nwt7messen, TRUE);
+          wobdaten.linear1 = false;
+          wobdaten.linear2 = false;
+          setTabEnabled(nwt7messen, true);
         break;
         case 1: // wobbeln SWR
           wobdaten.ebetriebsart = eswrneu;
           betriebsart->setCurrentIndex (1);
-          setTabEnabled(nwt7messen, TRUE);
+          setTabEnabled(nwt7messen, true);
         break;
         case 2: // wobbeln linear
           wobdaten.ebetriebsart = ewobbeln;
           betriebsart->setCurrentIndex (0);
-          wobdaten.linear1 = TRUE;
-          wobdaten.linear2 = TRUE;
-          setTabEnabled(nwt7messen, FALSE);
+          wobdaten.linear1 = true;
+          wobdaten.linear2 = true;
+          setTabEnabled(nwt7messen, false);
         break;
         case 3: // wobbeln SWR ANT
           wobdaten.ebetriebsart = eswrant;
           betriebsart->setCurrentIndex (2);
-          setTabEnabled(nwt7messen, TRUE);
+          setTabEnabled(nwt7messen, true);
         break;
         case 4: // wobbeln Z
           wobdaten.ebetriebsart = eimpedanz;
           betriebsart->setCurrentIndex (3);
-          setTabEnabled(nwt7messen, FALSE);
+          setTabEnabled(nwt7messen, false);
         break;
         case 5: // wobbeln SAV
           wobdaten.ebetriebsart = espektrumanalyser;
           betriebsart->setCurrentIndex (4);
-          wobdaten.linear1 = FALSE;
-          wobdaten.linear2 = FALSE;
-          setTabEnabled(nwt7messen, FALSE);
+          wobdaten.linear1 = false;
+          wobdaten.linear2 = false;
+          setTabEnabled(nwt7messen, false);
         //if(v404){
           if(ikversion > 305){
             // Version > 3.05
@@ -2665,7 +2672,7 @@ enumkurvenversion Nwt7linux::loadkurve()
       wobdaten.dbshift1 = 0.0;
       wobdaten.dbshift2 = 0.0;
       //===================
-      wobdaten.mess.daten_enable = TRUE;
+      wobdaten.mess.daten_enable = true;
 /*
       if(v305)ekv = ekv305;
       if(v404)ekv = ekv404;
@@ -2690,65 +2697,65 @@ enumkurvenversion Nwt7linux::loadkurve()
 void Nwt7linux::KurvenLaden()
 {
   enumkurvenversion ekv;
-  bool v305 = FALSE;
-  bool v404 = FALSE;
-  bool v405 = FALSE;
-  bool v410 = FALSE;
+  bool v305 = false;
+  //bool v404 = false;
+  //bool v405 = false;
+  //bool v410 = false;
   QString s;
   
 //  warneichkorr();
   if(bkurvegeladen){
     wobdaten = wobdatenmerk;
-    wobdaten.mess.daten_enable = TRUE;
-    wobdaten.bhintergrund = FALSE;
-    wobdaten.mousesperre = FALSE;
+    wobdaten.mess.daten_enable = true;
+    wobdaten.bhintergrund = false;
+    wobdaten.mousesperre = false;
     mledit->clear();
     fsendewobbeldaten();
   }
   wobdatenmerk = wobdaten; //alte Einstellung sichern
   //Bandbreitenanzeige ausschalten
-  checkbox3db->setChecked(FALSE);
-  checkbox6db->setChecked(FALSE);
-  checkboxgrafik->setChecked(FALSE);
-  checkboxinvers->setChecked(FALSE);
-  bkurvegeladen = TRUE;
+  checkbox3db->setChecked(false);
+  checkbox6db->setChecked(false);
+  checkboxgrafik->setChecked(false);
+  checkboxinvers->setChecked(false);
+  bkurvegeladen = true;
   ekv = loadkurve();
   switch(ekv){
     case ekvabbruch:
       return;
       break;
     case ekvkeine:
-      v305 = FALSE;
-      v404 = FALSE;
-      v405 = FALSE;
-      v410 = FALSE;
+      v305 = false;
+      //v404 = false;
+      //v405 = false;
+      //v410 = false;
       break;
     case ekv305:
-      v305 = TRUE;
-      v404 = FALSE;
-      v405 = FALSE;
-      v410 = FALSE;
+      v305 = true;
+      //v404 = false;
+      //v405 = false;
+      //v410 = false;
       s = " #V3.05";
       break;
     case ekv404:
-      v305 = TRUE;
-      v404 = TRUE;
-      v405 = FALSE;
-      v410 = FALSE;
+      v305 = true;
+      //v404 = true;
+      //v405 = false;
+      //v410 = false;
       s = " #V4.04";
       break;
     case ekv405:
-      v305 = TRUE;
-      v404 = TRUE;
-      v405 = TRUE;
-      v410 = FALSE;
+      v305 = true;
+      //v404 = true;
+      //v405 = true;
+      //v410 = false;
       s = " #V4.05";
       break;
     case ekv410:
-      v305 = TRUE;
-      v404 = TRUE;
-      v405 = TRUE;
-      v410 = TRUE;
+      v305 = true;
+      //v404 = true;
+      //v405 = true;
+      //v410 = true;
       s = " #V4.10";
       break;
   }
@@ -2758,12 +2765,12 @@ void Nwt7linux::KurvenLaden()
   wobdaten.dbshift1 = 0.0;
   wobdaten.dbshift2 = 0.0;
   //keine Eichkorrektur
-  //wobdaten.beichkorrk1 = FALSE;
-  //wobdaten.beichkorrk2 = FALSE;
+  //wobdaten.beichkorrk1 = false;
+  //wobdaten.beichkorrk2 = false;
   //===================
-  wobdaten.mess.daten_enable = TRUE;
-  wobdaten.bhintergrund = FALSE;
-  wobdaten.mousesperre = FALSE;
+  wobdaten.mess.daten_enable = true;
+  wobdaten.bhintergrund = false;
+  wobdaten.mousesperre = false;
   //qDebug("a %li", wobdaten.anfangsfrequenz);
   fsendewobbeldaten();
   grafik->setWindowTitle(tr("Display","Wobbelfenster") + " - " + displaystr + " - " + s);
@@ -2821,9 +2828,9 @@ void Nwt7linux::KurvenSichern()
     qs = kurvendir.absolutePath();
     //qDebug(qs);
     //Datei ueberpruefen ob Sufix vorhanden
-    if((s.find(".")== -1)) s += ".hfd";
-    f.setName(s);
-    if(f.open( IO_WriteOnly )){
+    if((s.indexOf(".")== -1)) s += ".hfd";
+    f.setFileName(s);
+    if(f.open( QIODevice::WriteOnly )){
       QTextStream ts(&f);
       ts << "#V4.10" << endl;
       if(wobdaten.maudio2){
@@ -2944,10 +2951,10 @@ void Nwt7linux::KurvenSichern()
       f.close();
     }
     QString finfo = s;
-    if((finfo.find(".")== -1)) s += ".hfd";
+    if((finfo.indexOf(".")== -1)) s += ".hfd";
     finfo.replace(QString(".hfd"), ".info");
-    f.setName(finfo);
-    if(f.open( IO_WriteOnly )){
+    f.setFileName(finfo);
+    if(f.open( QIODevice::WriteOnly )){
       QTextStream ts(&f);
       for(i=0;i < infoueber.count();i++){
         ts << infoueber.at(i);
@@ -2965,10 +2972,10 @@ void Nwt7linux::KurvenSichern()
                                         "Datei speichern?","WarnungsBox"),
                                      tr("&Ja","WarungsBox"), tr("&Nein","WarnungsBox"),
                                         QString::null, 1, 0) == 0){
-        if((s.find(".")== -1)) s += ".hfd";
+        if((s.indexOf(".")== -1)) s += ".hfd";
         s.replace(QString(".hfd"), ".csv");
-        f.setName(s);
-        if(f.open( IO_WriteOnly )){
+        f.setFileName(s);
+        if(f.open( QIODevice::WriteOnly )){
           QTextStream ts(&f);
           double anfangsfrq;
           double schrittweite;
@@ -2976,14 +2983,14 @@ void Nwt7linux::KurvenSichern()
           double faktor2;
           double shift1;
           double shift2;
-          int schritte;
+          //int schritte;
           int k1, k2;
           double f1, f2, db1, db2, frq;
           QString qs1;
           
           anfangsfrq = wobdaten.anfangsfrequenz;
           schrittweite = wobdaten.schrittfrequenz;
-          schritte = wobdaten.schritte;
+          //schritte = wobdaten.schritte;
           faktor1 = wobdaten.faktor1;
           faktor2 = wobdaten.faktor2;
           shift1 = wobdaten.shift1;
@@ -3183,10 +3190,10 @@ void Nwt7linux::messsondenfilek1laden(const QString &filename){
   if (!s.isNull()){
     if(bkurvegeladen){
       wobdaten = wobdatenmerk;
-      wobdaten.mess.daten_enable = TRUE;
-      wobdaten.bhintergrund = FALSE;
-      wobdaten.mousesperre = FALSE;
-      bkurvegeladen = FALSE;
+      wobdaten.mess.daten_enable = true;
+      wobdaten.bhintergrund = false;
+      wobdaten.mousesperre = false;
+      bkurvegeladen = false;
       fsendewobbeldaten();
     }
 //    betriebsart->setCurrentIndex (0);
@@ -3198,12 +3205,12 @@ void Nwt7linux::messsondenfilek1laden(const QString &filename){
     checkboxk1->setText(filenamesonde1+".hfm");
     wobdaten.beschreibung1 = qs;
     qs = nwt7sondenfile.readString("dateiversion", "#V3.05");
-    if(qs == "#V3.05")sw305 = TRUE;
+    if(qs == "#V3.05")sw305 = true;
     faktor = nwt7sondenfile.readDouble("faktor", 0.191187);
     shift = nwt7sondenfile.readDouble("shift", -87.139634);
-    wobdaten.linear1 = nwt7sondenfile.readBool("linear", FALSE);
+    wobdaten.linear1 = nwt7sondenfile.readBool("linear", false);
     //Ab Firmware 1.20
-    wobdaten.maudio1 = nwt7sondenfile.readBool("audio_nf", FALSE);
+    wobdaten.maudio1 = nwt7sondenfile.readBool("audio_nf", false);
     //Umrechnung der Messsondendaten wenn nicht die richtige Version
     if(!wobdaten.linear1){
       //log
@@ -3234,7 +3241,7 @@ void Nwt7linux::messsondenfilek1laden(const QString &filename){
       if(wobdaten.mfaktor1 > 0.01)wobdaten.mfaktor1 = wobdaten.mfaktor1 / 32.0;
     }
     wobdaten.mshift1 = nwt7sondenfile.readDouble("messy", -84.634597);
-    //wobdaten.beichkorrk1 = nwt7sondenfile.readBool("eichkorrk1", FALSE);
+    //wobdaten.beichkorrk1 = nwt7sondenfile.readBool("eichkorrk1", false);
     wattoffsetk1[0].str_offsetwatt = nwt7sondenfile.readString("wattoffsetstr0", "0 - 10 MHz +/-0,0dB");
     wattoffsetk1[1].str_offsetwatt = nwt7sondenfile.readString("wattoffsetstr1", "10 - 20 MHz  0,8dB");
     wattoffsetk1[2].str_offsetwatt = nwt7sondenfile.readString("wattoffsetstr2", "20 - 50 MHz  1,0dB");
@@ -3305,12 +3312,12 @@ void Nwt7linux::messsondenfilek1laden(const QString &filename){
     testLogLin();
     s.replace(QString(".hfm"), "k1.hfe");
     //Filename setzen
-    f.setName(homedir.filePath(s));
-    if(f.open( IO_ReadOnly )){
+    f.setFileName(homedir.filePath(s));
+    if(f.open( QIODevice::ReadOnly )){
       QTextStream ts(&f);
       ts >> version;
       if(version != "#V2.02"){
-        wgrunddaten.kalibrierk1 = FALSE;
+        wgrunddaten.kalibrierk1 = false;
         QMessageBox::warning( this, tr("Mathematische-Kalibrierkorrektur Kanal 1","Warnung"),
                                     tr("<B>Kalibrierkorrekturdatei ist ungueltig</B><BR>"
                                        "Die Datei hat eine kleinere Version als V2.02. "
@@ -3336,8 +3343,8 @@ void Nwt7linux::messsondenfilek1laden(const QString &filename){
     }
     s.replace(QString("k1.hfe"), "k1.hfs");
     //Filename setzen fuer SWV Eichdatei lesen
-    f.setName(homedir.filePath(s));
-    if(f.open( IO_ReadOnly )){
+    f.setFileName(homedir.filePath(s));
+    if(f.open( QIODevice::ReadOnly )){
       QTextStream ts(&f);
       for(i=0; i<maxmesspunkte; i++){
         ts >> wobdaten.swrkalibrierarray.arrayk1[i];
@@ -3345,19 +3352,19 @@ void Nwt7linux::messsondenfilek1laden(const QString &filename){
       f.close();
       emit sendewobbeldaten(wobdaten);
     }else{
-      wobdaten.bkalibrierswrk1 = FALSE;
+      wobdaten.bkalibrierswrk1 = false;
     }
-    f.setName(homedir.filePath("sav.cal"));
+    f.setFileName(homedir.filePath("sav.cal"));
     bool bsavcal;
-    bsavcal = f.open( IO_ReadOnly);
+    bsavcal = f.open( QIODevice::ReadOnly);
     if(bsavcal){
       //qDebug("Laden SAV Kalibrierung");
       QTextStream ts(&f);
       ts >> qs;
       if(qs == "#V4.04"){
-        bsavcal = TRUE;
+        bsavcal = true;
       }else{
-        bsavcal = FALSE;
+        bsavcal = false;
       }
       for(i=0; i < calmaxindex; i++){
         ts >> wobdaten.savcalarray.p[i];
@@ -3390,10 +3397,10 @@ void Nwt7linux::messsondenfilek2laden(const QString &filename){
   if (!s.isNull()){
     if(bkurvegeladen){
       wobdaten = wobdatenmerk;
-      wobdaten.mess.daten_enable = TRUE;
-      wobdaten.bhintergrund = FALSE;
-      wobdaten.mousesperre = FALSE;
-      bkurvegeladen = FALSE;
+      wobdaten.mess.daten_enable = true;
+      wobdaten.bhintergrund = false;
+      wobdaten.mousesperre = false;
+      bkurvegeladen = false;
       fsendewobbeldaten();
     }
     //betriebsart->setCurrentIndex (0);
@@ -3409,9 +3416,9 @@ void Nwt7linux::messsondenfilek2laden(const QString &filename){
     qs = nwt7sondenfile.readString("dateiversion", "#V3.05");
     faktor = nwt7sondenfile.readDouble("faktor", 0.191187);
     shift = nwt7sondenfile.readDouble("shift", -87.139634);
-    wobdaten.linear2 = nwt7sondenfile.readBool("linear", FALSE);
+    wobdaten.linear2 = nwt7sondenfile.readBool("linear", false);
     //Ab Firmware 1.20
-    wobdaten.maudio2 = nwt7sondenfile.readBool("audio_nf", FALSE);
+    wobdaten.maudio2 = nwt7sondenfile.readBool("audio_nf", false);
     if(!wobdaten.linear2){
       if(qs == "#V3.05"){
         wobdaten.faktor2 = faktor;
@@ -3434,7 +3441,7 @@ void Nwt7linux::messsondenfilek2laden(const QString &filename){
       if(wobdaten.mfaktor2 > 0.01)wobdaten.mfaktor2 = wobdaten.mfaktor2 /32.0;
     }
     wobdaten.mshift2 = nwt7sondenfile.readDouble("messy", -84.634597);
-    //wobdaten.beichkorrk2 = nwt7sondenfile.readBool("eichkorrk2", FALSE);
+    //wobdaten.beichkorrk2 = nwt7sondenfile.readBool("eichkorrk2", false);
     wattoffsetk2[0].str_offsetwatt = nwt7sondenfile.readString("wattoffsetstr0", "0 - 10 MHz +/-0,0dB");
     wattoffsetk2[1].str_offsetwatt = nwt7sondenfile.readString("wattoffsetstr1", "10 - 20 MHz  0,8dB");
     wattoffsetk2[2].str_offsetwatt = nwt7sondenfile.readString("wattoffsetstr2", "20 - 50 MHz  1,0dB");
@@ -3500,19 +3507,19 @@ void Nwt7linux::messsondenfilek2laden(const QString &filename){
     wattoffsetk2[27].offsetwatt = nwt7sondenfile.readDouble("wattoffset27", 0.0);
     wattoffsetk2[28].offsetwatt = nwt7sondenfile.readDouble("wattoffset28", 0.0);
     wattoffsetk2[29].offsetwatt = nwt7sondenfile.readDouble("wattoffset29", 0.0);
-    //if(wobdaten.linear2)wobdaten.beichkorrk2 = FALSE;
+    //if(wobdaten.linear2)wobdaten.beichkorrk2 = false;
     nwt7sondenfile.close();
     wobbelungueltig();
     //Daten ins Grafikfenster uebermitteln und neu darstellen
     testLogLin();
     //Filename setzen
     s.replace(QString(".hfm"), "k2.hfe");
-    f.setName(homedir.filePath(s));
-    if(f.open( IO_ReadOnly )){
+    f.setFileName(homedir.filePath(s));
+    if(f.open( QIODevice::ReadOnly )){
       QTextStream ts(&f);
       ts >> version;
       if(version != "#V2.02"){
-        wgrunddaten.kalibrierk2 = FALSE;
+        wgrunddaten.kalibrierk2 = false;
         QMessageBox::warning( this, tr("Mathematische-Kalibrierkorrektur Kanal 2","Warnung"),
                                     tr("<B>Kalibrierkorrekturdatei ist ungueltig</B><BR>"
                                        "Die Datei hat eine kleinere Version als V2.02. "
@@ -3538,8 +3545,8 @@ void Nwt7linux::messsondenfilek2laden(const QString &filename){
     }
     //Filename setzen fuer SWV Eichdatei lesen
     s.replace(QString("k2.hfe"), "k2.hfs");
-    f.setName(homedir.filePath(s));
-    if(f.open( IO_ReadOnly )){
+    f.setFileName(homedir.filePath(s));
+    if(f.open( QIODevice::ReadOnly )){
       qDebug("k2 lesen");
       QTextStream ts(&f);
       for(i=0; i<maxmesspunkte; i++){
@@ -3548,7 +3555,7 @@ void Nwt7linux::messsondenfilek2laden(const QString &filename){
       f.close();
       emit sendewobbeldaten(wobdaten);
     }else{
-      wobdaten.bkalibrierswrk2 = FALSE;
+      wobdaten.bkalibrierswrk2 = false;
     }
     //Daten ins Grafikfenster uebermitteln und neu darstellen
     fsendewobbeldaten();
@@ -3559,10 +3566,10 @@ void Nwt7linux::messsondeladen1(){
   QString s1;
   s1 = tr("NWT Sondendatei (*.hfm)","FileDialog");
   //qDebug(s1);
-  QString s = QFileDialog::getOpenFileName(
-                    homedir.filePath("*.hfm"),
-                    s1,
-                    this, 0, tr("NWT Sondendatei laden Kanal 1","FileDialog"));
+  QString s = QFileDialog::getOpenFileName(this,
+                                           tr("NWT Sondendatei laden Kanal 1", "FileDialog"),
+                                           nullptr,
+                                           tr("NWT Sondendatei (*.hfm)", "FileDialog"));
   messsondenfilek1laden(s);
   QFileInfo fi(s);
   filenamesonde1 = fi.baseName();
@@ -3572,10 +3579,10 @@ void Nwt7linux::messsondeladen1(){
 void Nwt7linux::messsondeladen2(){
   QString s1;
   s1 = tr("NWT Sondendatei (*.hfm)","FileDialog");
-  QString s = QFileDialog::getOpenFileName(
-                    homedir.filePath("*.hfm"),
-                    s1,
-                    this, 0, tr("NWT Sondendatei laden Kanal 2","FileDialog"));
+  QString s = QFileDialog::getOpenFileName(this,
+                                           tr("NWT Sondendatei laden Kanal 2", "FileDialog"),
+                                           nullptr,
+                                           tr("NWT Sondendatei (*.hfm)", "FileDialog"));
   messsondenfilek2laden(s);
   QFileInfo fi(s);
   filenamesonde2 = fi.baseName();
@@ -3589,7 +3596,7 @@ void Nwt7linux::messsondespeichern1(const QString &sa){
   QString s, smerk;
   QFile f;
   int i;
-  bool ok = FALSE;
+  bool ok = false;
   
   //kein erster Start normales abspeichern
   if(!bersterstart){
@@ -3606,7 +3613,7 @@ void Nwt7linux::messsondespeichern1(const QString &sa){
   s2 = tr("NWT Sondendatei (*.hfm)","FileDialog");
 
   //Datei ueberpruefen ob Sufix vorhanden
-  if((s1.find(".hfm")== -1)) s1 += ".hfm";
+  if((s1.indexOf(".hfm")== -1)) s1 += ".hfm";
   if(!bersterstart){
     /*
     sondenname = QInputDialog::getText(tr("Messsondenname","InputDialog"), beschr,
@@ -3616,22 +3623,22 @@ void Nwt7linux::messsondespeichern1(const QString &sa){
     ok = true;
   }else{
     sondenname = checkboxk1->text();
-    ok = TRUE;
+    ok = true;
   }
   if(ok){
     //kein erster Start normales abspeichern
     if(!bersterstart){
-      s = QFileDialog::getSaveFileName(
-                       homedir.filePath(s1),
-                       s2,
-                       this, 0, tr("NWT Sondendatei speichern","FileDialog"));
+      s = QFileDialog::getSaveFileName(this,
+                                       tr("NWT Sondendatei speichern", "FileDialog"),
+                                       nullptr,
+                                       s2);
     }else{
       s = homedir.filePath(s1);
     }
     if (!s.isNull())
     {
       //Datei ueberpruefen ob Sufix vorhanden
-      if((s.find(".hfm")== -1)) s += ".hfm";
+      if((s.indexOf(".hfm")== -1)) s += ".hfm";
     }
     smerk = s; //Dateinamen merken
     QFileInfo fi(s);
@@ -3719,8 +3726,8 @@ void Nwt7linux::messsondespeichern1(const QString &sa){
       //Eichkorrektur bei log. Messkopf
       if((wgrunddaten.kalibrierk1) and (!wobdaten.linear1)){
         s.replace(QString(".hfm"), "k1.hfe");
-        f.setName(homedir.filePath(s));
-        if(f.open(IO_WriteOnly)){
+        f.setFileName(homedir.filePath(s));
+        if(f.open(QIODevice::WriteOnly)){
           QTextStream ts(&f);
           ts << "#V2.02" << endl;
           for(i=0; i<maxmesspunkte; i++){
@@ -3734,8 +3741,8 @@ void Nwt7linux::messsondespeichern1(const QString &sa){
       s = smerk;
       //Filename setzen
       s.replace(QString(".hfm"), "k1.hfs");
-      f.setName(homedir.filePath(s));
-      if(f.open(IO_WriteOnly)){
+      f.setFileName(homedir.filePath(s));
+      if(f.open(QIODevice::WriteOnly)){
         #ifdef LDEBUG
           qDebug(s);
         #endif
@@ -3757,7 +3764,7 @@ void Nwt7linux::messsondespeichern2(const QString &sa){
   QString s, smerk;
   QFile f;
   int i;
-  bool ok = FALSE;
+  bool ok = false;
 
   if(!bersterstart){
     beschr = tr("<b>Name der Messsonde am Checkbutton</b><br>"
@@ -3769,7 +3776,7 @@ void Nwt7linux::messsondespeichern2(const QString &sa){
   } 
   s2 = tr("NWT Sondendatei (*.hfm)");
   //Datei ueberpruefen ob Sufix vorhanden
-  if((s1.find(".hfm")== -1)) s1 += ".hfm";
+  if((s1.indexOf(".hfm")== -1)) s1 += ".hfm";
   //wenn keine Erstinitialisierung Dialog oeffnen
   if(!bersterstart){
     /*
@@ -3780,22 +3787,22 @@ void Nwt7linux::messsondespeichern2(const QString &sa){
     ok = true;
   }else{
     sondenname = checkboxk2->text();
-    ok = TRUE;
+    ok = true;
   }
   if(ok){
     //wenn keine Erstinitialisierung Dialog oeffnen
     if(!bersterstart){
-      s = QFileDialog::getSaveFileName(
-                      homedir.filePath(s1),
-                      s2,
-                      this, 0, tr("NWT Sondendatei speichern","FileDialog"));
+      s = QFileDialog::getSaveFileName(this,
+                                       tr("NWT Sondendatei speichern", "FileDialog"),
+                                       nullptr,
+                                       s2);
     }else{
       s = homedir.filePath(s1);
     }
     if (!s.isNull())
     {
       //Datei ueberpruefen ob Sufix vorhanden
-      if((s.find(".hfm")== -1)) s += ".hfm";
+      if((s.indexOf(".hfm")== -1)) s += ".hfm";
     }
     smerk = s;
     QFileInfo fi(s);
@@ -3880,8 +3887,8 @@ void Nwt7linux::messsondespeichern2(const QString &sa){
       //Filename setzen
       if((wgrunddaten.kalibrierk2) and (!wobdaten.linear2)){
         s.replace(QString(".hfm"), "k2.hfe");
-        f.setName(homedir.filePath(s));
-        if(f.open( IO_WriteOnly )){
+        f.setFileName(homedir.filePath(s));
+        if(f.open( QIODevice::WriteOnly )){
           QTextStream ts(&f);
           ts << "#V2.02" << endl;
           for(i=0; i<maxmesspunkte; i++){
@@ -3895,8 +3902,8 @@ void Nwt7linux::messsondespeichern2(const QString &sa){
       //Filename setzen
       s = smerk;
       s.replace(QString(".hfm"), "k2.hfs");
-      f.setName(homedir.filePath(s));
-      if(f.open( IO_WriteOnly )){
+      f.setFileName(homedir.filePath(s));
+      if(f.open( QIODevice::WriteOnly )){
         QTextStream ts(&f);
         for(i=0; i<maxmesspunkte; i++){
           ts << wobdaten.swrkalibrierarray.arrayk2[i] << endl;
@@ -3948,38 +3955,38 @@ void Nwt7linux::kalibrierenkanal1(){
         case 0:
             // Linear
             //qDebug("Linear");
-            wobdaten.linear1 = TRUE;
+            wobdaten.linear1 = true;
             testLogLin();
             emit sendewobbeldaten(wobdaten);
             break;
         case 1:
             // Logarithmisch
             //qDebug("Log");
-            wobdaten.linear1 = FALSE;
-            wobdaten.linear2 = FALSE;
+            wobdaten.linear1 = false;
+            wobdaten.linear2 = false;
             testLogLin();
             emit sendewobbeldaten(wobdaten);
             break;
       }
-      checkboxk1->setChecked(TRUE);
-      checkboxk2->setChecked(FALSE);
-      buttoneinmal->setEnabled(FALSE);
-      buttonwobbeln->setEnabled(FALSE);
-      buttonstop->setEnabled(FALSE);
-      emit setmenu(emEinmal, FALSE);
-      emit setmenu(emWobbeln, FALSE);
-      emit setmenu(emStop, FALSE);
-      groupzoom->setEnabled(FALSE);
-      groupwobbel->setEnabled(FALSE);
-      groupbetriebsart->setEnabled(FALSE);
+      checkboxk1->setChecked(true);
+      checkboxk2->setChecked(false);
+      buttoneinmal->setEnabled(false);
+      buttonwobbeln->setEnabled(false);
+      buttonstop->setEnabled(false);
+      emit setmenu(emEinmal, false);
+      emit setmenu(emWobbeln, false);
+      emit setmenu(emStop, false);
+      groupzoom->setEnabled(false);
+      groupwobbel->setEnabled(false);
+      groupbetriebsart->setEnabled(false);
       if(wgrunddaten.fwfalsch){
         boxzwischenzeit->setCurrentIndex(0);
-        boxzwischenzeit->setEnabled(FALSE);
-        labelzwischenzeit->setEnabled(FALSE);
-//        editscantime->setEnabled(FALSE);
-//        checkboxtime->setEnabled(FALSE);
+        boxzwischenzeit->setEnabled(false);
+        labelzwischenzeit->setEnabled(false);
+//        editscantime->setEnabled(false);
+//        checkboxtime->setEnabled(false);
       }
-      bkalibrieren40 = TRUE;
+      bkalibrieren40 = true;
       if(!wobdaten.linear1){
         //math. Korrektur aktiv ?
         if(wgrunddaten.kalibrierk1){
@@ -4032,8 +4039,8 @@ void Nwt7linux::kalibrierenkanal1(){
       s.sprintf("%li",wgrunddaten.kalibrierstep);
       editschritte->setText(s);
       wobnormalisieren();
-      bkalibrierenswr = TRUE;
-      bkalibrieren0 = TRUE;
+      bkalibrierenswr = true;
+      bkalibrieren0 = true;
       QMessageBox::warning( this, tr("Kalibrieren SWV","InformationsBox"),
                                   tr("<B>Ermitteln SWV = unendlich</B><BR>"
                                      "SWV-Bruecke offen lassen oder kurzschliessen.","InformationsBox") );
@@ -4042,7 +4049,7 @@ void Nwt7linux::kalibrierenkanal1(){
     case eimpedanz:
       break;
   }
-  wobbelstop = TRUE;
+  wobbelstop = true;
 //  fsendewobbeldaten();
   sendwobbeln();
 }
@@ -4088,15 +4095,15 @@ void Nwt7linux::kalibrierenkanal2(){
        case 0:
         // Linear
         // fprintf(stderr, "Linear\n");
-        wobdaten.linear2 = TRUE;
+        wobdaten.linear2 = true;
         testLogLin();
         emit sendewobbeldaten(wobdaten);
         break;
        case 1:
         // Logarithmisch
         // fprintf(stderr, "Log\n");
-        wobdaten.linear1 = FALSE;
-        wobdaten.linear2 = FALSE;
+        wobdaten.linear1 = false;
+        wobdaten.linear2 = false;
         testLogLin();
         emit sendewobbeldaten(wobdaten);
         break;
@@ -4111,25 +4118,25 @@ void Nwt7linux::kalibrierenkanal2(){
           //boxzwischenzeit->setCurrentIndex(12); // Zwischenzeit auf maximum
         }
       }
-      checkboxk1->setChecked(FALSE);
-      checkboxk2->setChecked(TRUE);
-      buttoneinmal->setEnabled(FALSE);
-      buttonwobbeln->setEnabled(FALSE);
-      buttonstop->setEnabled(FALSE);
-      emit setmenu(emEinmal, FALSE);
-      emit setmenu(emWobbeln, FALSE);
-      emit setmenu(emStop, FALSE);
-      groupzoom->setEnabled(FALSE);
-      groupwobbel->setEnabled(FALSE);
-      groupbetriebsart->setEnabled(FALSE);
+      checkboxk1->setChecked(false);
+      checkboxk2->setChecked(true);
+      buttoneinmal->setEnabled(false);
+      buttonwobbeln->setEnabled(false);
+      buttonstop->setEnabled(false);
+      emit setmenu(emEinmal, false);
+      emit setmenu(emWobbeln, false);
+      emit setmenu(emStop, false);
+      groupzoom->setEnabled(false);
+      groupwobbel->setEnabled(false);
+      groupbetriebsart->setEnabled(false);
       if(wgrunddaten.fwfalsch){
         boxzwischenzeit->setCurrentIndex(0);
-        boxzwischenzeit->setEnabled(FALSE);
-        labelzwischenzeit->setEnabled(FALSE);
-//        editscantime->setEnabled(FALSE);
-//        checkboxtime->setEnabled(FALSE);
+        boxzwischenzeit->setEnabled(false);
+        labelzwischenzeit->setEnabled(false);
+//        editscantime->setEnabled(false);
+//        checkboxtime->setEnabled(false);
       }
-      bkalibrieren40 = TRUE;
+      bkalibrieren40 = true;
       if(!wobdaten.linear2){
         if(wgrunddaten.kalibrierk2){
           //beim Kalibrieren andere Frequenzbereiche zulassen
@@ -4178,8 +4185,8 @@ void Nwt7linux::kalibrierenkanal2(){
       s.sprintf("%li",wgrunddaten.kalibrierstep);
       editschritte->setText(s);
       wobnormalisieren();
-      bkalibrierenswr = TRUE;
-      bkalibrieren0 = TRUE;
+      bkalibrierenswr = true;
+      bkalibrieren0 = true;
       QMessageBox::warning( this, tr("Kalibrieren SWV Kanal 2","InformationsBox"),
                                   tr("<B>Ermitteln SWV = unendlich</B><BR>"
                                      "SWV-Bruecke offen lassen oder kurzschliessen.","InformationsBox") );
@@ -4188,7 +4195,7 @@ void Nwt7linux::kalibrierenkanal2(){
     case eimpedanz:
       break;
   }
-  wobbelstop = TRUE;
+  wobbelstop = true;
 //  fsendewobbeldaten();
   sendwobbeln();
 }
@@ -4276,12 +4283,12 @@ void Nwt7linux::idletimerbehandlung(){
     labelnwt->setPalette(palette);
     labelnwt->setText(tr("Online","Label"));
     fwversioncounter = 3;
-    setTabEnabled(nwt7vfo, TRUE);
-    //setTabEnabled(berechnung, TRUE);
+    setTabEnabled(nwt7vfo, true);
+    //setTabEnabled(berechnung, true);
     if(wobdaten.linear2 or wobdaten.linear1){
-      setTabEnabled(nwt7messen, FALSE);
+      setTabEnabled(nwt7messen, false);
     }else{
-      setTabEnabled(nwt7messen, TRUE);
+      setTabEnabled(nwt7messen, true);
     };
     if((fwversion > 114) and (fwversion < 150)){
       if(wobdaten.maudio2){
@@ -4290,21 +4297,21 @@ void Nwt7linux::idletimerbehandlung(){
           kalibrier2->setChecked(false);
           kalibrier2->setEnabled(false);
           boxzwischenzeit->setCurrentIndex(0);
-          boxzwischenzeit->setEnabled(FALSE);
-          labelzwischenzeit->setEnabled(FALSE);
+          boxzwischenzeit->setEnabled(false);
+          labelzwischenzeit->setEnabled(false);
         }else{
-          boxzwischenzeit->setEnabled(TRUE);
-          labelzwischenzeit->setEnabled(TRUE);
+          boxzwischenzeit->setEnabled(true);
+          labelzwischenzeit->setEnabled(true);
           kalibrier1->setEnabled(true);
           kalibrier2->setEnabled(true);
         }
       }else{
-        boxzwischenzeit->setEnabled(TRUE);
-        labelzwischenzeit->setEnabled(TRUE);
+        boxzwischenzeit->setEnabled(true);
+        labelzwischenzeit->setEnabled(true);
       }
-      //checkboxtime->setEnabled(TRUE);
-      //      editscantime->setEnabled(TRUE);
-      wgrunddaten.fwfalsch = FALSE;
+      //checkboxtime->setEnabled(true);
+      //      editscantime->setEnabled(true);
+      wgrunddaten.fwfalsch = false;
       //fwportb kommt von der HW NWT01
       pb = fwportb;
       //pb = pb >> 1; //PortB ein BIT nach links
@@ -4341,8 +4348,8 @@ void Nwt7linux::idletimerbehandlung(){
           labelsafrqbereich->setText(tr("Scanbereich 1","Label"));
           labelsabandbreite->setText(tr("Bandwidth: 30 kHz","Label"));
           if(wgrunddaten.sastatus){
-            sabereich1->setChecked(TRUE);
-            sabereich2->setChecked(FALSE);
+            sabereich1->setChecked(true);
+            sabereich2->setChecked(false);
             sabereich = bsa1;
             sabw = bw30kHz;
             if(!bkurvegeladen)wobdaten.ebbsav = e30kb1;
@@ -4353,8 +4360,8 @@ void Nwt7linux::idletimerbehandlung(){
           labelsafrqbereich->setText(tr("Scanbereich 1","Label"));
           labelsabandbreite->setText(tr("Bandwidth: 7 kHz","Label"));
           if(wgrunddaten.sastatus){
-            sabereich1->setChecked(TRUE);
-            sabereich2->setChecked(FALSE);
+            sabereich1->setChecked(true);
+            sabereich2->setChecked(false);
             sabereich = bsa1;
             sabw = bw7kHz;
             if(!bkurvegeladen)wobdaten.ebbsav = e7kb1;
@@ -4365,8 +4372,8 @@ void Nwt7linux::idletimerbehandlung(){
           labelsafrqbereich->setText(tr("Scanbereich 1","Label"));
           labelsabandbreite->setText(tr("Bandwidth: 300 Hz","Label"));
           if(wgrunddaten.sastatus){
-            sabereich1->setChecked(TRUE);
-            sabereich2->setChecked(FALSE);
+            sabereich1->setChecked(true);
+            sabereich2->setChecked(false);
             sabereich = bsa1;
             sabw = bw300Hz;
             if(!bkurvegeladen)wobdaten.ebbsav = e300b1;
@@ -4377,8 +4384,8 @@ void Nwt7linux::idletimerbehandlung(){
           labelsafrqbereich->setText(tr("Scanbereich 2","Label"));
           labelsabandbreite->setText(tr("Bandwidth: 30 kHz","Label"));
           if(wgrunddaten.sastatus){
-            sabereich1->setChecked(FALSE);
-            sabereich2->setChecked(TRUE);
+            sabereich1->setChecked(false);
+            sabereich2->setChecked(true);
             sabereich = bsa2;
             sabw = bw30kHz;
             if(!bkurvegeladen)wobdaten.ebbsav = e30kb2;
@@ -4389,8 +4396,8 @@ void Nwt7linux::idletimerbehandlung(){
           labelsafrqbereich->setText(tr("Scanbereich 2","Label"));
           labelsabandbreite->setText(tr("Bandwidth: 7 kHz","Label"));
           if(wgrunddaten.sastatus){
-            sabereich1->setChecked(FALSE);
-            sabereich2->setChecked(TRUE);
+            sabereich1->setChecked(false);
+            sabereich2->setChecked(true);
             sabereich = bsa2;
             sabw = bw7kHz;
             if(!bkurvegeladen)wobdaten.ebbsav = e7kb2;
@@ -4401,8 +4408,8 @@ void Nwt7linux::idletimerbehandlung(){
           labelsafrqbereich->setText(tr("Scanbereich 2","Label"));
           labelsabandbreite->setText(tr("Bandwidth: 300 Hz","Label"));
           if(wgrunddaten.sastatus){
-            sabereich1->setChecked(FALSE);
-            sabereich2->setChecked(TRUE);
+            sabereich1->setChecked(false);
+            sabereich2->setChecked(true);
             sabereich = bsa2;
             sabw = bw300Hz;
             if(!bkurvegeladen)wobdaten.ebbsav = e300b2;
@@ -4422,10 +4429,10 @@ void Nwt7linux::idletimerbehandlung(){
       labelnwt->setText(tr("Offline","Label"));
       labelnwt->setPalette(palette);
       boxzwischenzeit->setCurrentIndex(0);
-      boxzwischenzeit->setEnabled(FALSE);
-      labelzwischenzeit->setEnabled(FALSE);
+      boxzwischenzeit->setEnabled(false);
+      labelzwischenzeit->setEnabled(false);
       //nicht die richtige FW erkannt oder keine Verbindung zum NWT
-      wgrunddaten.fwfalsch = TRUE;
+      wgrunddaten.fwfalsch = true;
       //SAV Bandbreitenerkennung AUS
       if(!bkurvegeladen)wobdaten.ebbsav = ekeinebandbreite;
     }
@@ -4442,17 +4449,17 @@ void Nwt7linux::clickwobbeln(){
   wobnormalisieren(); //Abgleich aller Eingabedaten
   if(wobbelabbruch)return;
   if(wobdaten.einkanalig){
-    emit setmenu(emEichenK2, FALSE);
-    emit setmenu(emSondeLadenK2, FALSE);
-    emit setmenu(emSondeSpeichernK2, FALSE);
-    emit setmenu(emWattEichenK2, FALSE);
-    emit setmenu(emWattEditSonde2, FALSE);
+    emit setmenu(emEichenK2, false);
+    emit setmenu(emSondeLadenK2, false);
+    emit setmenu(emSondeSpeichernK2, false);
+    emit setmenu(emWattEichenK2, false);
+    emit setmenu(emWattEditSonde2, false);
   }else{
-    emit setmenu(emEichenK2, TRUE);
-    emit setmenu(emSondeLadenK2, TRUE);
-    emit setmenu(emSondeSpeichernK2, TRUE);
-    emit setmenu(emWattEichenK2, TRUE);
-    emit setmenu(emWattEditSonde2, TRUE);
+    emit setmenu(emEichenK2, true);
+    emit setmenu(emSondeLadenK2, true);
+    emit setmenu(emSondeSpeichernK2, true);
+    emit setmenu(emWattEichenK2, true);
+    emit setmenu(emWattEditSonde2, true);
   }
   //versionskontrolle();
   if(!bttyOpen){
@@ -4469,7 +4476,7 @@ void Nwt7linux::clickwobbeln(){
   grafik->setWindowTitle(tr("Display","Wobbelfenster"));
   if (bkurvegeladen){
     setAText(wgrunddaten.str_tty);
-    bkurvegeladen = FALSE; //Modus ausschalten
+    bkurvegeladen = false; //Modus ausschalten
     wobdaten = wobdatenmerk;//Alte einstellungen wieder zurueckladen
     checkboxk1->setChecked(wobdaten.bkanal1);
     checkboxk2->setChecked(wobdaten.bkanal2);
@@ -4504,44 +4511,44 @@ void Nwt7linux::clickwobbeln(){
   }
   if (bttyOpen)
   {
-    bdauerwobbeln = TRUE;
-    labellupe->setEnabled(FALSE);
-    buttonlupeplus->setEnabled(FALSE);
-    buttonlupeminus->setEnabled(FALSE);
-    buttonlupemitte->setEnabled(FALSE);
-    buttoneinmal->setEnabled(FALSE);
-    buttonwobbeln->setEnabled(FALSE);
-    buttonstop->setEnabled(TRUE);
-//    groupdaempfung->setEnabled(FALSE);
-//    daempfung2->setEnabled(FALSE);
-    emit setmenu(emEinmal, FALSE);
-    emit setmenu(emWobbeln, FALSE);
-    emit setmenu(emStop, TRUE);
-    groupzoom->setEnabled(FALSE);
-    groupwobbel->setEnabled(FALSE);
-    groupbetriebsart->setEnabled(FALSE);
+    bdauerwobbeln = true;
+    labellupe->setEnabled(false);
+    buttonlupeplus->setEnabled(false);
+    buttonlupeminus->setEnabled(false);
+    buttonlupemitte->setEnabled(false);
+    buttoneinmal->setEnabled(false);
+    buttonwobbeln->setEnabled(false);
+    buttonstop->setEnabled(true);
+//    groupdaempfung->setEnabled(false);
+//    daempfung2->setEnabled(false);
+    emit setmenu(emEinmal, false);
+    emit setmenu(emWobbeln, false);
+    emit setmenu(emStop, true);
+    groupzoom->setEnabled(false);
+    groupwobbel->setEnabled(false);
+    groupbetriebsart->setEnabled(false);
     if(!wgrunddaten.fwfalsch){
       //keine Zwischenzeit bei ungeeigneter FW
-      boxzwischenzeit->setEnabled(FALSE);
-      labelzwischenzeit->setEnabled(FALSE);
+      boxzwischenzeit->setEnabled(false);
+      labelzwischenzeit->setEnabled(false);
     }
-    wobbelstop = FALSE;
-    setTabEnabled(wkmanager, FALSE);
-    setTabEnabled(nwt7vfo, FALSE);
-    setTabEnabled(berechnung, FALSE);
-    setTabEnabled(nwt7messen, FALSE);
+    wobbelstop = false;
+    setTabEnabled(wkmanager, false);
+    setTabEnabled(nwt7vfo, false);
+    setTabEnabled(berechnung, false);
+    setTabEnabled(nwt7messen, false);
     sendwobbeln();
-    wobdaten.mousesperre = TRUE; //Kursoraktivitaeten sperren
+    wobdaten.mousesperre = true; //Kursoraktivitaeten sperren
     fsendewobbeldaten();
   }
   //Zaehler fuer Abbruch des Datenverkehrs
   abbruchlevel=0;
-  bdatenruecklauf=FALSE;
+  bdatenruecklauf=false;
   if(wgrunddaten.grperwobbeln){
     grafik->setFocus();
     grafik->activateWindow ();
   }
-  //emit setmenu(emmainhidde, TRUE);
+  //emit setmenu(emmainhidde, true);
 }
 
 void Nwt7linux::clickwobbelneinmal(){
@@ -4561,7 +4568,7 @@ void Nwt7linux::clickwobbelneinmal(){
   grafik->setWindowTitle(tr("Display","Wobbelfenster"));
   if (bkurvegeladen){
     setAText(wgrunddaten.str_tty);
-    bkurvegeladen = FALSE; //Modus ausschalten
+    bkurvegeladen = false; //Modus ausschalten
     wobdaten = wobdatenmerk;//Alte einstellungen wieder zurueckladen
     checkboxk1->setChecked(wobdaten.bkanal1);
     checkboxk2->setChecked(wobdaten.bkanal2);
@@ -4596,33 +4603,33 @@ void Nwt7linux::clickwobbelneinmal(){
   }
   if (bttyOpen)
   {
-    buttoneinmal->setEnabled(FALSE);
-    buttonwobbeln->setEnabled(FALSE);
-    buttonstop->setEnabled(FALSE);
-    groupdaempfung->setEnabled(FALSE);
-    daempfung2->setEnabled(FALSE);
-    emit setmenu(emEinmal, FALSE);
-    emit setmenu(emWobbeln, FALSE);
-    emit setmenu(emStop, FALSE);
-    groupzoom->setEnabled(FALSE);
-    groupwobbel->setEnabled(FALSE);
-    groupbetriebsart->setEnabled(FALSE);
+    buttoneinmal->setEnabled(false);
+    buttonwobbeln->setEnabled(false);
+    buttonstop->setEnabled(false);
+    groupdaempfung->setEnabled(false);
+    daempfung2->setEnabled(false);
+    emit setmenu(emEinmal, false);
+    emit setmenu(emWobbeln, false);
+    emit setmenu(emStop, false);
+    groupzoom->setEnabled(false);
+    groupwobbel->setEnabled(false);
+    groupbetriebsart->setEnabled(false);
     if(!wgrunddaten.fwfalsch){
       //keine Zwischenzeit bei ungeeigneter FW
-      boxzwischenzeit->setEnabled(FALSE);
-      labelzwischenzeit->setEnabled(FALSE);
+      boxzwischenzeit->setEnabled(false);
+      labelzwischenzeit->setEnabled(false);
     }
-    wobbelstop = TRUE;
-    setTabEnabled(wkmanager, FALSE);
-    setTabEnabled(nwt7vfo, FALSE);
-    setTabEnabled(berechnung, FALSE);
-    setTabEnabled(nwt7messen, FALSE);
+    wobbelstop = true;
+    setTabEnabled(wkmanager, false);
+    setTabEnabled(nwt7vfo, false);
+    setTabEnabled(berechnung, false);
+    setTabEnabled(nwt7messen, false);
     sendwobbeln();
-    wobdaten.mousesperre = TRUE; //Kursoraktivitaeten sperren
+    wobdaten.mousesperre = true; //Kursoraktivitaeten sperren
     fsendewobbeldaten();
   }
   abbruchlevel=0;
-  bdatenruecklauf=FALSE;
+  bdatenruecklauf=false;
   if(wgrunddaten.grpereinmal){
     grafik->setFocus();
     grafik->activateWindow ();
@@ -4632,9 +4639,9 @@ void Nwt7linux::clickwobbelneinmal(){
 void Nwt7linux::clickwobbelnstop(){
   if (bttyOpen)
   {
-    wobbelstop = TRUE;
-    buttonstop->setEnabled(FALSE);
-    emit setmenu(emStop, FALSE);
+    wobbelstop = true;
+    buttonstop->setEnabled(false);
+    emit setmenu(emStop, false);
   }
   if(wgrunddaten.grperstop){
     grafik->setFocus();
@@ -4654,7 +4661,7 @@ void Nwt7linux::sendwobbeln(){
   //qDebug("frqfaktor %i",frqfaktor);
   if(bdauerwobbeln and bsetdaempfung){
     if(bttyOpen){
-      bsetdaempfung = FALSE;
+      bsetdaempfung = false;
       picmodem->writeChar(0x8F);
       picmodem->writeChar('r');
       picmodem->writeChar(fwportb);
@@ -4821,16 +4828,16 @@ void Nwt7linux::sendwobbeln(){
     idletimer->stop();
     stimer->stop();
     vtimer->stop();
-    wobbeltimer->start(10, TRUE);
+    wobbeltimer->start(10);
     progressbar->setMaximum(wobdaten.schritte * 4);
-    buttoneinmal->setEnabled(FALSE);
-    buttonwobbeln->setEnabled(FALSE);
-//    groupdaempfung->setEnabled(FALSE);
-//    daempfung2->setEnabled(FALSE);
-    emit setmenu(emEinmal, FALSE);
-    emit setmenu(emWobbeln, FALSE);
+    buttoneinmal->setEnabled(false);
+    buttonwobbeln->setEnabled(false);
+//    groupdaempfung->setEnabled(false);
+//    daempfung2->setEnabled(false);
+    emit setmenu(emEinmal, false);
+    emit setmenu(emWobbeln, false);
     synclevel=0;
-    bdauerwobbeln = TRUE;
+    bdauerwobbeln = true;
   }
 }
 
@@ -4870,7 +4877,7 @@ void Nwt7linux::readtty(){
       #ifdef LDEBUG
        qDebug("a>0");
       #endif
-      bdatenruecklauf = TRUE;
+      bdatenruecklauf = true;
     }
     if(a == 0){
       synclevel++; //es lagen keine Daten an
@@ -4892,7 +4899,7 @@ void Nwt7linux::readtty(){
       wobdaten.mess.k2[i] = c + (c1 * 256);
     }
     if(bdatenruecklauf){
-      wobdaten.mess.daten_enable = TRUE;
+      wobdaten.mess.daten_enable = true;
       wcounter--;
       if(wcounter==0){
         if(wgrunddaten.bfliessend)emit sendewobbelkurve(wobdaten.mess);
@@ -4912,9 +4919,9 @@ void Nwt7linux::readtty(){
     }
     //Wobbeldaten sind gueltig
     if(bdatenruecklauf){
-      wobdaten.mess.daten_enable = TRUE;
+      wobdaten.mess.daten_enable = true;
     }else{
-      wobdaten.mess.daten_enable = FALSE;
+      wobdaten.mess.daten_enable = false;
     }
     //Wobbeldaten ins Grafikfenster kopieren
     fsendewobbeldaten();
@@ -4922,43 +4929,43 @@ void Nwt7linux::readtty(){
       //DDS Ausgang auf 0Hz setzen
       setparkfrq();
       //Button + Menue wieder aktivieren
-      wobdaten.mousesperre = FALSE; //mousekursor wieder freigeben
+      wobdaten.mousesperre = false; //mousekursor wieder freigeben
       fsendewobbeldaten();
-      bdauerwobbeln = FALSE;
+      bdauerwobbeln = false;
       setKursorFrequenz(KursorFrequenz);
-      buttoneinmal->setEnabled(TRUE);
-      buttonwobbeln->setEnabled(TRUE);
-      buttonstop->setEnabled(FALSE);
+      buttoneinmal->setEnabled(true);
+      buttonwobbeln->setEnabled(true);
+      buttonstop->setEnabled(false);
       idletimer->start(wgrunddaten.idletime);
       if((wobdaten.ebetriebsart == eswrneu) or (wobdaten.ebetriebsart == eswrant)){
-        groupdaempfung->setEnabled(FALSE);
-        daempfung2->setEnabled(FALSE);
+        groupdaempfung->setEnabled(false);
+        daempfung2->setEnabled(false);
       }
       if((wobdaten.ebetriebsart == ewobbeln) or 
          (wobdaten.ebetriebsart == espektrumanalyser) or 
          (wobdaten.ebetriebsart == espekdisplayshift)){
-        groupdaempfung->setEnabled(TRUE);
-        daempfung2->setEnabled(TRUE);
+        groupdaempfung->setEnabled(true);
+        daempfung2->setEnabled(true);
       }
-      emit setmenu(emEinmal, TRUE);
-      emit setmenu(emWobbeln, TRUE);
-      emit setmenu(emStop, FALSE);
-      groupzoom->setEnabled(TRUE);
-      groupwobbel->setEnabled(TRUE);
-      groupbetriebsart->setEnabled(TRUE);
+      emit setmenu(emEinmal, true);
+      emit setmenu(emWobbeln, true);
+      emit setmenu(emStop, false);
+      groupzoom->setEnabled(true);
+      groupwobbel->setEnabled(true);
+      groupbetriebsart->setEnabled(true);
       if(!wgrunddaten.fwfalsch){
         //Zwischenzeit bei geeigneter FW
-        boxzwischenzeit->setEnabled(TRUE);
-        labelzwischenzeit->setEnabled(TRUE);
+        boxzwischenzeit->setEnabled(true);
+        labelzwischenzeit->setEnabled(true);
       }
-      setTabEnabled(wkmanager, TRUE);
-      setTabEnabled(nwt7vfo, TRUE);
-      setTabEnabled(berechnung, TRUE);
+      setTabEnabled(wkmanager, true);
+      setTabEnabled(nwt7vfo, true);
+      setTabEnabled(berechnung, true);
       // K1 oder K2 linear = Messfenster deaktivieren
       if(wobdaten.linear2 || wobdaten.linear1){
-        setTabEnabled(nwt7messen, FALSE);
+        setTabEnabled(nwt7messen, false);
       }else{
-        setTabEnabled(nwt7messen, TRUE);
+        setTabEnabled(nwt7messen, true);
       }
       if(bkalibrieren0){
         ym_0db = 0.0;
@@ -4981,7 +4988,7 @@ void Nwt7linux::readtty(){
                 wobdaten.swrkalibrierarray.arrayk1[j] = yf;
               }
               emit sendewobbeldaten(wobdaten);
-              bkalibrierenswr = FALSE;
+              bkalibrierenswr = false;
               //qDebug("faktor1 %f shift1 %f", wobdaten.faktor1, wobdaten.shift1);	      
             }
           //Wobbeln kalibrieren
@@ -5041,7 +5048,7 @@ void Nwt7linux::readtty(){
                 wobdaten.swrkalibrierarray.arrayk2[j] = yf;
               }
               emit sendewobbeldaten(wobdaten);
-              bkalibrierenswr = FALSE;
+              bkalibrierenswr = false;
               //qDebug("faktor1 %f shift1 %f", wobdaten.faktor1, wobdaten.shift1);	      
             }
           //Wobbeln kalibrieren
@@ -5084,9 +5091,9 @@ void Nwt7linux::readtty(){
         }
         //Wobbeldaten sind gueltig
         if(bdatenruecklauf){
-          wobdaten.mess.daten_enable = TRUE;
+          wobdaten.mess.daten_enable = true;
         }else{
-          wobdaten.mess.daten_enable = FALSE;
+          wobdaten.mess.daten_enable = false;
         }
         //Wobbeldaten ins Grafikfenster kopieren
         fsendewobbeldaten();
@@ -5117,8 +5124,8 @@ void Nwt7linux::readtty(){
 	    }
           }
         }
-        bkalibrieren0 = FALSE;
-        bkalibrierenswr = FALSE;
+        bkalibrieren0 = false;
+        bkalibrierenswr = false;
       }
       if(bkalibrieren40){
         ym_40db = 0.0;
@@ -5181,15 +5188,15 @@ void Nwt7linux::readtty(){
                                          "Ausgang mit Eingang verbinden!","InformationsBox"));
           }
         }
-        bkalibrieren40 = FALSE;
-        bkalibrieren0 = TRUE;
+        bkalibrieren40 = false;
+        bkalibrieren0 = true;
         //erneut wobbeln
         sendwobbeln();
         //Timer starten fuer lesen der NWT7 Daten
         idletimer->stop();
         stimer->stop();
         vtimer->stop();
-        wobbeltimer->start(10, TRUE);
+        wobbeltimer->start(10);
       }
     }else{
       //erneut wobbeln
@@ -5198,7 +5205,7 @@ void Nwt7linux::readtty(){
       idletimer->stop();
       stimer->stop();
       vtimer->stop();
-      wobbeltimer->start(10, TRUE);
+      wobbeltimer->start(10);
     }  
   }else{
     //Alle Daten sind noch nicht gelesen Timer neu starten
@@ -5212,42 +5219,42 @@ void Nwt7linux::readtty(){
         qDebug("Nwt7linux::readtty()");
         #endif
         idletimer->start(wgrunddaten.idletime);
-        wobbelstop = TRUE;
-        buttoneinmal->setEnabled(TRUE);
-        buttonwobbeln->setEnabled(TRUE);
-        buttonstop->setEnabled(FALSE);
+        wobbelstop = true;
+        buttoneinmal->setEnabled(true);
+        buttonwobbeln->setEnabled(true);
+        buttonstop->setEnabled(false);
         if((wobdaten.ebetriebsart == eswrneu) or 
 	   (wobdaten.ebetriebsart == eswrant) or
 	   (wobdaten.ebetriebsart == eimpedanz)){
-          groupdaempfung->setEnabled(FALSE);
-          daempfung2->setEnabled(FALSE);
+          groupdaempfung->setEnabled(false);
+          daempfung2->setEnabled(false);
         }
         if((wobdaten.ebetriebsart == ewobbeln) or
            (wobdaten.ebetriebsart == espektrumanalyser) or
            (wobdaten.ebetriebsart == espekdisplayshift)){
-          groupdaempfung->setEnabled(TRUE);
-          daempfung2->setEnabled(TRUE);
+          groupdaempfung->setEnabled(true);
+          daempfung2->setEnabled(true);
         }
-        emit setmenu(emEinmal, TRUE);
-        emit setmenu(emWobbeln, TRUE);
-        emit setmenu(emStop, FALSE);
-        groupzoom->setEnabled(TRUE);
-        groupwobbel->setEnabled(TRUE);
-        groupbetriebsart->setEnabled(TRUE);
+        emit setmenu(emEinmal, true);
+        emit setmenu(emWobbeln, true);
+        emit setmenu(emStop, false);
+        groupzoom->setEnabled(true);
+        groupwobbel->setEnabled(true);
+        groupbetriebsart->setEnabled(true);
         if(!wgrunddaten.fwfalsch){
           //Zwischenzeit bei geeigneter FW
-          boxzwischenzeit->setEnabled(TRUE);
-          labelzwischenzeit->setEnabled(TRUE);
+          boxzwischenzeit->setEnabled(true);
+          labelzwischenzeit->setEnabled(true);
         }
-        setTabEnabled(wkmanager, TRUE);
-        setTabEnabled(berechnung, TRUE);
-        setTabEnabled(nwt7vfo, TRUE);
+        setTabEnabled(wkmanager, true);
+        setTabEnabled(berechnung, true);
+        setTabEnabled(nwt7vfo, true);
         // K1 oder K2 linear = Messfenster deaktivieren
         if(wobdaten.linear2 || wobdaten.linear1){
-          setTabEnabled(nwt7messen, FALSE);
+          setTabEnabled(nwt7messen, false);
         }else{
           if(wobdaten.ebetriebsart == ewobbeln){
-            setTabEnabled(nwt7messen, TRUE);
+            setTabEnabled(nwt7messen, true);
           }
         }
         return;
@@ -5257,14 +5264,14 @@ void Nwt7linux::readtty(){
         idletimer->stop();
         stimer->stop();
         vtimer->stop();
-        wobbeltimer->start(10, TRUE);
+        wobbeltimer->start(10);
         return;
       }
     }
     idletimer->stop();
     stimer->stop();
     vtimer->stop();
-    wobbeltimer->start(10, TRUE);
+    wobbeltimer->start(10);
   }
 }
 
@@ -5322,13 +5329,13 @@ void Nwt7linux::checkboxk1_checked(bool b){
     case eswrant:
     case eimpedanz:
       if(b){
-        wobdaten.bkanal2 = FALSE;
-        checkboxk2->setChecked(FALSE);
-        wobdaten.bswrkanal2 = FALSE;
+        wobdaten.bkanal2 = false;
+        checkboxk2->setChecked(false);
+        wobdaten.bswrkanal2 = false;
       }else{
-        wobdaten.bkanal2 = TRUE;
-        checkboxk2->setChecked(TRUE);
-        wobdaten.bswrkanal2 = TRUE;
+        wobdaten.bkanal2 = true;
+        checkboxk2->setChecked(true);
+        wobdaten.bswrkanal2 = true;
       }
     break;
     case espektrumanalyser:
@@ -5351,13 +5358,13 @@ void Nwt7linux::checkboxk2_checked(bool b){
     case eswrant:
     case eimpedanz:
       if(b){
-        wobdaten.bkanal1 = FALSE;
-        checkboxk1->setChecked(FALSE);
-        wobdaten.bswrkanal2 = TRUE;
+        wobdaten.bkanal1 = false;
+        checkboxk1->setChecked(false);
+        wobdaten.bswrkanal2 = true;
       }else{
-        wobdaten.bkanal1 = TRUE;
-        checkboxk1->setChecked(TRUE);
-        wobdaten.bswrkanal2 = FALSE;
+        wobdaten.bkanal1 = true;
+        checkboxk1->setChecked(true);
+        wobdaten.bswrkanal2 = false;
       }
     break;
     case espektrumanalyser:
@@ -5435,22 +5442,22 @@ void Nwt7linux::setBetriebsart(int i){
       qs = "o0"; //SWR Relais aus
       wobdaten.ebetriebsart = ewobbeln;
       sabereich = bwobbeln;
-      emit setmenu(emEichenK1, TRUE);
+      emit setmenu(emEichenK1, true);
       if(!wobdaten.einkanalig){
-        emit setmenu(emEichenK2, TRUE);
-        checkboxk2->setEnabled(TRUE);
-        emit setmenu(emSondeSpeichernK2, TRUE);
-        emit setmenu(emSondeLadenK2, TRUE);
+        emit setmenu(emEichenK2, true);
+        checkboxk2->setEnabled(true);
+        emit setmenu(emSondeSpeichernK2, true);
+        emit setmenu(emSondeLadenK2, true);
         kalibrier2->show();
       }	
       kalibrier1->show();
-      checkboxk1->setEnabled(TRUE);
-      checkboxgrafik->setEnabled(TRUE);
-      checkbox3db->setEnabled(TRUE);
-      checkbox6db->setEnabled(TRUE);
-      checkboxinvers->setEnabled(TRUE);
-      groupdaempfung->setEnabled(TRUE);
-      daempfung2->setEnabled(TRUE);
+      checkboxk1->setEnabled(true);
+      checkboxgrafik->setEnabled(true);
+      checkbox3db->setEnabled(true);
+      checkbox6db->setEnabled(true);
+      checkboxinvers->setEnabled(true);
+      groupdaempfung->setEnabled(true);
+      daempfung2->setEnabled(true);
       aufloesung->hide();
       labelaufloesung->hide();
       //SA
@@ -5459,52 +5466,52 @@ void Nwt7linux::setBetriebsart(int i){
       labelsabandbreite->hide();
       sabereich1->hide();
       sabereich2->hide();
-      //setTabEnabled(nwt7messen, TRUE);
+      //setTabEnabled(nwt7messen, true);
       labela_100->hide();
       labelkabellaenge->hide();
       edita_100->hide();
       editkabellaenge->hide();
-      boxdbshift1->setEnabled(TRUE);
-      boxdbshift2->setEnabled(TRUE);
-      labelboxdbshift1->setEnabled(TRUE);
-      labelboxdbshift2->setEnabled(TRUE);
+      boxdbshift1->setEnabled(true);
+      boxdbshift2->setEnabled(true);
+      labelboxdbshift1->setEnabled(true);
+      labelboxdbshift2->setEnabled(true);
       break;
     case 1:  
       qs = "o1"; //SWR Relais ein
       wobdaten.ebetriebsart = eswrneu;
       sabereich = bwobbeln;
-      emit setmenu(emEichenK1, TRUE);
-      emit setmenu(emEichenK2, TRUE);
-      emit setmenu(emSondeSpeichernK2, TRUE);
-      emit setmenu(emSondeLadenK2, TRUE);
+      emit setmenu(emEichenK1, true);
+      emit setmenu(emEichenK2, true);
+      emit setmenu(emSondeSpeichernK2, true);
+      emit setmenu(emSondeLadenK2, true);
       if(checkboxk1->isChecked() and checkboxk2->isChecked()){
-        checkboxk1->setChecked(TRUE);
-        checkboxk2->setChecked(FALSE);
-        wobdaten.bswrkanal2 = FALSE;
+        checkboxk1->setChecked(true);
+        checkboxk2->setChecked(false);
+        wobdaten.bswrkanal2 = false;
       }
       if(!checkboxk1->isChecked() and !checkboxk2->isChecked()){
-        checkboxk1->setChecked(TRUE);
-        checkboxk2->setChecked(FALSE);
-        wobdaten.bswrkanal2 = FALSE;
+        checkboxk1->setChecked(true);
+        checkboxk2->setChecked(false);
+        wobdaten.bswrkanal2 = false;
       }
-//      checkboxk1->setChecked(TRUE);
-//      checkboxk2->setChecked(FALSE);
-//      checkboxk1->setEnabled(FALSE);
+//      checkboxk1->setChecked(true);
+//      checkboxk2->setChecked(false);
+//      checkboxk1->setEnabled(false);
       if(!wobdaten.einkanalig){
-        checkboxk2->setEnabled(TRUE);
+        checkboxk2->setEnabled(true);
       }
       kalibrier1->hide();
       kalibrier2->hide();
-      checkboxgrafik->setEnabled(FALSE);
-      checkbox3db->setEnabled(FALSE);
-      checkbox6db->setEnabled(FALSE);
-      checkboxinvers->setEnabled(FALSE);
+      checkboxgrafik->setEnabled(false);
+      checkbox3db->setEnabled(false);
+      checkbox6db->setEnabled(false);
+      checkboxinvers->setEnabled(false);
       //Relais auf 0dB schalten
       daempfung1->setCurrentIndex(0); 
-      groupdaempfung->setEnabled(FALSE);
+      groupdaempfung->setEnabled(false);
       daempfung2->setCurrentIndex(0); 
       daempfung3->setCurrentIndex(0); 
-      daempfung2->setEnabled(FALSE);
+      daempfung2->setEnabled(false);
       aufloesung->show();
       labelaufloesung->show();
       //SA
@@ -5513,52 +5520,52 @@ void Nwt7linux::setBetriebsart(int i){
       labelsabandbreite->hide();
       sabereich1->hide();
       sabereich2->hide();
-      //setTabEnabled(nwt7messen, FALSE);
+      //setTabEnabled(nwt7messen, false);
       labela_100->hide();
       labelkabellaenge->hide();
       edita_100->hide();
       editkabellaenge->hide();
       boxdbshift1->setCurrentIndex(20);
       boxdbshift2->setCurrentIndex(20);
-      boxdbshift1->setEnabled(FALSE);
-      boxdbshift2->setEnabled(FALSE);
-      labelboxdbshift1->setEnabled(FALSE);
-      labelboxdbshift2->setEnabled(FALSE);
+      boxdbshift1->setEnabled(false);
+      boxdbshift2->setEnabled(false);
+      labelboxdbshift1->setEnabled(false);
+      labelboxdbshift2->setEnabled(false);
       break;
     case 2:  
       qs = "o1"; //SWR Relais ein
       wobdaten.ebetriebsart = eswrant;
       sabereich = bwobbeln;
-      emit setmenu(emEichenK1, FALSE);
-      emit setmenu(emEichenK2, FALSE);
-      emit setmenu(emSondeSpeichernK2, FALSE);
-      emit setmenu(emSondeLadenK2, FALSE);
+      emit setmenu(emEichenK1, false);
+      emit setmenu(emEichenK2, false);
+      emit setmenu(emSondeSpeichernK2, false);
+      emit setmenu(emSondeLadenK2, false);
       if(checkboxk1->isChecked() and checkboxk2->isChecked()){
-        checkboxk1->setChecked(TRUE);
-        checkboxk2->setChecked(FALSE);
-        wobdaten.bswrkanal2 = FALSE;
+        checkboxk1->setChecked(true);
+        checkboxk2->setChecked(false);
+        wobdaten.bswrkanal2 = false;
       }
       if(!checkboxk1->isChecked() and !checkboxk2->isChecked()){
-        checkboxk1->setChecked(TRUE);
-        checkboxk2->setChecked(FALSE);
-        wobdaten.bswrkanal2 = FALSE;
+        checkboxk1->setChecked(true);
+        checkboxk2->setChecked(false);
+        wobdaten.bswrkanal2 = false;
       }
       kalibrier1->hide();
       kalibrier2->hide();
-//     checkboxk1->setChecked(TRUE);
-//     checkboxk2->setChecked(FALSE);
-//     checkboxk1->setEnabled(FALSE);
-      if(!wobdaten.einkanalig)checkboxk2->setEnabled(TRUE);
-      checkboxgrafik->setEnabled(FALSE);
-      checkbox3db->setEnabled(FALSE);
-      checkbox6db->setEnabled(FALSE);
-      checkboxinvers->setEnabled(FALSE);
+//     checkboxk1->setChecked(true);
+//     checkboxk2->setChecked(false);
+//     checkboxk1->setEnabled(false);
+      if(!wobdaten.einkanalig)checkboxk2->setEnabled(true);
+      checkboxgrafik->setEnabled(false);
+      checkbox3db->setEnabled(false);
+      checkbox6db->setEnabled(false);
+      checkboxinvers->setEnabled(false);
       //Relais auf 0dB schalten
       daempfung1->setCurrentIndex(0); 
-      groupdaempfung->setEnabled(FALSE);
+      groupdaempfung->setEnabled(false);
       daempfung2->setCurrentIndex(0); 
       daempfung3->setCurrentIndex(0); 
-      daempfung2->setEnabled(FALSE);
+      daempfung2->setEnabled(false);
       aufloesung->show();
       labelaufloesung->show();
       labela_100->show();
@@ -5567,52 +5574,52 @@ void Nwt7linux::setBetriebsart(int i){
       editkabellaenge->show();
       boxdbshift1->setCurrentIndex(20);
       boxdbshift2->setCurrentIndex(20);
-      boxdbshift1->setEnabled(FALSE);
-      boxdbshift2->setEnabled(FALSE);
-      labelboxdbshift1->setEnabled(FALSE);
-      labelboxdbshift2->setEnabled(FALSE);
+      boxdbshift1->setEnabled(false);
+      boxdbshift2->setEnabled(false);
+      labelboxdbshift1->setEnabled(false);
+      labelboxdbshift2->setEnabled(false);
       //SA
       groupsa->hide();
       labelsafrqbereich->hide();
       labelsabandbreite->hide();
       sabereich1->hide();
       sabereich2->hide();
-      //setTabEnabled(nwt7messen, FALSE);
+      //setTabEnabled(nwt7messen, false);
       break;
     case 3:  
       qs = "o1"; //SWR Relais ein
       wobdaten.ebetriebsart = eimpedanz;
       sabereich = bwobbeln;
-      emit setmenu(emEichenK1, FALSE);
-      emit setmenu(emEichenK2, FALSE);
-      emit setmenu(emSondeSpeichernK2, FALSE);
-      emit setmenu(emSondeLadenK2, FALSE);
+      emit setmenu(emEichenK1, false);
+      emit setmenu(emEichenK2, false);
+      emit setmenu(emSondeSpeichernK2, false);
+      emit setmenu(emSondeLadenK2, false);
       if(checkboxk1->isChecked() and checkboxk2->isChecked()){
-        checkboxk1->setChecked(TRUE);
-        checkboxk2->setChecked(FALSE);
-        wobdaten.bswrkanal2 = FALSE;
+        checkboxk1->setChecked(true);
+        checkboxk2->setChecked(false);
+        wobdaten.bswrkanal2 = false;
       }
       if(!checkboxk1->isChecked() and !checkboxk2->isChecked()){
-        checkboxk1->setChecked(TRUE);
-        checkboxk2->setChecked(FALSE);
-        wobdaten.bswrkanal2 = FALSE;
+        checkboxk1->setChecked(true);
+        checkboxk2->setChecked(false);
+        wobdaten.bswrkanal2 = false;
       }
       kalibrier1->hide();
       kalibrier2->hide();
-//      checkboxk1->setChecked(TRUE);
-//      checkboxk2->setChecked(FALSE);
-//      checkboxk1->setEnabled(FALSE);
-      if(!wobdaten.einkanalig)checkboxk2->setEnabled(TRUE);
-      checkboxgrafik->setEnabled(FALSE);
-      checkbox3db->setEnabled(FALSE);
-      checkbox6db->setEnabled(FALSE);
-      checkboxinvers->setEnabled(FALSE);
+//      checkboxk1->setChecked(true);
+//      checkboxk2->setChecked(false);
+//      checkboxk1->setEnabled(false);
+      if(!wobdaten.einkanalig)checkboxk2->setEnabled(true);
+      checkboxgrafik->setEnabled(false);
+      checkbox3db->setEnabled(false);
+      checkbox6db->setEnabled(false);
+      checkboxinvers->setEnabled(false);
       //Relais auf 0dB schalten
       daempfung1->setCurrentIndex(0); 
-      groupdaempfung->setEnabled(FALSE);
+      groupdaempfung->setEnabled(false);
       daempfung2->setCurrentIndex(0); 
       daempfung3->setCurrentIndex(0); 
-      daempfung2->setEnabled(FALSE);
+      daempfung2->setEnabled(false);
       aufloesung->hide();
       labelaufloesung->hide();
       labela_100->hide();
@@ -5625,13 +5632,13 @@ void Nwt7linux::setBetriebsart(int i){
       labelsabandbreite->hide();
       sabereich1->hide();
       sabereich2->hide();
-      //setTabEnabled(nwt7messen, FALSE);
+      //setTabEnabled(nwt7messen, false);
       boxdbshift1->setCurrentIndex(20);
       boxdbshift2->setCurrentIndex(20);
-      boxdbshift1->setEnabled(FALSE);
-      boxdbshift2->setEnabled(FALSE);
-      labelboxdbshift1->setEnabled(FALSE);
-      labelboxdbshift2->setEnabled(FALSE);
+      boxdbshift1->setEnabled(false);
+      boxdbshift2->setEnabled(false);
+      labelboxdbshift1->setEnabled(false);
+      labelboxdbshift2->setEnabled(false);
       if(!bkurvegeladen){
         QMessageBox::warning( this, tr("Impedanzmessung mit Serienwiderstand 50 Ohm","InformationsBox"), 
                                     tr("<B>Impedanzmessung Z (absolut)</B><BR>"
@@ -5643,22 +5650,22 @@ void Nwt7linux::setBetriebsart(int i){
     case 4:
       qs = "o0"; //SWR Relais aus
       wobdaten.ebetriebsart = espektrumanalyser;
-      emit setmenu(emEichenK1, FALSE);
+      emit setmenu(emEichenK1, false);
       if(!wobdaten.einkanalig){
-        emit setmenu(emEichenK2, FALSE);
-        checkboxk2->setEnabled(TRUE);
-        emit setmenu(emSondeSpeichernK2, TRUE);
-        emit setmenu(emSondeLadenK2, TRUE);
+        emit setmenu(emEichenK2, false);
+        checkboxk2->setEnabled(true);
+        emit setmenu(emSondeSpeichernK2, true);
+        emit setmenu(emSondeLadenK2, true);
       }	
       kalibrier1->hide();
       kalibrier2->hide();
-      checkboxk1->setEnabled(TRUE);
-      checkboxgrafik->setEnabled(TRUE);
-      checkbox3db->setEnabled(TRUE);
-      checkbox6db->setEnabled(TRUE);
-      checkboxinvers->setEnabled(TRUE);
-      groupdaempfung->setEnabled(TRUE);
-      daempfung2->setEnabled(TRUE);
+      checkboxk1->setEnabled(true);
+      checkboxgrafik->setEnabled(true);
+      checkbox3db->setEnabled(true);
+      checkbox6db->setEnabled(true);
+      checkboxinvers->setEnabled(true);
+      groupdaempfung->setEnabled(true);
+      daempfung2->setEnabled(true);
       aufloesung->hide();
       labelaufloesung->hide();
       //SA
@@ -5683,30 +5690,30 @@ void Nwt7linux::setBetriebsart(int i){
       labelkabellaenge->hide();
       edita_100->hide();
       editkabellaenge->hide();
-      boxdbshift1->setEnabled(TRUE);
-      boxdbshift2->setEnabled(TRUE);
-      labelboxdbshift1->setEnabled(TRUE);
-      labelboxdbshift2->setEnabled(TRUE);
+      boxdbshift1->setEnabled(true);
+      boxdbshift2->setEnabled(true);
+      labelboxdbshift1->setEnabled(true);
+      labelboxdbshift2->setEnabled(true);
       break;
     case 5:
       qs = "o0"; //SWR Relais aus
       wobdaten.ebetriebsart = espekdisplayshift;
-      emit setmenu(emEichenK1, FALSE);
+      emit setmenu(emEichenK1, false);
       if(!wobdaten.einkanalig){
-        emit setmenu(emEichenK2, FALSE);
-        checkboxk2->setEnabled(TRUE);
-        emit setmenu(emSondeSpeichernK2, TRUE);
-        emit setmenu(emSondeLadenK2, TRUE);
+        emit setmenu(emEichenK2, false);
+        checkboxk2->setEnabled(true);
+        emit setmenu(emSondeSpeichernK2, true);
+        emit setmenu(emSondeLadenK2, true);
       }	
       kalibrier1->hide();
       kalibrier2->hide();
-      checkboxk1->setEnabled(TRUE);
-      checkboxgrafik->setEnabled(FALSE);
-      checkbox3db->setEnabled(FALSE);
-      checkbox6db->setEnabled(FALSE);
-      checkboxinvers->setEnabled(FALSE);
-      groupdaempfung->setEnabled(TRUE);
-      daempfung2->setEnabled(TRUE);
+      checkboxk1->setEnabled(true);
+      checkboxgrafik->setEnabled(false);
+      checkbox3db->setEnabled(false);
+      checkbox6db->setEnabled(false);
+      checkboxinvers->setEnabled(false);
+      groupdaempfung->setEnabled(true);
+      daempfung2->setEnabled(true);
       aufloesung->hide();
       labelaufloesung->hide();
       //SA
@@ -5729,10 +5736,10 @@ void Nwt7linux::setBetriebsart(int i){
       labelkabellaenge->hide();
       edita_100->hide();
       editkabellaenge->hide();
-      boxdbshift1->setEnabled(TRUE);
-      boxdbshift2->setEnabled(TRUE);
-      labelboxdbshift1->setEnabled(TRUE);
-      labelboxdbshift2->setEnabled(TRUE);
+      boxdbshift1->setEnabled(true);
+      boxdbshift2->setEnabled(true);
+      labelboxdbshift1->setEnabled(true);
+      labelboxdbshift2->setEnabled(true);
       sabereich = bsa3;
       break;
   }
@@ -5899,11 +5906,11 @@ double Nwt7linux::linenormalisieren(const QString &line)
   bool ok;
   double faktor=1.0;
   double ergebnis = 0.0;
-  bool gefunden = FALSE;
+  bool gefunden = false;
   
   QString aline(line);
   
-  aline.lower();	//alles auf Kleinschreibung
+  aline = aline.toLower();	//alles auf Kleinschreibung
   aline.remove(QChar(' ')); // Leerzeichen entfernen
   if(aline.contains('g')){
     if(aline.contains(',') or aline.contains('.')){
@@ -5912,7 +5919,7 @@ double Nwt7linux::linenormalisieren(const QString &line)
       aline.replace('g','.');
     }
     faktor = 1000000000.0;
-    gefunden = TRUE;
+    gefunden = true;
   }
   if(aline.contains('m')){
     if(aline.contains(',') or aline.contains('.')){
@@ -5921,7 +5928,7 @@ double Nwt7linux::linenormalisieren(const QString &line)
       aline.replace('m','.');
     }
     faktor = 1000000.0;
-    gefunden = TRUE;
+    gefunden = true;
   }
   if(aline.contains('k')){
     if(aline.contains(',') or aline.contains('.')){
@@ -5930,7 +5937,7 @@ double Nwt7linux::linenormalisieren(const QString &line)
       aline.replace('k','.');
     }
     faktor = 1000.0;
-    gefunden = TRUE;
+    gefunden = true;
   }
   ergebnis = aline.toDouble(&ok);
   if(!ok)ergebnis = 0.0;
@@ -5995,7 +6002,7 @@ void Nwt7linux::wobnormalisieren(){
 
   int button;
 
-  wobbelabbruch = FALSE;
+  wobbelabbruch = false;
   //qDebug("wobnormalisieren()");
   /////////////////////////////////////////////////////////////////////////////  
   //Werte aus den Editfenster lesen
@@ -6176,35 +6183,35 @@ void Nwt7linux::wobnormalisieren(){
     //Nur wenn keine Kurvendatei geladen
     ///////////////////////////////////////////////////////////////////////////  
     if(sabw != bwkein and ((wobdaten.ebetriebsart == espektrumanalyser) or (wobdaten.ebetriebsart == espekdisplayshift))){
-      saschrittkorr = FALSE; //Schrittanzahl fuer den SA nicht OK
-      sakorrnachoben = FALSE; //keine Schrittweite nach oben korrigieren
+      saschrittkorr = false; //Schrittanzahl fuer den SA nicht OK
+      sakorrnachoben = false; //keine Schrittweite nach oben korrigieren
       // Test ob Schrittweite erhoeht werden muss
       if(sabw == bw30kHz and schrittweite > wgrunddaten.bw30kHz_max){
-        saschrittkorr = TRUE; bw = wgrunddaten.bw30kHz_max;
+        saschrittkorr = true; bw = wgrunddaten.bw30kHz_max;
       }
-      //if(saschrittkorr){qDebug("saschrittkorr TRUE");}else{qDebug("saschrittkorr FALSE");}
+      //if(saschrittkorr){qDebug("saschrittkorr true");}else{qDebug("saschrittkorr false");}
       if(sabw == bw7kHz and schrittweite > wgrunddaten.bw7kHz_max){
-        saschrittkorr = TRUE; bw = wgrunddaten.bw7kHz_max;
+        saschrittkorr = true; bw = wgrunddaten.bw7kHz_max;
       }
-      //if(saschrittkorr){qDebug("saschrittkorr TRUE");}else{qDebug("saschrittkorr FALSE");}
+      //if(saschrittkorr){qDebug("saschrittkorr true");}else{qDebug("saschrittkorr false");}
       if(sabw == bw300Hz and schrittweite > wgrunddaten.bw300_max){
-        saschrittkorr = TRUE; bw = wgrunddaten.bw300_max;
+        saschrittkorr = true; bw = wgrunddaten.bw300_max;
       }
-      //if(saschrittkorr){qDebug("saschrittkorr TRUE");}else{qDebug("saschrittkorr FALSE");}
+      //if(saschrittkorr){qDebug("saschrittkorr true");}else{qDebug("saschrittkorr false");}
       if(!saschrittkorr){
         //Test ob Schrittanzahl verringert werden kann, BW festlegen
         //keine Korr nach oben
         if(sabw == bw30kHz and schrittweite < wgrunddaten.bw30kHz_min){
-          saschrittkorr = TRUE; bw = wgrunddaten.bw30kHz_min; sakorrnachoben = TRUE;
+          saschrittkorr = true; bw = wgrunddaten.bw30kHz_min; sakorrnachoben = true;
         }
         if(sabw == bw7kHz and schrittweite < wgrunddaten.bw7kHz_min){
-          saschrittkorr = TRUE; bw = wgrunddaten.bw7kHz_min; sakorrnachoben = TRUE;
+          saschrittkorr = true; bw = wgrunddaten.bw7kHz_min; sakorrnachoben = true;
         }
         if(sabw == bw300Hz and schrittweite < wgrunddaten.bw300_min){
-          saschrittkorr = TRUE; bw = wgrunddaten.bw300_min; sakorrnachoben = TRUE;
+          saschrittkorr = true; bw = wgrunddaten.bw300_min; sakorrnachoben = true;
         }
       }
-      //if(sakorrnachoben){qDebug("sakorrnachoben TRUE");}else{qDebug("sakorrnachoben FALSE");}
+      //if(sakorrnachoben){qDebug("sakorrnachoben true");}else{qDebug("sakorrnachoben false");}
       //qDebug("bw %f",bw);
       if(saschrittkorr){
         if(bw < 1000.0){
@@ -6240,7 +6247,7 @@ void Nwt7linux::wobnormalisieren(){
                                                  "<b>Bitte die Scanweite verringern oder die Bandbreite erhoehen!</b>",
                                                  "InformationsBox Bandbreitenueberpruefung max"),
                                                  QMessageBox::Ok, QMessageBox::Abort);
-          if(button == QMessageBox::Abort)wobbelabbruch = TRUE;
+          if(button == QMessageBox::Abort)wobbelabbruch = true;
           schritte = schritteneu;
         }else{
           //Schrittmaximum noch nicht erreicht
@@ -6318,13 +6325,13 @@ void Nwt7linux::wobnormalisieren(){
     sschrittweite.sprintf("%1.0f",schrittweite);
     editschrittweite->setText(sschrittweite);
     //Daten ins Grafikfenster uebermitteln
-    ok = TRUE;
+    ok = true;
     
-    if(wobdaten.anfangsfrequenz != anfang)ok = FALSE;
+    if(wobdaten.anfangsfrequenz != anfang)ok = false;
     wobdaten.anfangsfrequenz = anfang;
-    if(wobdaten.schritte != int(schritte))ok = FALSE;
+    if(wobdaten.schritte != int(schritte))ok = false;
     wobdaten.schritte = int(schritte);
-    if(wobdaten.schrittfrequenz != schrittweite)ok = FALSE;
+    if(wobdaten.schrittfrequenz != schrittweite)ok = false;
     wobdaten.schrittfrequenz = schrittweite;
     if(!ok)wobbelungueltig();
     //Je nach Betriebsart Frequenzeckpunkte merken
@@ -6406,26 +6413,26 @@ void Nwt7linux::mleditinsert(const QString &s){
 
 void Nwt7linux::tabellespeichern(){
   QFile f;
-  QString s = QFileDialog::getSaveFileName(
-                    kurvendir.filePath("messtab.txt"),
-                    "Textdatei (*.txt)",
-                    this, 0, tr("NWT Messwerte speichern","FileDialog"));
+  QString s = QFileDialog::getSaveFileName(this,
+                                           tr("NWT Messwerte speichern", "FileDialog"),
+                                           kurvendir.filePath("messtab.txt"),
+                                           "Textdatei (*.txt)");
   if (!s.isNull())
   {
     //Datei ueberpruefen ob Sufix vorhanden
-    if((s.find(".")== -1)) s += ".txt";
-    f.setName(s);
-    if(f.open( IO_WriteOnly )){
+    if((s.indexOf(".")== -1)) s += ".txt";
+    f.setFileName(s);
+    if(f.open( QIODevice::WriteOnly )){
       QTextStream ts(&f);
-      ts << messedit->text();
-      messedit->setModified( FALSE );
+      ts << messedit->document()->toPlainText();
+      messedit->document()->setModified(false);
       f.close();
     }
   }
 }
 
 void Nwt7linux::tabelleschreiben(){
-  btabelleschreiben = TRUE;
+  btabelleschreiben = true;
 }
 
 void Nwt7linux::messsetfont(){
@@ -6482,7 +6489,8 @@ void Nwt7linux::setmessen(){
     picmodem->writeChar(143);
 
     picmodem->writeLine(qs);
-    messtimer->start(messtime, TRUE); //Timer starten
+    messtimer->setSingleShot(true);
+    messtimer->start(messtime); //Timer starten
   }  
 }
 
@@ -6537,23 +6545,23 @@ void Nwt7linux::getmessdaten(){
         if(i1 < 1024)messungk1 += double(i1);
         if(i2 < 1024)messungk2 += double(i2);
       }
-      anzeigeneu = FALSE;
+      anzeigeneu = false;
       //qDebug()<<messcounter;
       //qDebug()<<maxcount;
       //qDebug()<<messtime;
       if(messcounter==maxcount){
         messcounter=0;
         if(!checkboxmesshang1->isChecked()){
-          anzeigeneu = TRUE;
+          anzeigeneu = true;
         }
         if((messungk1/maxcount) > messungk1alt){
-          anzeigeneu = TRUE;
+          anzeigeneu = true;
           messungk1alt = messungk1/maxcount;
           counterspitzek1 = 0;
         }else{
           counterspitzek1 ++;
           if(counterspitzek1 > 8){
-            anzeigeneu = TRUE;
+            anzeigeneu = true;
             counterspitzek1 = 0;
             messungk1alt = 0.0;
           }
@@ -6635,18 +6643,18 @@ void Nwt7linux::getmessdaten(){
         //Kanal 2 
         if(!wobdaten.einkanalig){ 
           if(!checkboxmesshang2->isChecked()){
-            anzeigeneu = TRUE;
+            anzeigeneu = true;
           }else{
-            anzeigeneu = FALSE;
+            anzeigeneu = false;
           }
           if((messungk2/maxcount) > messungk2alt){
-            anzeigeneu = TRUE;
+            anzeigeneu = true;
             messungk2alt = messungk2/maxcount;
             counterspitzek2 = 0;
           }else{
             counterspitzek2 ++;
             if(counterspitzek2 > 8){
-              anzeigeneu = TRUE;
+              anzeigeneu = true;
               counterspitzek2 = 0;
               messungk2alt = 0.0;
             }  
@@ -6738,7 +6746,7 @@ void Nwt7linux::getmessdaten(){
           qsline = qsline + "; " + qs;
         }
         if (bmkalibrierenk1_20db){
-          bmkalibrierenk1_20db = FALSE;
+          bmkalibrierenk1_20db = false;
           ym_40db = messungk1/maxcount;
 
           //qDebug("ym_0db:%f",ym_0db);
@@ -6766,7 +6774,7 @@ void Nwt7linux::getmessdaten(){
           }
         }
         if (bmkalibrierenk1_0db){
-          bmkalibrierenk1_0db = FALSE;
+          bmkalibrierenk1_0db = false;
           ym_0db = messungk1/maxcount;
           QString beschr(tr("<b>Kalibrieren Kanal 1</b><br>"
                           "1. Den Pegel mit einem Daempfungsglied verringern.<br>"
@@ -6777,7 +6785,7 @@ void Nwt7linux::getmessdaten(){
                                                     beschr, 20.0, 20, 90, 2, &ok);
           //qDebug("ym_daempfung:%f",ym_daempf);
           if(ok){
-            bmkalibrierenk1_20db = TRUE;
+            bmkalibrierenk1_20db = true;
             if(wgrunddaten.bdaempfungfa){
               setDaempfung(9); // -20dB
               daempfung1->setCurrentIndex(9);
@@ -6792,7 +6800,7 @@ void Nwt7linux::getmessdaten(){
           }
         }
         if (bmkalibrierenk2_20db){
-          bmkalibrierenk2_20db = FALSE;
+          bmkalibrierenk2_20db = false;
           ym_40db = messungk2/maxcount;
           //jetzt wobdaten.mfaktor2 und wobdaten.mshift2 ausrechnen
           wobdaten.mfaktor2 = ym_daempf/(ym_0db - ym_40db);
@@ -6813,7 +6821,7 @@ void Nwt7linux::getmessdaten(){
           }
         }
         if (bmkalibrierenk2_0db){
-          bmkalibrierenk2_0db = FALSE;
+          bmkalibrierenk2_0db = false;
           ym_0db = messungk2/maxcount;
           QString beschr(tr("<b>Kalibrieren Kanal 2</b><br>"
                           "1. Den Pegel mit einem Daempfungsglied verringern.<br>"
@@ -6822,11 +6830,13 @@ void Nwt7linux::getmessdaten(){
                           "Werte des Daempfungsgliedes (dB):","InputBox"));
           ym_daempf = QInputDialog::getDouble(this, tr("Kalibrieren Kanal 2","InputBox"),
                                                     beschr, 20.0, 20, 90, 2, &ok);
-          if(ok)bmkalibrierenk2_20db = TRUE;
+          if(ok)bmkalibrierenk2_20db = true;
         }
         if(btabelleschreiben){
-          btabelleschreiben = FALSE;
-          messedit->insertLine(qsline);
+          btabelleschreiben = false;
+          messedit->moveCursor(QTextCursor::End);
+          messedit->insertPlainText(qsline);
+          messedit->moveCursor(QTextCursor::End);
         }
         messungk1 = 0.0;
         messungk2 = 0.0;
@@ -6858,7 +6868,7 @@ void Nwt7linux::mkalibrierenk1(){
                  "Pegel des HF-Generators (dBm):","InputBox"));
   ym_gen = QInputDialog::getDouble(this, tr("Kalibrieren Kanal 1","InputBox"),
                                            beschr, ym_gen, -20, 10, 2, &ok); 
-  if(ok)bmkalibrierenk1_0db = TRUE;
+  if(ok)bmkalibrierenk1_0db = true;
   ym_0db = 0.0;
   ym_40db = 0.0;
   setDaempfung(0); // 0 dB
@@ -6886,7 +6896,7 @@ void Nwt7linux::mkalibrierenk2(){
                  "Pegel des HF-Generators (dBm):","InputBox"));
   ym_gen = QInputDialog::getDouble(this, tr("Kalibrieren Kanal 2","InputBox"),
                                            beschr, ym_gen, -20, 10, 2, &ok); 
-  if(ok)bmkalibrierenk2_0db = TRUE;
+  if(ok)bmkalibrierenk2_0db = true;
   ym_0db = 0.0;
   ym_40db = 0.0;
 }
@@ -6902,6 +6912,8 @@ void Nwt7linux::defaultlesenrtty(){
   if (bttyOpen){
     a = picmodem->readttybuffer(abuffer, (maxmesspunkte * 4));
   }
+  
+  (void) a;
 }
 
 /*
@@ -6920,27 +6932,27 @@ void Nwt7linux::tabumschalten( QWidget *wg ){
   }
   if(wg == nwt7wobbeln){
     diagrammstop();
-    emit setmenu(emmenuKurven, TRUE);
-    emit setmenu(emmenuwobbel, TRUE);
-//    emit setmenu(emmenuvfo, FALSE);
-    emit setmenu(emmenumessen, FALSE);
-    emit setmenu(emDrucken, TRUE);
-    emit setmenu(emDruckenpdf, TRUE);
-    bmessen = FALSE;
+    emit setmenu(emmenuKurven, true);
+    emit setmenu(emmenuwobbel, true);
+//    emit setmenu(emmenuvfo, false);
+    emit setmenu(emmenumessen, false);
+    emit setmenu(emDrucken, true);
+    emit setmenu(emDruckenpdf, true);
+    bmessen = false;
     idletimer->start(wgrunddaten.idletime);
   }
   if(wg == nwt7vfo){
     diagrammstop();
-    emit setmenu(emmenuKurven, FALSE);
-    emit setmenu(emmenuwobbel, FALSE);
-    //    emit setmenu(emmenuvfo, TRUE);
-    emit setmenu(emmenumessen, FALSE);
-    emit setmenu(emDrucken, FALSE);
-    emit setmenu(emDruckenpdf, FALSE);
+    emit setmenu(emmenuKurven, false);
+    emit setmenu(emmenuwobbel, false);
+    //    emit setmenu(emmenuvfo, true);
+    emit setmenu(emmenumessen, false);
+    emit setmenu(emDrucken, false);
+    emit setmenu(emDruckenpdf, false);
     setVfo();
     //und die Drehgeber setzen
     setdrehgebervonlcd();
-    bmessen = FALSE;
+    bmessen = false;
     //    Dial1hz->setFocus();
     idletimer->stop();
     stimer->stop();
@@ -6948,41 +6960,41 @@ void Nwt7linux::tabumschalten( QWidget *wg ){
   }
   if(wg == nwt7messen){
     diagrammstop();
-    emit setmenu(emmenuKurven, FALSE);
-    emit setmenu(emmenuwobbel, FALSE);
-    //    emit setmenu(emmenuvfo, FALSE);
-    emit setmenu(emmenumessen, TRUE);
-    emit setmenu(emDrucken, FALSE);
-    emit setmenu(emDruckenpdf, FALSE);
+    emit setmenu(emmenuKurven, false);
+    emit setmenu(emmenuwobbel, false);
+    //    emit setmenu(emmenuvfo, false);
+    emit setmenu(emmenumessen, true);
+    emit setmenu(emDrucken, false);
+    emit setmenu(emDruckenpdf, false);
     //    defaultlesenrtty(); //eventuelle Daten im UART loeschen
     idletimer->stop();
     stimer->stop();
     vtimer->stop();
     if(bmessvfo)setmessvfo(); 
     setmessen();
-    bmessen = TRUE;
+    bmessen = true;
   }
   if(wg == berechnung){
-    bmessen = FALSE;
+    bmessen = false;
     diagrammstop();
     idletimer->start(wgrunddaten.idletime);
   }
   if(wg == wkmanager){
-    bmessen = FALSE;
+    bmessen = false;
     diagrammstop();
     idletimer->start(wgrunddaten.idletime);
   }
   if(wg == wimpedanz){
-    bmessen = FALSE;
+    bmessen = false;
     diagrammstop();
     idletimer->start(wgrunddaten.idletime);
   }
   if(wg == wdiagramm){
-    bmessen = FALSE;
+    bmessen = false;
     //qDebug()<< "Diagramm";
     wobdaten.ebetriebsart = eantdiagramm;
     idletimer->start(wgrunddaten.idletime);
-    //wobdaten.mess.daten_enable = FALSE;
+    //wobdaten.mess.daten_enable = false;
     diagrammdim(0);
     emit sendewobbeldaten(wobdaten);
   }
@@ -7415,7 +7427,7 @@ void Nwt7linux::LCDaendern(){
 
 void Nwt7linux::setVfo(){
   //timer starten mit 10 mSek Laufzeit
-  vfotimer->start(10, TRUE);
+  vfotimer->start(10);
 }
 
 void Nwt7linux::senddaten(){
@@ -7516,7 +7528,7 @@ void Nwt7linux::setdrehgebervonlcd()
 
 void Nwt7linux::change1hz(int a)
 {
-  bool isnull = TRUE;
+  bool isnull = true;
   
   if(a==10){
     vsp1hz->setValue(0);
@@ -7525,15 +7537,15 @@ void Nwt7linux::change1hz(int a)
     vsp10hz->setValue(b);
   }
   if(a==-1){
-    if(vsp1ghz->value() != 0)isnull = FALSE;
-    if(vsp100mhz->value() != 0)isnull = FALSE;
-    if(vsp10mhz->value() != 0)isnull = FALSE;
-    if(vsp1mhz->value() != 0)isnull = FALSE;
-    if(vsp100khz->value() != 0)isnull = FALSE;
-    if(vsp10khz->value() != 0)isnull = FALSE;
-    if(vsp1khz->value() != 0)isnull = FALSE;
-    if(vsp100hz->value() != 0)isnull = FALSE;
-    if(vsp10hz->value() != 0)isnull = FALSE;
+    if(vsp1ghz->value() != 0)isnull = false;
+    if(vsp100mhz->value() != 0)isnull = false;
+    if(vsp10mhz->value() != 0)isnull = false;
+    if(vsp1mhz->value() != 0)isnull = false;
+    if(vsp100khz->value() != 0)isnull = false;
+    if(vsp10khz->value() != 0)isnull = false;
+    if(vsp1khz->value() != 0)isnull = false;
+    if(vsp100hz->value() != 0)isnull = false;
+    if(vsp10hz->value() != 0)isnull = false;
     if(isnull){
       vsp1hz->setValue(0);
     }else{
@@ -7549,7 +7561,7 @@ void Nwt7linux::change1hz(int a)
 
 void Nwt7linux::change10hz(int a)
 {
-  bool isnull = TRUE;
+  bool isnull = true;
   
   if(a==10){
     vsp10hz->setValue(0);
@@ -7558,14 +7570,14 @@ void Nwt7linux::change10hz(int a)
     vsp100hz->setValue(b);
   }
   if(a==-1){
-    if(vsp1ghz->value() != 0)isnull = FALSE;
-    if(vsp100mhz->value() != 0)isnull = FALSE;
-    if(vsp10mhz->value() != 0)isnull = FALSE;
-    if(vsp1mhz->value() != 0)isnull = FALSE;
-    if(vsp100khz->value() != 0)isnull = FALSE;
-    if(vsp10khz->value() != 0)isnull = FALSE;
-    if(vsp1khz->value() != 0)isnull = FALSE;
-    if(vsp100hz->value() != 0)isnull = FALSE;
+    if(vsp1ghz->value() != 0)isnull = false;
+    if(vsp100mhz->value() != 0)isnull = false;
+    if(vsp10mhz->value() != 0)isnull = false;
+    if(vsp1mhz->value() != 0)isnull = false;
+    if(vsp100khz->value() != 0)isnull = false;
+    if(vsp10khz->value() != 0)isnull = false;
+    if(vsp1khz->value() != 0)isnull = false;
+    if(vsp100hz->value() != 0)isnull = false;
     if(isnull){
       vsp10hz->setValue(0);
     }else{
@@ -7581,7 +7593,7 @@ void Nwt7linux::change10hz(int a)
 
 void Nwt7linux::change100hz(int a)
 {
-  bool isnull = TRUE;
+  bool isnull = true;
   
   if(a==10){
     vsp100hz->setValue(0);
@@ -7590,13 +7602,13 @@ void Nwt7linux::change100hz(int a)
     vsp1khz->setValue(b);
   }
   if(a==-1){
-    if(vsp1ghz->value() != 0)isnull = FALSE;
-    if(vsp100mhz->value() != 0)isnull = FALSE;
-    if(vsp10mhz->value() != 0)isnull = FALSE;
-    if(vsp1mhz->value() != 0)isnull = FALSE;
-    if(vsp100khz->value() != 0)isnull = FALSE;
-    if(vsp10khz->value() != 0)isnull = FALSE;
-    if(vsp1khz->value() != 0)isnull = FALSE;
+    if(vsp1ghz->value() != 0)isnull = false;
+    if(vsp100mhz->value() != 0)isnull = false;
+    if(vsp10mhz->value() != 0)isnull = false;
+    if(vsp1mhz->value() != 0)isnull = false;
+    if(vsp100khz->value() != 0)isnull = false;
+    if(vsp10khz->value() != 0)isnull = false;
+    if(vsp1khz->value() != 0)isnull = false;
     if(isnull){
       vsp100hz->setValue(0);
     }else{
@@ -7612,7 +7624,7 @@ void Nwt7linux::change100hz(int a)
 
 void Nwt7linux::change1khz(int a)
 {
-  bool isnull = TRUE;
+  bool isnull = true;
   
   if(a==10){
     vsp1khz->setValue(0);
@@ -7621,12 +7633,12 @@ void Nwt7linux::change1khz(int a)
     vsp10khz->setValue(b);
   }
   if(a==-1){
-    if(vsp1ghz->value() != 0)isnull = FALSE;
-    if(vsp100mhz->value() != 0)isnull = FALSE;
-    if(vsp10mhz->value() != 0)isnull = FALSE;
-    if(vsp1mhz->value() != 0)isnull = FALSE;
-    if(vsp100khz->value() != 0)isnull = FALSE;
-    if(vsp10khz->value() != 0)isnull = FALSE;
+    if(vsp1ghz->value() != 0)isnull = false;
+    if(vsp100mhz->value() != 0)isnull = false;
+    if(vsp10mhz->value() != 0)isnull = false;
+    if(vsp1mhz->value() != 0)isnull = false;
+    if(vsp100khz->value() != 0)isnull = false;
+    if(vsp10khz->value() != 0)isnull = false;
     if(isnull){
       vsp1khz->setValue(0);
     }else{
@@ -7642,7 +7654,7 @@ void Nwt7linux::change1khz(int a)
 
 void Nwt7linux::change10khz(int a)
 {
-  bool isnull = TRUE;
+  bool isnull = true;
   
   if(a==10){
     vsp10khz->setValue(0);
@@ -7651,11 +7663,11 @@ void Nwt7linux::change10khz(int a)
     vsp100khz->setValue(b);
   }
   if(a==-1){
-    if(vsp1ghz->value() != 0)isnull = FALSE;
-    if(vsp100mhz->value() != 0)isnull = FALSE;
-    if(vsp10mhz->value() != 0)isnull = FALSE;
-    if(vsp1mhz->value() != 0)isnull = FALSE;
-    if(vsp100khz->value() != 0)isnull = FALSE;
+    if(vsp1ghz->value() != 0)isnull = false;
+    if(vsp100mhz->value() != 0)isnull = false;
+    if(vsp10mhz->value() != 0)isnull = false;
+    if(vsp1mhz->value() != 0)isnull = false;
+    if(vsp100khz->value() != 0)isnull = false;
     if(isnull){
       vsp10khz->setValue(0);
     }else{
@@ -7671,7 +7683,7 @@ void Nwt7linux::change10khz(int a)
 
 void Nwt7linux::change100khz(int a)
 {
-  bool isnull = TRUE;
+  bool isnull = true;
   
   if(a==10){
     vsp100khz->setValue(0);
@@ -7680,10 +7692,10 @@ void Nwt7linux::change100khz(int a)
     vsp1mhz->setValue(b);
   }
   if(a==-1){
-    if(vsp1ghz->value() != 0)isnull = FALSE;
-    if(vsp100mhz->value() != 0)isnull = FALSE;
-    if(vsp10mhz->value() != 0)isnull = FALSE;
-    if(vsp1mhz->value() != 0)isnull = FALSE;
+    if(vsp1ghz->value() != 0)isnull = false;
+    if(vsp100mhz->value() != 0)isnull = false;
+    if(vsp10mhz->value() != 0)isnull = false;
+    if(vsp1mhz->value() != 0)isnull = false;
     if(isnull){
       vsp100khz->setValue(0);
     }else{
@@ -7699,7 +7711,7 @@ void Nwt7linux::change100khz(int a)
 
 void Nwt7linux::change1mhz(int a)
 {
-  bool isnull = TRUE;
+  bool isnull = true;
   
   if(a==10){
     vsp1mhz->setValue(0);
@@ -7708,9 +7720,9 @@ void Nwt7linux::change1mhz(int a)
     vsp10mhz->setValue(b);
   }
   if(a==-1){
-    if(vsp1ghz->value() != 0)isnull = FALSE;
-    if(vsp100mhz->value() != 0)isnull = FALSE;
-    if(vsp10mhz->value() != 0)isnull = FALSE;
+    if(vsp1ghz->value() != 0)isnull = false;
+    if(vsp100mhz->value() != 0)isnull = false;
+    if(vsp10mhz->value() != 0)isnull = false;
     if(isnull){
       vsp1mhz->setValue(0);
     }else{
@@ -7726,7 +7738,7 @@ void Nwt7linux::change1mhz(int a)
 
 void Nwt7linux::change10mhz(int a)
 {
-  bool isnull = TRUE;
+  bool isnull = true;
   
   if(a==10){
     vsp10mhz->setValue(0);
@@ -7735,8 +7747,8 @@ void Nwt7linux::change10mhz(int a)
     vsp100mhz->setValue(b);
   }
   if(a==-1){
-    if(vsp1ghz->value() != 0)isnull = FALSE;
-    if(vsp100mhz->value() != 0)isnull = FALSE;
+    if(vsp1ghz->value() != 0)isnull = false;
+    if(vsp100mhz->value() != 0)isnull = false;
     if(isnull){
       vsp10mhz->setValue(0);
     }else{
@@ -7752,7 +7764,7 @@ void Nwt7linux::change10mhz(int a)
 
 void Nwt7linux::change100mhz(int a)
 {
-  bool isnull = TRUE;
+  bool isnull = true;
   
   if(a==10){
     vsp100mhz->setValue(0);
@@ -7761,7 +7773,7 @@ void Nwt7linux::change100mhz(int a)
     vsp1ghz->setValue(b);
   }
   if(a==-1){
-    if(vsp1ghz->value() != 0)isnull = FALSE;
+    if(vsp1ghz->value() != 0)isnull = false;
     if(isnull){
       vsp100mhz->setValue(0);
     }else{
@@ -7829,11 +7841,11 @@ void Nwt7linux::lcd1clicked(){
   QPalette dpd;
   dpd.setColor(QPalette::Background, Qt::darkYellow);
 
-  rb1->setChecked(TRUE);
-  rb2->setChecked(FALSE);
-  rb3->setChecked(FALSE);
-  rb4->setChecked(FALSE);
-  rb5->setChecked(FALSE);
+  rb1->setChecked(true);
+  rb2->setChecked(false);
+  rb3->setChecked(false);
+  rb4->setChecked(false);
+  rb5->setChecked(false);
   
   LCD1->setPalette(dp);
   LCD2->setPalette(dpd);
@@ -7852,11 +7864,11 @@ void Nwt7linux::lcd2clicked(){
   QPalette dpd;
   dpd.setColor(QPalette::Background, Qt::darkYellow);
 
-  rb1->setChecked(FALSE);
-  rb2->setChecked(TRUE);
-  rb3->setChecked(FALSE);
-  rb4->setChecked(FALSE);
-  rb5->setChecked(FALSE);
+  rb1->setChecked(false);
+  rb2->setChecked(true);
+  rb3->setChecked(false);
+  rb4->setChecked(false);
+  rb5->setChecked(false);
   
   LCD1->setPalette(dpd);
   LCD2->setPalette(dp);
@@ -7875,11 +7887,11 @@ void Nwt7linux::lcd3clicked(){
   QPalette dpd;
   dpd.setColor(QPalette::Background, Qt::darkYellow);
 
-  rb1->setChecked(FALSE);
-  rb2->setChecked(FALSE);
-  rb3->setChecked(TRUE);
-  rb4->setChecked(FALSE);
-  rb5->setChecked(FALSE);
+  rb1->setChecked(false);
+  rb2->setChecked(false);
+  rb3->setChecked(true);
+  rb4->setChecked(false);
+  rb5->setChecked(false);
   
   LCD1->setPalette(dpd);
   LCD2->setPalette(dpd);
@@ -7898,11 +7910,11 @@ void Nwt7linux::lcd4clicked(){
   QPalette dpd;
   dpd.setColor(QPalette::Background, Qt::darkYellow);
 
-  rb1->setChecked(FALSE);
-  rb2->setChecked(FALSE);
-  rb3->setChecked(FALSE);
-  rb4->setChecked(TRUE);
-  rb5->setChecked(FALSE);
+  rb1->setChecked(false);
+  rb2->setChecked(false);
+  rb3->setChecked(false);
+  rb4->setChecked(true);
+  rb5->setChecked(false);
   
   LCD1->setPalette(dpd);
   LCD2->setPalette(dpd);
@@ -7921,11 +7933,11 @@ void Nwt7linux::lcd5clicked(){
   QPalette dpd;
   dpd.setColor(QPalette::Background, Qt::darkYellow);
 
-  rb1->setChecked(FALSE);
-  rb2->setChecked(FALSE);
-  rb3->setChecked(FALSE);
-  rb4->setChecked(FALSE);
-  rb5->setChecked(TRUE);
+  rb1->setChecked(false);
+  rb2->setChecked(false);
+  rb3->setChecked(false);
+  rb4->setChecked(false);
+  rb5->setChecked(true);
   
   LCD1->setPalette(dpd);
   LCD2->setPalette(dpd);
@@ -8130,8 +8142,8 @@ void Nwt7linux::option(){
     qs = "sav.cal";
     QFile f;
     int i;
-    f.setName(homedir.filePath(qs));
-    if(f.open(IO_WriteOnly)){
+    f.setFileName(homedir.filePath(qs));
+    if(f.open(QIODevice::WriteOnly)){
       #ifdef LDEBUG
         qDebug(s);
       #endif
@@ -8151,29 +8163,29 @@ void Nwt7linux::option(){
       }else{
         setColorBlackk1();
       }  
-      checkboxk2->setChecked(FALSE);
-      checkboxk2->setEnabled(FALSE);
+      checkboxk2->setChecked(false);
+      checkboxk2->setEnabled(false);
       progressbarmessk2->setValue(0);
-      progressbarmessk2->setEnabled(FALSE);
-      ldaempfungk2->setEnabled(FALSE);
-      boxwattoffset2->setEnabled(FALSE);
+      progressbarmessk2->setEnabled(false);
+      ldaempfungk2->setEnabled(false);
+      boxwattoffset2->setEnabled(false);
       messlabel2->setText("");
-      messlabel2->setEnabled(FALSE);
+      messlabel2->setEnabled(false);
       messlabel4->setText("");
-      messlabel4->setEnabled(FALSE);
+      messlabel4->setEnabled(false);
       messlabel6->setText("");
-      messlabel6->setEnabled(FALSE);
+      messlabel6->setEnabled(false);
       mlabelk2->setText("");
-      mlabelk2->setEnabled(FALSE);
+      mlabelk2->setEnabled(false);
       labelldaempfungk2->setText("");
-      checkboxmesshang2->setEnabled(FALSE);
-//      checkboxM10dbK2->setEnabled(FALSE);
-//      checkboxM20dbK2->setEnabled(FALSE);
-      emit setmenu(emEichenK2, FALSE);
-      emit setmenu(emSondeLadenK2, FALSE);
-      emit setmenu(emSondeSpeichernK2, FALSE);
-      emit setmenu(emWattEichenK2, FALSE);
-      emit setmenu(emWattEditSonde2, FALSE);
+      checkboxmesshang2->setEnabled(false);
+//      checkboxM10dbK2->setEnabled(false);
+//      checkboxM20dbK2->setEnabled(false);
+      emit setmenu(emEichenK2, false);
+      emit setmenu(emSondeLadenK2, false);
+      emit setmenu(emSondeSpeichernK2, false);
+      emit setmenu(emWattEichenK2, false);
+      emit setmenu(emWattEditSonde2, false);
     }else{
       if(wgrunddaten.kalibrierk1 and !wobdaten.linear1){
         setColorRedk1();
@@ -8189,23 +8201,23 @@ void Nwt7linux::option(){
       }
       //Aenderung nur erlauben wenn Betriebsart Wobbeln, sonst wird Eichen K2 frei obwohl SWV eingestellt ist
       if(wobdaten.ebetriebsart == ewobbeln){
-        checkboxk2->setEnabled(TRUE);
-        progressbarmessk2->setEnabled(TRUE);
-        ldaempfungk2->setEnabled(TRUE);
+        checkboxk2->setEnabled(true);
+        progressbarmessk2->setEnabled(true);
+        ldaempfungk2->setEnabled(true);
         labelldaempfungk2->setText(tr("Daempfung (dB)","im Wattmeter"));
-        checkboxmesshang2->setEnabled(TRUE);
-        boxwattoffset2->setEnabled(TRUE);
-        messlabel2->setEnabled(TRUE);
-        messlabel4->setEnabled(TRUE);
-        messlabel6->setEnabled(TRUE);
-        mlabelk2->setEnabled(TRUE);
-        //      checkboxM10dbK2->setEnabled(TRUE);
-        //      checkboxM20dbK2->setEnabled(TRUE);
-        emit setmenu(emEichenK2, TRUE);
-        emit setmenu(emSondeLadenK2, TRUE);
-        emit setmenu(emSondeSpeichernK2, TRUE);
-        emit setmenu(emWattEichenK2, TRUE);
-        emit setmenu(emWattEditSonde2, TRUE);
+        checkboxmesshang2->setEnabled(true);
+        boxwattoffset2->setEnabled(true);
+        messlabel2->setEnabled(true);
+        messlabel4->setEnabled(true);
+        messlabel6->setEnabled(true);
+        mlabelk2->setEnabled(true);
+        //      checkboxM10dbK2->setEnabled(true);
+        //      checkboxM20dbK2->setEnabled(true);
+        emit setmenu(emEichenK2, true);
+        emit setmenu(emSondeLadenK2, true);
+        emit setmenu(emSondeSpeichernK2, true);
+        emit setmenu(emWattEichenK2, true);
+        emit setmenu(emWattEditSonde2, true);
       }
     }
     //    QFont font("Helvetica", weichen.pfsize);
@@ -8246,7 +8258,7 @@ void Nwt7linux::option(){
     qDebug("%lli", test);
     qDebug(qs);
     #endif    
-    qs = qs.upper();
+    qs = qs.toUpper();
     qs = "e" + qs + qpll;
     #ifdef LDEBUG
     qDebug(qs);
@@ -8278,7 +8290,7 @@ void Nwt7linux::option(){
   vfotimer->stop();
   messvfotimer->stop();
   // VFO Tab aktiv ?
-  if(this->currentIndex() == 2)vfotimer->start(10, TRUE);
+  if(this->currentIndex() == 2)vfotimer->start(10);
   // Wattmeter VFO aktiv ?
   if(this->currentIndex() == 3){
     this->setCurrentIndex(0);
@@ -8302,7 +8314,7 @@ void Nwt7linux::versionskontrolle(){
   
   //qDebug("versionskontrolle()");
   if(vabfrage){
-    vabfrage = FALSE;
+    vabfrage = false;
     if (bttyOpen)
     {
       defaultlesenrtty(); //eventuelle Daten im UART loeschen
@@ -8312,7 +8324,7 @@ void Nwt7linux::versionskontrolle(){
       //qDebug("v --> rs232");
     }
   }else{  
-    vabfrage = TRUE;
+    vabfrage = true;
     if (bttyOpen and (fwversion > 113) and (fwversion < 150))
     {
       defaultlesenrtty(); //eventuelle Daten im UART loeschen
@@ -8373,10 +8385,10 @@ void Nwt7linux::firmupdate(){
   firmwidget firmw(this);
  
   QMessageBox::about(this, tr(" Firmware Update ","InformationsBox"), beschr);
-  QString s = QFileDialog::getOpenFileName(
-                    homedir.filePath("*.hex"),
-                    "Firmware Hexdatei (*.hex)",
-                    this, 0, "Firmware Updaten");
+  QString s = QFileDialog::getOpenFileName(this,
+                                           "Firmware Updaten",
+                                           homedir.filePath("*.hex"),
+                                           "Firmware Hexdatei (*.hex)");
   if (!s.isNull())
   {
     firmw.show();
@@ -8385,14 +8397,14 @@ void Nwt7linux::firmupdate(){
     #ifdef LDEBUG
     qDebug(s);
     #endif    
-    f.setName(s);
-    if(f.open( IO_ReadOnly )){
+    f.setFileName(s);
+    if(f.open( QIODevice::ReadOnly )){
       idletimer->stop();
       stimer->stop();
       vtimer->stop();
       QTextStream ts(&f);
       qs = "";
-      while((qs.find("HFM9") == -1)and(qs.find("NWT7") == -1)){
+      while((qs.indexOf("HFM9") == -1)and(qs.indexOf("NWT7") == -1)){
         if(picmodem->readttybuffer(&c, 1) == 1){
           firmw.setText("Kennung RX"); 
           qs = qs + c;
@@ -8401,7 +8413,7 @@ void Nwt7linux::firmupdate(){
       }
       qs = "";
       i = 0;
-      while(qs.find("OK") == -1){
+      while(qs.indexOf("OK") == -1){
         ts >> zeile;
         #ifdef LDEBUG
         qDebug(zeile);
@@ -8410,7 +8422,7 @@ void Nwt7linux::firmupdate(){
         c = ' ';
         while(picmodem->readttybuffer(&c, 1) != 1) ;
         i++;
-        qs1.sprintf(tr("Line: %i"), i);
+        qs1.sprintf(qPrintable(tr("Line: %i")), i);
         firmw.setText(qs1);
         if(c == 'O'){
           qs = qs + c;
@@ -8455,18 +8467,18 @@ void Nwt7linux::setDaempfungWatt(int index)
 
 void Nwt7linux::setDaempfung(int index)
 {
-  bool bidletimer = FALSE;
-  bool bstimer = FALSE;
-  bool bvtimer = FALSE;
-  bool bmesstimer = FALSE;
+  bool bidletimer = false;
+  bool bstimer = false;
+  bool bvtimer = false;
+  bool bmesstimer = false;
   int portb=0;
   int db;
-  bool r1 = FALSE, // -2dB
-       r2 = FALSE, // -4dB
-       r3 = FALSE, // -8db
-       r4 = FALSE, // -4dB
-       r5 = FALSE, // -16dB
-       r6 = FALSE; // -32db
+  bool r1 = false, // -2dB
+       r2 = false, // -4dB
+       r3 = false, // -8db
+       r4 = false, // -4dB
+       r5 = false, // -16dB
+       r6 = false; // -32db
   QString qs;
   //es wird nicht gewobbelt
   
@@ -8474,57 +8486,57 @@ void Nwt7linux::setDaempfung(int index)
 
   if(idletimer->timerId() != -1){
     idletimer->stop();
-    bidletimer = TRUE;
+    bidletimer = true;
   }
   if(stimer->timerId() != -1){
     stimer->stop();
-    bstimer = TRUE;
+    bstimer = true;
   }
   if(vtimer->timerId() != -1){
     vtimer->stop();
-    bvtimer = TRUE;
+    bvtimer = true;
   }
   if(messtimer->timerId() != -1){
     messtimer->stop();
-    bmesstimer = TRUE;
+    bmesstimer = true;
   }
   if(wgrunddaten.bdaempfungfa){
     if(index > 0){
       db = (index+1) * 2;
       //qDebug("db: %i", db);
       if(db >= 32){
-        r6 = TRUE;
+        r6 = true;
         db = db - 32;
         if((db !=0) and (db < 4)){
-          r6 = FALSE;
+          r6 = false;
           db = db + 32;
         } 
         //qDebug("db: %i", db);
       } 
       if(db >= 16){
-        r5 = TRUE;
+        r5 = true;
         db = db - 16;
         if((db !=0) and (db < 4)){
-          r5 = FALSE;
+          r5 = false;
           db = db + 16;
         } 
         //qDebug("db: %i", db);
       } 
       if(db != 0){
         db = db - 4;
-        r4 = TRUE;
+        r4 = true;
         if(db >= 8){
-          r3 = TRUE;
+          r3 = true;
           db = db - 8;
           //qDebug("db: %i", db);
         } 
         if(db >= 4){
-          r2 = TRUE;
+          r2 = true;
           db = db - 4;
           //qDebug("db: %i", db);
         } 
         if(db >= 2){
-          r1 = TRUE;
+          r1 = true;
           db = db - 2;
           //qDebug("db: %i", db);
         } 
@@ -8595,12 +8607,15 @@ void Nwt7linux::setDaempfung(int index)
       #endif    
     }
   }else{
-    bsetdaempfung = TRUE;
+    bsetdaempfung = true;
   }
   if(bidletimer)idletimer->start(wgrunddaten.idletime);
   if(bstimer)stimer->start(wgrunddaten.stime);
   if(bvtimer)vtimer->start(wgrunddaten.vtime);
-  if(bmesstimer and bmessen)messtimer->start(messtime);
+  if(bmesstimer and bmessen){
+    messtimer->setSingleShot(false);
+    messtimer->start(messtime);
+  }
 }
 
 void Nwt7linux::setwattoffset1(int index)
@@ -9226,6 +9241,7 @@ void Nwt7linux::fzaehlen(){
     ergebnis = ttybuffer[0] + ttybuffer[1]*256 + ttybuffer[2]*256*256 + ttybuffer[3]*256*256*256;
     //qDebug("ergebnis= %li", ergebnis);
   }
+  (void)ergebnis;
 }
 
 void Nwt7linux::keyPressEvent(QKeyEvent *event){
@@ -9265,7 +9281,7 @@ void Nwt7linux::fsendewobbeldaten(){
                    + wobdaten.schrittfrequenz 
                    * ((double)wobdaten.schritte -1);
   if(wobdaten.linear1 or wobdaten.linear2){
-    wobdaten.bkalibrierkorrk1 = FALSE;
+    wobdaten.bkalibrierkorrk1 = false;
   }else{
     wobdaten.bkalibrierkorrk1 = wgrunddaten.kalibrierk1;
   }
@@ -9293,9 +9309,9 @@ void Nwt7linux::writeSettings()
 void Nwt7linux::vfoum()
 {
   if(bmessvfo){
-    bmessvfo = FALSE;
+    bmessvfo = false;
   }else{
-    bmessvfo = TRUE;
+    bmessvfo = true;
   }
   vfoeinaus();
 }
@@ -9485,7 +9501,7 @@ void Nwt7linux::setmessvfo()
       sp1ghz->setValue(0);
     }
     messtimer->stop();
-    messvfotimer->start(100,TRUE);
+    messvfotimer->start(100);
   }
 }
 
@@ -9532,7 +9548,8 @@ void Nwt7linux::messvfotimerende()
   }
   //timer stoppen da Aufgabe erledigt
   messvfotimer->stop();
-  messtimer->start(messtime, TRUE);
+  messtimer->setSingleShot(true);
+  messtimer->start(messtime);
 }
 
 void Nwt7linux::setDisplayYmax(const QString &sa)
@@ -9594,8 +9611,8 @@ void Nwt7linux::warnkalibrierkorr()
                 tr("Deaktivieren", "WarnungsBox")
                 ,0,1) == 1)
         {
-          wobdaten.bkalibrierkorrk1 = FALSE;
-          wobdaten.bkalibrierkorrk2 = FALSE;
+          wobdaten.bkalibrierkorrk1 = false;
+          wobdaten.bkalibrierkorrk2 = false;
           emit sendewobbeldaten(wobdaten);
         }
       }
@@ -9656,7 +9673,7 @@ void Nwt7linux::setProgramPath(const QString &ap){
   homedir.cdUp();
   //QString s = homedir.absolutePath();
   //qDebug(s);
-  bersterstart = FALSE;
+  bersterstart = false;
   //Test ob im Progrannverzeichnis das Verzeichnis nwt befindet
   if(!homedir.cd("nwt")){
     //KEIN nwt Verzeichnis: HOME ist das neue Verzeichnis
@@ -9668,7 +9685,7 @@ void Nwt7linux::setProgramPath(const QString &ap){
       //in das hfm9 gehen
       homedir.cd("hfm9");
       //das ist der erste Start des Programmes
-      bersterstart = TRUE;
+      bersterstart = true;
     }
   }
   QDir dir=homedir;
@@ -9833,45 +9850,45 @@ void Nwt7linux::testLogLin(){
   if(wobdaten.linear2 or wobdaten.linear1){
     setColorBlackk1();
     setColorBlackk2();
-    checkboxgrafik->setEnabled(TRUE);
-    checkbox6db->setEnabled(TRUE);
-    checkbox3db->setEnabled(TRUE);
-    checkboxinvers->setEnabled(TRUE);
-    betriebsart->setEnabled(FALSE);
-    labelbetriebsart->setEnabled(FALSE);
-    labelboxdbshift1->setEnabled(FALSE);
-    labelboxdbshift2->setEnabled(FALSE);
-    boxdbshift1->setEnabled(FALSE);
-    boxdbshift2->setEnabled(FALSE);
-    kalibrier1->setEnabled(FALSE);
-    kalibrier2->setEnabled(FALSE);
-    boxydbmax->setEnabled(FALSE);
-    boxydbmin->setEnabled(FALSE);
-    labelboxydbmax->setEnabled(FALSE);
-    labelboxydbmin->setEnabled(FALSE);
-    editdisplay->setEnabled(FALSE);
-    labeldisplayshift->setEnabled(FALSE);
+    checkboxgrafik->setEnabled(true);
+    checkbox6db->setEnabled(true);
+    checkbox3db->setEnabled(true);
+    checkboxinvers->setEnabled(true);
+    betriebsart->setEnabled(false);
+    labelbetriebsart->setEnabled(false);
+    labelboxdbshift1->setEnabled(false);
+    labelboxdbshift2->setEnabled(false);
+    boxdbshift1->setEnabled(false);
+    boxdbshift2->setEnabled(false);
+    kalibrier1->setEnabled(false);
+    kalibrier2->setEnabled(false);
+    boxydbmax->setEnabled(false);
+    boxydbmin->setEnabled(false);
+    labelboxydbmax->setEnabled(false);
+    labelboxydbmin->setEnabled(false);
+    editdisplay->setEnabled(false);
+    labeldisplayshift->setEnabled(false);
   }else{
     if(kalibrier1->isChecked())setColorRedk1();
     if(kalibrier2->isChecked())setColorRedk2();
-    checkboxgrafik->setEnabled(TRUE);
-    checkbox6db->setEnabled(TRUE);
-    checkbox3db->setEnabled(TRUE);
-    checkboxinvers->setEnabled(TRUE);
-    betriebsart->setEnabled(TRUE);
-    labelbetriebsart->setEnabled(TRUE);
-    labelboxdbshift1->setEnabled(TRUE);
-    labelboxdbshift2->setEnabled(TRUE);
-    boxdbshift1->setEnabled(TRUE);
-    boxdbshift2->setEnabled(TRUE);
-    kalibrier1->setEnabled(TRUE);
-    kalibrier2->setEnabled(TRUE);
-    boxydbmax->setEnabled(TRUE);
-    boxydbmin->setEnabled(TRUE);
-    labelboxydbmax->setEnabled(TRUE);
-    labelboxydbmin->setEnabled(TRUE);
-    editdisplay->setEnabled(TRUE);
-    labeldisplayshift->setEnabled(TRUE);
+    checkboxgrafik->setEnabled(true);
+    checkbox6db->setEnabled(true);
+    checkbox3db->setEnabled(true);
+    checkboxinvers->setEnabled(true);
+    betriebsart->setEnabled(true);
+    labelbetriebsart->setEnabled(true);
+    labelboxdbshift1->setEnabled(true);
+    labelboxdbshift2->setEnabled(true);
+    boxdbshift1->setEnabled(true);
+    boxdbshift2->setEnabled(true);
+    kalibrier1->setEnabled(true);
+    kalibrier2->setEnabled(true);
+    boxydbmax->setEnabled(true);
+    boxydbmin->setEnabled(true);
+    labelboxydbmax->setEnabled(true);
+    labelboxydbmin->setEnabled(true);
+    editdisplay->setEnabled(true);
+    labeldisplayshift->setEnabled(true);
   }
 }
 
@@ -9886,11 +9903,11 @@ void Nwt7linux::diagrammstart(){
     wobdaten.mess.k1[i]=0;
   }
   defaultlesenrtty();
-  wobdaten.mess.daten_enable = TRUE;
+  wobdaten.mess.daten_enable = true;
   emit sendewobbeldaten(wobdaten);
   picmodem->writeChar(143);
   picmodem->writeLine("m");
-  tdiagramm->start(10,true);
+  tdiagramm->start(10);
   dummycounter = 50;
   counterkurve = 0;
 }
@@ -9901,7 +9918,7 @@ void Nwt7linux::diagrammstop(){
   bstop->setEnabled(false);
   tdiagramm->stop();
   idletimer->start(wgrunddaten.idletime);
-  wobdaten.mess.daten_enable = TRUE;
+  wobdaten.mess.daten_enable = true;
   emit sendewobbelkurve(wobdaten.mess);
 }
 
@@ -9921,9 +9938,9 @@ void Nwt7linux::diagrammspeichern(){
     qs = kurvendir.absolutePath();
     //qDebug(qs);
     //Datei ueberpruefen ob Sufix vorhanden
-    if((s.find(".")== -1)) s += ".csv";
-    f.setName(s);
-    if(f.open( IO_WriteOnly )){
+    if((s.indexOf(".")== -1)) s += ".csv";
+    f.setFileName(s);
+    if(f.open( QIODevice::WriteOnly )){
       QTextStream ts(&f);
       ts << "index; Volt; dBm" << "\r\n" << flush;
       for(int i=0; i<1024; i++){
@@ -9953,7 +9970,7 @@ void Nwt7linux::tdiagrammbehandlung(){
       messsync++;
       picmodem->writeChar(143);
       picmodem->writeLine("m");
-      tdiagramm->start(10,true);
+      tdiagramm->start(10);
       if(messsync > 100){
         diagrammstop();
         QMessageBox::warning( this, tr("Antennendiagramm","InformationsBox"),
@@ -9982,7 +9999,7 @@ void Nwt7linux::tdiagrammbehandlung(){
       lanzeige->setText(qs);
       picmodem->writeChar(143);
       picmodem->writeLine("m");
-      tdiagramm->start(10,true);
+      tdiagramm->start(10);
       counterkurve++;
       if(counterkurve==50){
         emit sendewobbelkurve(wobdaten.mess);
@@ -10002,7 +10019,7 @@ void Nwt7linux::diagrammsimulieren(){
     }
     wobdaten.mess.k1[i] = w;
   }
-  wobdaten.mess.daten_enable = TRUE;
+  wobdaten.mess.daten_enable = true;
   emit sendewobbelkurve(wobdaten.mess);
 }
 
@@ -10049,4 +10066,20 @@ void Nwt7linux::diagrammdim(int){
 
 void Nwt7linux::diagrammdimd(double){
   diagrammdim(0);
+}
+
+void Nwt7linux::setTabEnabled(QWidget *widget, bool flag)
+{
+  QWidget *widgets[] = {nwt7wobbeln, wkmanager, nwt7vfo, nwt7messen, berechnung, nullptr};
+
+  for (int i = 0; widgets[i] != nullptr; ++i)
+  {
+    if (widget == widgets[i])
+    {
+      QTabWidget::setTabEnabled(i, flag);
+      return;
+    }
+  }
+
+  Q_ASSERT(false);
 }

@@ -6,7 +6,6 @@
 #include <qdialog.h>
 #include <qgroupbox.h>
 #include <qcombobox.h>
-#include <q3listbox.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
 #include <qlineedit.h>
@@ -22,7 +21,7 @@ class odlg : public QDialog
     Q_OBJECT
 
 public:
-  odlg(QWidget* parent=0, const char* name=0, bool modal=false);
+  odlg(QWidget* parent=0, Qt::WindowFlags flags=Qt::WindowFlags());
 
   void setdaten(TGrunddaten agrunddaten);
   TGrunddaten getdaten();

@@ -28,13 +28,15 @@
 #include <QLineEdit>
 #include <QObject>
 #include <QPrinter>
-#include <Q3StrList>
+#include <QStringList>
 #include <QVector>
-
-#include <Q3PaintDeviceMetrics>
-//#include <Q3PopupMenu>
 #include <QMouseEvent>
 #include <QtGui>
+#include <QGroupBox>
+#include <QLabel>
+#include <QDialog>
+#include <QSpinBox>
+#include <QCheckBox>
 
 #include "konstdef.h"
   
@@ -43,7 +45,7 @@ class winsinfo : public QDialog
   Q_OBJECT
 
 public:
-  winsinfo(QWidget* parent=0, const char* name=0, bool modal=FALSE);
+  winsinfo(QWidget* parent=0, Qt::WindowFlags flags=Qt::WindowFlags());
   ~winsinfo();
   
 

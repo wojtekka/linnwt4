@@ -76,7 +76,7 @@ void configfile::close(){
       delete(f1);
     }
   }
-  speichern = FALSE;
+  speichern = false;
 }
 
 bool configfile::clearItem(const QString &name){
